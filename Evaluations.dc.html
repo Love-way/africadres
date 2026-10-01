@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Mes évaluations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button{font-family:Inter,system-ui,sans-serif;cursor:pointer;color:#0B1F3A}
+button:focus-visible,a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+</style>
+</helmet>
+
+<div style="padding:80px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;flex-wrap:wrap"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">3a</span><span style="font-weight:600">Mes évaluations</span><span style="color:#4A5568">— une évaluation finale par cours, chacune avec son propre statut</span></div>
+<div style="display:flex;gap:80px;align-items:flex-start">
+
+<div id="3a" data-screen-label="Mes évaluations" style="width:1440px;min-height:960px;background:#F7F5F0;display:flex;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);flex:none">
+  <aside style="width:264px;flex:none;background:#fff;border-right:1px solid #E3E1DA;display:flex;flex-direction:column;padding:28px 20px">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 8px"><div style="width:36px;height:36px;border-radius:8px;background:#0B1F3A;display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px;color:#fff">A</div><span style="font-family:'Plus Jakarta Sans';font-size:18px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span></div>
+    <nav style="display:flex;flex-direction:column;gap:4px;margin-top:40px"><sc-for list="{{ nav }}" as="n" hint-placeholder-count="7"><a href="{{ n.href }}" style="height:46px;padding:0 14px;border-radius:8px;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:{{ n.w }};background:{{ n.bg }};color:{{ n.fg }}"><i class="icon-{{ n.icon }}" style="font-size:19px"></i><span style="flex:1">{{ n.label }}</span><sc-if value="{{ n.hasCount }}" hint-placeholder-val="{{ false }}"><span style="min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:#C9A24B;color:#0B1F3A;font-size:12px;font-weight:700;display:grid;place-items:center">{{ n.count }}</span></sc-if></a></sc-for></nav>
+  </aside>
+  <main style="flex:1;min-width:0;padding:32px 40px 48px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:30px;font-weight:700;letter-spacing:-.015em">Mes évaluations</h1><span style="font-size:15px;color:#4A5568">Chaque cours se termine par son propre examen final. Il s'ouvre quand vous avez lu le cours à 100 %.</span></div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+        <button onClick="{{ t.select }}" style="background:#fff;border:1px solid {{ t.bd }};box-shadow:{{ t.sh }};border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;text-align:left">
+          <div style="display:flex;justify-content:space-between;align-items:center;width:100%"><span style="font-size:14px;color:#4A5568;font-weight:600">{{ t.label }}</span><span style="width:30px;height:30px;border-radius:8px;background:{{ t.ibg }};color:{{ t.ifg }};display:grid;place-items:center"><i class="icon-{{ t.icon }}" style="font-size:16px"></i></span></div>
+          <span style="font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;font-variant-numeric:tabular-nums">{{ t.n }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+      <section style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:{{ g.dot }}"></span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:18px;font-weight:700">{{ g.title }}</h2><span style="font-size:13px;color:#4A5568">{{ g.sub }}</span></div>
+        <sc-for list="{{ g.items }}" as="e" hint-placeholder-count="2">
+          <div style="background:#fff;border:1px solid {{ e.bd }};border-radius:12px;padding:18px 20px;display:grid;grid-template-columns:56px minmax(0,1fr) 250px 230px;gap:18px;align-items:center">
+            <span style="width:56px;height:56px;border-radius:12px;background:{{ e.tint }};color:#C9A24B;display:grid;place-items:center"><i class="icon-{{ e.icon }}" style="font-size:24px"></i></span>
+            <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+              <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4A5568">{{ e.domain }} · Examen final</span>
+              <span style="font-family:'Plus Jakarta Sans';font-size:17px;font-weight:700;line-height:1.3">{{ e.title }}</span>
+              <span style="font-size:13px;color:#4A5568">20 questions · 30 min · réussite dès 80 % · tentative {{ e.attempt }}</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="justify-self:start;align-self:flex-start;display:inline-flex;gap:6px;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:{{ e.sbg }};color:{{ e.sfg }};font-size:12px;font-weight:700"><i class="icon-{{ e.sIcon }}" style="font-size:13px"></i>{{ e.status }}</span>
+              <div style="display:flex;gap:8px;align-items:center"><div style="flex:1;height:6px;border-radius:999px;background:#E3E1DA;overflow:hidden"><div style="width:{{ e.read }}%;height:100%;background:{{ e.bar }}"></div></div><span style="font-size:12px;color:#4A5568;font-variant-numeric:tabular-nums;width:92px">{{ e.readLabel }}</span></div>
+              <span style="font-size:12px;color:#4A5568;line-height:1.4">{{ e.note }}</span>
+            </div>
+            <div style="display:flex;justify-content:flex-end"><a href="{{ e.href }}" style="height:44px;padding:0 16px;border-radius:8px;background:{{ e.ctaBg }};color:{{ e.ctaFg }};border:{{ e.ctaBd }};font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;white-space:nowrap"><i class="icon-{{ e.ctaIcon }}" style="font-size:16px"></i>{{ e.cta }}</a></div>
+          </div>
+        </sc-for>
+      </section>
+    </sc-for>
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}"><div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:40px;text-align:center;font-size:15px;color:#4A5568">Aucune évaluation dans cette catégorie.</div></sc-if>
+  </main>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">3b</span><span style="font-weight:600">Mes évaluations · Mobile 390</span></div>
+<div id="3b" data-screen-label="Évaluations mobile" style="width:390px;height:844px;background:#F7F5F0;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.22);border:8px solid #0B1F3A;display:flex;flex-direction:column">
+  <div style="height:44px;flex:none;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <div style="flex:1;overflow:auto;padding:12px 18px 18px;display:flex;flex-direction:column;gap:12px">
+    <span style="font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700">Mes évaluations</span>
+    <div style="display:flex;gap:6px;overflow:auto"><sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4"><button onClick="{{ t.select }}" style="height:40px;padding:0 12px;border-radius:999px;border:1px solid {{ t.mBd }};background:{{ t.mBg }};color:{{ t.mFg }};font-size:13px;font-weight:600;white-space:nowrap;flex:none">{{ t.label }} · {{ t.n }}</button></sc-for></div>
+    <sc-for list="{{ flat }}" as="e" hint-placeholder-count="4">
+      <a href="{{ e.href }}" style="background:#fff;border:1px solid {{ e.bd }};border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start"><span style="font-family:'Plus Jakarta Sans';font-size:15px;font-weight:700;line-height:1.3">{{ e.title }}</span><span style="flex:none;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:{{ e.sbg }};color:{{ e.sfg }}">{{ e.status }}</span></div>
+        <div style="display:flex;gap:8px;align-items:center"><div style="flex:1;height:6px;border-radius:999px;background:#E3E1DA;overflow:hidden"><div style="width:{{ e.read }}%;height:100%;background:{{ e.bar }}"></div></div><span style="font-size:12px;color:#4A5568">{{ e.readLabel }}</span></div>
+        <span style="font-size:13px;color:#4A5568">{{ e.note }}</span>
+        <span style="height:44px;border-radius:8px;background:{{ e.ctaBg }};color:{{ e.ctaFg }};border:{{ e.ctaBd }};font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px">{{ e.cta }}</span>
+      </a>
+    </sc-for>
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 'all' };
+  renderVals() {
+    const N = '#0B1F3A', tab = this.state.tab;
+    const E = [
+      ['fin', 'Finance pour non-financiers', 'Finance & gestion', '#132C52', 'landmark', 'ready', 100, '1 / 3', 'Lecture terminée le 25 sept. · examen disponible maintenant'],
+      ['dig', 'Transformation digitale des organisations', 'Transformation digitale', '#132C52', 'cpu', 'ready', 100, '1 / 3', 'Lecture terminée hier · examen disponible maintenant'],
+      ['agile', 'Gestion de projet agile', 'Gestion de projet', '#0F4D40', 'square-kanban', 'retry', 100, '2 / 3', 'Tentative 1 : 72 % · nouvelle tentative possible le 30 sept. à 14h10'],
+      ['ohada', 'Droit OHADA des affaires', 'Droit & conformité', '#3A2E14', 'scale', 'locked', 40, '1 / 3', 'Encore 35 pages à lire pour ouvrir l\u2019examen'],
+      ['lead', 'Leadership et management d\u2019équipe', 'Leadership & management', '#1E3A66', 'users', 'passed', 100, '2 / 3', 'Réussi avec 88 % le 14 sept. · certificat délivré'],
+      ['neg', 'Négociation stratégique', 'Négociation & influence', '#3A2E14', 'handshake', 'passed', 100, '1 / 3', 'Réussi avec 92 % le 11 sept. · certificat délivré'],
+    ];
+    const M = {
+      ready: { g: 'ready', status: 'Disponible', sIcon: 'circle-play', sbg: '#FBF1DD', sfg: '#7A5000', bd: '#E7C98A', bar: '#0F7B5F', cta: 'Passer l\u2019examen', ctaIcon: 'arrow-right', ctaBg: '#C9A24B', ctaFg: N, ctaBd: '0', href: 'Suivi de cours et Evaluation.dc.html#3c' },
+      retry: { g: 'ready', status: 'Nouvelle tentative', sIcon: 'rotate-ccw', sbg: '#EEF1F5', sfg: '#132C52', bd: '#E3E1DA', bar: '#0F7B5F', cta: 'Réviser les chapitres', ctaIcon: 'book-open', ctaBg: '#fff', ctaFg: N, ctaBd: '1px solid #0B1F3A', href: 'Suivi du cours.dc.html' },
+      locked: { g: 'locked', status: 'Verrouillée', sIcon: 'lock', sbg: '#F3F2EE', sfg: '#4A5568', bd: '#E3E1DA', bar: '#8A93A3', cta: 'Continuer la lecture', ctaIcon: 'book-open', ctaBg: N, ctaFg: '#fff', ctaBd: '0', href: 'Suivi du cours.dc.html' },
+      passed: { g: 'passed', status: 'Réussie', sIcon: 'award', sbg: '#E6EFEC', sfg: '#0B5C47', bd: '#E3E1DA', bar: '#0F7B5F', cta: 'Voir le certificat', ctaIcon: 'award', ctaBg: '#fff', ctaFg: N, ctaBd: '1px solid #E3E1DA', href: 'Certificats.dc.html' },
+    };
+    const items = E.map(([id, title, domain, tint, icon, st, read, attempt, note]) => Object.assign({ id, title, domain, tint, icon, read, attempt, note, readLabel: read >= 100 ? 'Lu à 100 %' : 'Lu à ' + read + ' %', st }, M[st]));
+    const G = [['ready', 'À passer', 'Examens ouverts ou en attente de nouvelle tentative', '#D98E04'], ['locked', 'Verrouillées', 'Terminez la lecture du cours pour les débloquer', '#8A93A3'], ['passed', 'Réussies', 'Certificats délivrés', '#0F7B5F']];
+    const visible = items.filter(e => tab === 'all' || e.g === tab);
+    const cnt = k => items.filter(e => k === 'all' || e.g === k).length;
+    const hrefs = ['Espace Apprenant.dc.html#2a', 'Espace Apprenant.dc.html#2a', 'Catalogue.dc.html', 'Evaluations.dc.html', 'Certificats.dc.html', 'Paiements et Recus.dc.html', 'Profil.dc.html'];
+    return {
+      nav: [['layout-dashboard', 'Tableau de bord'], ['book-open', 'Mes formations'], ['library', 'Catalogue'], ['clipboard-check', 'Évaluations'], ['award', 'Certificats'], ['calendar-clock', 'Abonnement & reçus'], ['user-round', 'Profil']].map(([icon, label], i) => ({ icon, label, href: hrefs[i], bg: i === 3 ? N : 'transparent', fg: i === 3 ? '#fff' : '#4A5568', w: i === 3 ? 600 : 500, hasCount: i === 3, count: items.filter(e => e.st === 'ready').length })),
+      tabs: [['all', 'Toutes', 'list-checks', '#EEF1F5', N], ['ready', 'À passer', 'circle-play', '#FBF1DD', '#7A5000'], ['locked', 'Verrouillées', 'lock', '#F3F2EE', '#4A5568'], ['passed', 'Réussies', 'award', '#E6EFEC', '#0B5C47']].map(([k, label, icon, ibg, ifg]) => { const on = tab === k; return { label, icon, ibg, ifg, n: cnt(k), bd: on ? N : '#E3E1DA', sh: on ? 'inset 0 0 0 1px ' + N : 'none', mBd: on ? N : '#E3E1DA', mBg: on ? N : '#fff', mFg: on ? '#fff' : N, select: () => this.setState({ tab: k }) }; }),
+      groups: G.map(([k, title, sub, dot]) => ({ title, sub, dot, items: visible.filter(e => e.g === k) })).filter(g => g.items.length),
+      flat: visible, empty: visible.length === 0,
+    };
+  }
+}
+</script>
+</body>
+</html>

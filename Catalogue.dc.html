@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<script src="./profile-data.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<script src="./image-slot.js"></script>
+<script src="./courses-data.js"></script>
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button{font-family:Inter,system-ui,sans-serif;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:96px;padding:80px">
+
+<!-- ================= 4 CATALOGUE ================= -->
+<div style="display:flex;gap:80px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">4a</span><span style="font-weight:600">Catalogue · Desktop</span><span style="color:#4A5568">— recherche et filtres actifs</span></div>
+<div id="4a" data-screen-label="Catalogue" style="width:1440px;min-height:1080px;background:#F7F5F0;display:flex;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18)">
+  <aside style="width:264px;flex:none;background:#fff;border-right:1px solid #E3E1DA;display:flex;flex-direction:column;padding:28px 20px">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 8px"><div style="width:36px;height:36px;border-radius:8px;background:#0B1F3A;display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px;color:#fff">A</div><span style="font-family:'Plus Jakarta Sans';font-size:18px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span></div>
+    <nav style="display:flex;flex-direction:column;gap:4px;margin-top:40px"><sc-for list="{{ nav2 }}" as="n" hint-placeholder-count="7"><a href="{{ n.href }}" style="height:46px;padding:0 14px;border-radius:8px;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:{{ n.w }};background:{{ n.bg }};color:{{ n.fg }}"><i class="icon-{{ n.icon }}" style="font-size:19px"></i>{{ n.label }}</a></sc-for></nav>
+  </aside>
+  <main style="flex:1;min-width:0;padding:32px 40px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
+      <div style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:30px;font-weight:700;letter-spacing:-.015em">Catalogue</h1><span style="font-size:15px;color:#4A5568">{{ subtitle }}</span></div>
+      <div style="height:52px;width:520px;padding:0 6px 0 16px;border:1px solid #0B1F3A;border-radius:10px;background:#fff;display:flex;align-items:center;gap:10px;box-shadow:0 0 0 3px rgba(30,58,102,.12)">
+        <i class="icon-search" style="font-size:19px;color:#4A5568"></i>
+        <input value="{{ query }}" onChange="{{ onQuery }}" placeholder="Leadership, finance, agile…" style="flex:1;border:0;outline:none;font:400 16px Inter;color:#0B1F3A;background:transparent;min-width:0">
+        <button style="height:40px;padding:0 16px;border-radius:7px;border:0;background:#0B1F3A;color:#fff;font-weight:600;font-size:14px">Rechercher</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px;align-items:start">
+      <!-- Filters -->
+      <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700;font-size:15px;display:flex;gap:8px;align-items:center"><i class="icon-sliders-horizontal" style="font-size:17px"></i>Filtres</span><button onClick="{{ resetFilters }}" style="border:0;background:transparent;font-size:13px;font-weight:600;color:#0B1F3A;text-decoration:underline;text-underline-offset:3px;padding:6px 0">Effacer</button></div>
+        <sc-for list="{{ filterGroups }}" as="g" hint-placeholder-count="4">
+          <div style="display:flex;flex-direction:column;gap:6px;padding-top:16px;border-top:1px solid #E3E1DA">
+            <span style="font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4A5568;margin-bottom:4px">{{ g.title }}</span>
+            <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="4">
+              <button onClick="{{ i.toggle }}" style="min-height:36px;border:0;background:transparent;display:flex;align-items:center;gap:10px;padding:0;text-align:left;color:#0B1F3A">
+                <span style="width:20px;height:20px;border-radius:5px;flex:none;border:{{ i.bd }};background:{{ i.bg }};color:#fff;display:grid;place-items:center"><i class="icon-check" style="font-size:13px;opacity:{{ i.op }}"></i></span>
+                <span style="flex:1;font-size:14px">{{ i.label }}</span><span style="font-size:12px;color:#4A5568;font-variant-numeric:tabular-nums">{{ i.count }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <!-- Results -->
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <span style="font-size:14px;color:#4A5568"><b style="color:#0B1F3A;font-variant-numeric:tabular-nums">{{ resultCount }}</b> résultats</span>
+            <sc-for list="{{ activeChips }}" as="c" hint-placeholder-count="2"><button onClick="{{ c.remove }}" style="height:32px;padding:0 8px 0 12px;border-radius:999px;border:1px solid #0B1F3A;background:#fff;color:#0B1F3A;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px">{{ c.label }}<i class="icon-x" style="font-size:14px"></i></button></sc-for>
+          </div>
+          <div style="height:40px;padding:0 12px;border:1px solid #E3E1DA;border-radius:8px;background:#fff;display:flex;align-items:center;gap:8px;font-size:14px">Trier : <b style="font-weight:600">Les plus récents</b><i class="icon-chevron-down" style="font-size:16px"></i></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 18px;border-radius:12px;background:{{ tierBox.bg }};color:{{ tierBox.fg }};border:1px solid {{ tierBox.bd }}">
+          <div style="display:flex;gap:12px;align-items:center"><i class="icon-{{ tierBox.icon }}" style="font-size:20px;color:#C9A24B;flex:none"></i><span style="font-size:14px;line-height:1.5">{{ tierBox.text }}</span></div>
+          <div style="display:flex;gap:10px;align-items:center;flex:none">
+            <sc-if value="{{ tierBox.isBasic }}" hint-placeholder-val="{{ true }}"><a href="Paiements et Recus.dc.html#6a" style="height:42px;padding:0 16px;border-radius:8px;background:#C9A24B;color:#0B1F3A;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px"><i class="icon-gem" style="font-size:15px"></i>Passer au Premium</a></sc-if>
+            <button onClick="{{ tierBox.toggle }}" title="Démo" style="height:42px;padding:0 12px;border-radius:8px;border:1px dashed {{ tierBox.bd }};background:transparent;color:inherit;font-size:12px;font-weight:600;display:flex;gap:6px;align-items:center"><i class="icon-flask-conical" style="font-size:14px"></i>Démo : {{ tierBox.demo }}</button>
+          </div>
+        </div>
+        <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+            <sc-for list="{{ results }}" as="c" hint-placeholder-count="6">
+              <a href="{{ c.href }}" style="background:#fff;border:1px solid #E3E1DA;border-radius:14px;padding:10px;display:flex;flex-direction:column;transition:border-color .16s,box-shadow .16s" style-hover="border-color:#1E3A66;box-shadow:0 8px 24px rgba(11,31,58,.08)">
+                <div style="aspect-ratio:16/9;border-radius:10px;overflow:hidden;position:relative;background:{{ c.tint }}">
+                  <image-slot id="cat-{{ c.id }}" shape="rect" placeholder="{{ c.ph }}" style="width:100%;height:100%"></image-slot>
+                  <sc-if value="{{ c.isNew }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:10px;top:10px;height:26px;padding:0 10px;border-radius:7px;background:#C9A24B;color:#0B1F3A;font-size:12px;font-weight:700;display:flex;align-items:center;pointer-events:none">Nouveau</span></sc-if><sc-if value="{{ c.premium }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;right:10px;top:10px;height:28px;padding:0 10px;border-radius:999px;background:#0B1F3A;color:#C9A24B;border:1px solid #C9A24B;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px;pointer-events:none"><i class="icon-{{ c.badgeIcon }}" style="font-size:13px"></i>Premium</span></sc-if>
+                </div>
+                <div style="padding:14px 8px 8px;display:flex;flex-direction:column;gap:8px;flex:1">
+                  <span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4A5568">{{ c.theme }}</span>
+                  <h3 style="margin:0;font-family:'Plus Jakarta Sans';font-size:17px;font-weight:700;line-height:1.3">{{ c.title }}</h3>
+                  <sc-if value="{{ c.locked }}" hint-placeholder-val="{{ false }}"><span style="display:flex;gap:6px;align-items:center;font-size:13px;font-weight:600;color:#7A5A1E;background:#F6F1E4;border-radius:6px;padding:6px 8px"><i class="icon-lock" style="font-size:13px"></i>Réservé à l'abonnement Premium</span></sc-if>
+                  <div style="display:flex;align-items:center;gap:8px;margin-top:2px"><image-slot id="cat-e-{{ c.id }}" shape="circle" placeholder="" style="width:26px;height:26px;background:#E3E1DA;flex:none"></image-slot><span style="font-size:14px;color:#4A5568">{{ c.expert }}</span></div>
+                  <div style="display:flex;gap:14px;font-size:13px;color:#4A5568;margin-top:auto;padding-top:10px;border-top:1px solid #E3E1DA">
+                    <span style="display:flex;gap:6px;align-items:center"><i class="icon-bar-chart-2" style="font-size:15px;color:#0B1F3A"></i>{{ c.level }}</span>
+                    <span style="display:flex;gap:6px;align-items:center"><i class="icon-clock" style="font-size:15px;color:#0B1F3A"></i>{{ c.duration }}</span>
+                    <span style="display:flex;gap:6px;align-items:center"><i class="icon-file-text" style="font-size:15px;color:#0B1F3A"></i>{{ c.pages }} p.</span>
+                  </div>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:56px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+            <span style="width:64px;height:64px;border-radius:50%;background:#EEF1F5;display:grid;place-items:center"><i class="icon-search-x" style="font-size:30px"></i></span>
+            <h3 style="margin:0;font-family:'Plus Jakarta Sans';font-size:18px;font-weight:700">Aucune formation ne correspond</h3>
+            <p style="margin:0;font-size:14px;color:#4A5568;max-width:320px;line-height:1.6">Essayez un autre mot-clé ou retirez un filtre.</p>
+            <button onClick="{{ resetFilters }}" style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #0B1F3A;background:#fff;color:#0B1F3A;font-weight:600;font-size:14px">Réinitialiser les filtres</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">4b</span><span style="font-weight:600">Catalogue · Mobile 390</span></div>
+<div id="4b" data-screen-label="Catalogue mobile" style="width:390px;height:844px;background:#F7F5F0;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.22);border:8px solid #0B1F3A;display:flex;flex-direction:column">
+  <div style="height:44px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <div style="flex:1;overflow:auto;padding:8px 18px 16px;display:flex;flex-direction:column;gap:14px">
+    <span style="font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700">Catalogue</span>
+    <div style="display:flex;gap:8px">
+      <div style="flex:1;height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:10px;background:#fff;display:flex;align-items:center;gap:10px;color:#4A5568;font-size:16px"><i class="icon-search" style="font-size:18px"></i>{{ queryOrPh }}</div>
+      <button aria-label="Filtres" style="width:48px;height:48px;border-radius:10px;border:0;background:#0B1F3A;color:#fff;display:grid;place-items:center;position:relative"><i class="icon-sliders-horizontal" style="font-size:19px"></i><span style="position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:999px;background:#C9A24B;color:#0B1F3A;font-size:11px;font-weight:700;display:grid;place-items:center">{{ activeCount }}</span></button>
+    </div>
+    <div style="display:flex;gap:8px;overflow:hidden"><sc-for list="{{ themeChips }}" as="t" hint-placeholder-count="4"><button onClick="{{ t.toggle }}" style="height:40px;padding:0 14px;border-radius:999px;border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};font-size:14px;font-weight:600;white-space:nowrap;flex:none">{{ t.label }}</button></sc-for></div>
+    <span style="font-size:14px;color:#4A5568"><b style="color:#0B1F3A">{{ resultCount }}</b> résultats</span>
+    <sc-for list="{{ resultsMobile }}" as="c" hint-placeholder-count="4">
+      <a href="#" style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:10px;display:flex;gap:12px;align-items:center">
+        <div style="width:96px;height:96px;border-radius:8px;overflow:hidden;flex:none;background:{{ c.tint }}"><image-slot id="catm-{{ c.id }}" shape="rect" placeholder="" style="width:100%;height:100%"></image-slot></div>
+        <div style="display:flex;flex-direction:column;gap:5px;min-width:0"><span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4A5568">{{ c.theme }}</span><span style="font-family:'Plus Jakarta Sans';font-size:15px;font-weight:700;line-height:1.3">{{ c.title }}</span><span style="font-size:13px;color:#4A5568">{{ c.expert }}</span><span style="font-size:12px;color:#4A5568">{{ c.level }} · {{ c.duration }}</span></div>
+      </a>
+    </sc-for>
+  </div>
+  <nav style="flex:none;height:76px;background:#fff;border-top:1px solid #E3E1DA;display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:12px"><sc-for list="{{ mNav2 }}" as="n" hint-placeholder-count="5"><a href="{{ n.href }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11px;font-weight:{{ n.w }};color:{{ n.fg }}"><i class="icon-{{ n.icon }}" style="font-size:22px"></i>{{ n.label }}</a></sc-for></nav>
+</div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const __ME = () => window.AFD_ME ? window.AFD_ME.get() : { first: 'Sènami', last: 'Hounkpatin', full: 'Sènami Hounkpatin', email: 's.hounkpatin@groupe-atlantique.bj', phone: '01 97 45 21 38', ini: 'SH', cert: 'Sènami Hounkpatin', certName: '', certCustom: false };
+class Component extends DCLogic {
+  state = { query: '', f: { theme: [], level: [], expert: [], duration: [], access: [] }, lang: 'FR', auto: true, cancel: false, cancelled: false, ptab: 0 };
+  componentDidMount() { const h = () => { if (window.AFD) { this._u = window.AFD.subscribe(() => this.forceUpdate()); this.forceUpdate(); } else this._w = setTimeout(h, 50); }; h(); }
+  componentWillUnmount() { this._u && this._u(); clearTimeout(this._w); }
+  renderVals() {
+    const ME = __ME();
+    if (!this._meSub && window.AFD_ME) { this._meSub = window.AFD_ME.subscribe(() => this.forceUpdate()); }
+    const N = '#0B1F3A';
+    const { query, f, lang, auto, cancel, cancelled, ptab } = this.state;
+    const hrefs = ['Espace Apprenant.dc.html#2a','Espace Apprenant.dc.html#2c','Catalogue.dc.html','Evaluations.dc.html','Certificats.dc.html','Paiements et Recus.dc.html','Profil.dc.html'];
+    const nav = a => [['layout-dashboard', 'Tableau de bord'], ['book-open', 'Mes formations'], ['library', 'Catalogue'], ['clipboard-check', 'Évaluations'], ['award', 'Certificats'], ['calendar-clock', 'Abonnement & reçus'], ['user-round', 'Profil']]
+      .map(([icon, label], i) => ({ icon, label, href: hrefs[i], bg: i === a ? N : 'transparent', fg: i === a ? '#fff' : '#4A5568', w: i === a ? 600 : 500 }));
+    const A = window.AFD; const TH = { lead: 'Leadership', fin: 'Finance', proj: 'Gestion de projet', neg: 'Négociation', dig: 'Digital', law: 'Droit' };
+    const hrs = d => { const m = /(\d+)\s*h\s*(\d+)?/.exec(d || ''); return m ? +m[1] + (m[2] ? +m[2] / 60 : 0) : 0; };
+    const TIER = A && A.myTier ? A.myTier() : 'basic';
+    const all = (A ? A.getPublished() : []).map(c => ({ premium: c.tier === 'premium', locked: c.tier === 'premium' && TIER !== 'premium', badgeIcon: c.tier === 'premium' && TIER !== 'premium' ? 'lock' : 'gem', href: c.tier === 'premium' && TIER !== 'premium' ? 'Paiements et Recus.dc.html#6a' : 'Espace Apprenant.dc.html#2b', id: c.id, theme: TH[c.domain] || 'Leadership', title: c.title, expert: A.expert(c.expert).name, level: c.level, duration: c.duration || '—', dur: hrs(c.duration) < 4 ? '< 4 h' : '4–8 h', pages: c.pages, tint: c.tint, ph: c.ph }));
+    const key = { theme: 'theme', level: 'level', expert: 'expert', duration: 'dur', access: 'acc' };
+    all.forEach(c => { c.acc = c.premium ? 'Premium' : 'Basic'; });
+    const match = c => Object.keys(f).every(k => !f[k].length || f[k].includes(c[key[k]])) && (!query || (c.title + c.expert + c.theme).toLowerCase().includes(query.toLowerCase()));
+    const results = all.filter(match);
+    const toggle = (k, v) => () => this.setState(s => { const cur = s.f[k]; return { f: Object.assign({}, s.f, { [k]: cur.includes(v) ? cur.filter(x => x !== v) : [...cur, v] }) }; });
+    const grp = (title, k, vals) => ({ title, items: vals.map(v => { const on = f[k].includes(v); return { label: v, count: all.filter(c => c[key[k]] === v).length, bd: on ? '0' : '1.5px solid #8A93A3', bg: on ? N : '#fff', op: on ? 1 : 0, toggle: toggle(k, v) }; }) });
+    const chips = []; Object.keys(f).forEach(k => f[k].forEach(v => chips.push({ label: v, remove: toggle(k, v) })));
+    const qrBits = Array.from({ length: 81 }, (_, i) => { const r = Math.floor(i / 9), c = i % 9; const fin = (r < 3 && c < 3) || (r < 3 && c > 5) || (r > 5 && c < 3); return fin ? ((r % 2 === 1 && (c % 3 === 1)) ? '#fff' : N) : ((i * 7 + r * 3) % 5 < 2 ? N : '#fff'); });
+    const pay = (date, ref, plan, method, icon, amount, st) => {
+      const m = { ok: ['Réussi', '#E6EFEC', '#0B5C47'], ko: ['Échoué', '#F8E4E1', '#962D22'] }[st];
+      return { date, ref, plan, method, icon, amount, status: m[0], sbg: m[1], sfg: m[2], ok: st === 'ok', ko: st === 'ko' };
+    };
+    return {
+      me: ME,
+      totalLabel: all.length + ' formations', nav2: nav(2), nav4: nav(4), nav5: nav(5), nav6: nav(6),
+      mNav2: [['home', 'Accueil', 0, 'Espace Apprenant.dc.html'], ['book-open', 'Formations', 0, 'Espace Apprenant.dc.html'], ['library', 'Catalogue', 1, 'Catalogue.dc.html#4b'], ['award', 'Certificats', 0, 'Certificats.dc.html'], ['user-round', 'Profil', 0, 'Profil.dc.html']].map(([icon, label, a, href]) => ({ icon, label, href, fg: a ? N : '#4A5568', w: a ? 700 : 500 })),
+      query, onQuery: e => this.setState({ query: e.target.value }), queryOrPh: query || 'Leadership, finance…',
+      subtitle: (() => { const n = all.filter(c => c.premium).length; return TIER === 'premium' ? all.length + ' formations incluses dans votre abonnement Premium' : (all.length - n) + ' formations incluses dans votre abonnement Basic · ' + n + ' cours Premium'; })(),
+      tierBox: (() => { const prem = TIER === 'premium'; const n = all.filter(c => c.premium).length; return { isBasic: !prem, icon: prem ? 'gem' : 'lock', bg: prem ? '#0B1F3A' : '#F6F1E4', fg: prem ? '#fff' : '#3A2E14', bd: prem ? '#C9A24B' : '#E3DCC8', text: prem ? 'Abonnement Premium actif · les ' + n + ' cours Premium sont inclus dans votre accès.' : 'Abonnement Basic · ' + n + ' cours Premium sont visibles mais réservés à l\u2019abonnement Premium.', demo: prem ? 'voir en Basic' : 'voir en Premium', toggle: () => { if (A && A.setMyTier) A.setMyTier(prem ? 'basic' : 'premium'); this.forceUpdate(); } }; })(),
+      filterGroups: [grp('Thématique', 'theme', ['Leadership', 'Finance', 'Gestion de projet', 'Négociation', 'Digital', 'Droit']), grp('Niveau', 'level', ['Fondamental', 'Intermédiaire', 'Expert']), grp('Durée', 'duration', ['< 4 h', '4–8 h']), grp('Accès', 'access', ['Basic', 'Premium']), grp('Expert', 'expert', [...new Set(all.map(c => c.expert))])],
+      resetFilters: () => this.setState({ f: { theme: [], level: [], expert: [], duration: [], access: [] }, query: '' }),
+      activeChips: chips, activeCount: chips.length,
+      resultCount: results.length, results, resultsMobile: results.slice(0, 5), hasResults: results.length > 0, noResults: results.length === 0,
+      themeChips: ['Leadership', 'Finance', 'Gestion de projet', 'Digital'].map(v => { const on = f.theme.includes(v); return { label: v, bg: on ? N : '#fff', fg: on ? '#fff' : N, bd: on ? N : '#E3E1DA', toggle: toggle('theme', v) }; }),
+      myCerts: [
+        { title: 'Finance pour non-financiers', date: '27 sept. 2026', score: '88 %', id: 'AFR-C-2026-0927-5120' },
+        { title: 'Négociation stratégique', date: '18 sept. 2026', score: '92 %', id: 'AFR-C-2026-0918-4471' },
+        { title: 'Leadership et management d\u2019équipe', date: '02 août 2026', score: '88 %', id: 'AFR-C-2026-0802-2210' },
+      ],
+      qr: qrBits,
+      verifyRows: [
+        { k: 'Titulaire', v: ME.full, c: N }, { k: 'Formation', v: 'Finance pour non-financiers', c: N }, { k: 'Score', v: '88 % (seuil 80 %)', c: '#0F7B5F' },
+        { k: 'Date de délivrance', v: '27 septembre 2026', c: N }, { k: 'Identifiant', v: 'AFR-C-2026-0927-5120', c: N }, { k: 'Statut', v: 'Valide', c: '#0F7B5F' },
+      ],
+      payments: [
+        pay('27/09/2026', 'RC-2026-09-01842', 'Annuel', 'Orange Money', 'smartphone', '129 000 FCFA', 'ok'),
+        pay('27/09/2026', '—', 'Annuel', 'Carte Visa •••• 4417', 'credit-card', '129 000 FCFA', 'ko'),
+        pay('27/08/2026', 'RC-2026-08-01377', 'Mensuel', 'Wave', 'smartphone', '15 000 FCFA', 'ok'),
+        pay('27/07/2026', 'RC-2026-07-00921', 'Mensuel', 'Wave', 'smartphone', '15 000 FCFA', 'ok'),
+        pay('27/06/2026', 'RC-2026-06-00402', 'Mensuel', 'MTN MoMo', 'smartphone', '15 000 FCFA', 'ok'),
+      ],
+      profileTabs: ['Informations & abonnement', 'Sécurité', 'Notifications', 'Données personnelles'].map((label, i) => ({ label, bd: i === ptab ? N : 'transparent', fg: i === ptab ? N : '#4A5568', w: i === ptab ? 700 : 500, select: () => this.setState({ ptab: i }) })),
+      langSeg: [['FR', 'Français'], ['EN', 'English']].map(([id, label]) => ({ label, bg: lang === id ? '#fff' : 'transparent', fg: lang === id ? N : '#4A5568', sh: lang === id ? '0 1px 2px rgba(11,31,58,.1)' : 'none', select: () => this.setState({ lang: id }) })),
+      autoBg: auto && !cancelled ? '#0F7B5F' : '#C9CDD4', autoKnob: auto && !cancelled ? '21px' : '3px', toggleAuto: () => this.setState({ auto: !auto }),
+      subBadge: cancelled ? 'Résilié · actif jusqu\u2019au terme' : 'Actif', subBadgeBg: cancelled ? '#FBF1DD' : '#E6EFEC', subBadgeFg: cancelled ? '#7A5000' : '#0B5C47',
+      subLine: cancelled ? 'Accès maintenu jusqu\u2019au 27 septembre 2027, sans renouvellement.' : 'Renouvelé le 27 septembre 2027 · MTN MoMo •••• 38',
+      cancelOpen: cancel, openCancel: () => this.setState({ cancel: true }), closeCancel: () => this.setState({ cancel: false }),
+      confirmCancel: () => this.setState({ cancel: false, cancelled: true, auto: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

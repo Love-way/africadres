@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Africadres — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<style>
+body{margin:0;background:#F7F5F0;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#0B1F3A;text-decoration:underline;text-underline-offset:3px}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+@keyframes afSpin{to{transform:rotate(360deg)}}
+@keyframes afPulse{0%,100%{opacity:1}50%{opacity:.45}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column">
+
+<header style="background:#0B1F3A;color:#fff;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.10) 0 1px,transparent 1px 26px),repeating-linear-gradient(-45deg,rgba(201,162,75,.10) 0 1px,transparent 1px 26px);-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000);mask-image:linear-gradient(90deg,transparent 30%,#000)"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:40px 32px 56px;display:flex;flex-direction:column;gap:48px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:40px;height:40px;border-radius:8px;background:#132C52;border:1px solid rgba(201,162,75,.5);display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:22px;color:#fff;position:relative">A<span style="position:absolute;right:7px;top:8px;width:14px;height:14px;border-top:2px solid #C9A24B;border-radius:50% 50% 0 0;transform:rotate(-35deg)"></span></div>
+        <div style="display:flex;flex-direction:column;line-height:1.05">
+          <span style="font-family:'Plus Jakarta Sans';font-size:20px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span>
+          <span style="font-size:11px;color:#C9A24B;letter-spacing:.14em;text-transform:uppercase">Learn to improve</span>
+        </div>
+      </div>
+      <span style="font-size:13px;color:rgba(255,255,255,.72);font-variant-numeric:tabular-nums">Design System · v1.0 · Septembre 2026</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+      <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#C9A24B">Fondations & composants</span>
+      <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-weight:700;font-size:52px;line-height:1.08;letter-spacing:-.02em;text-wrap:balance">Un langage visuel d'institut, pensé pour les cadres en mouvement.</h1>
+      <p style="margin:0;font-size:18px;line-height:1.6;color:rgba(255,255,255,.8);max-width:620px;text-wrap:pretty">Bleu nuit pour la confiance, or pour l'exception, émeraude pour la réussite. Chaque composant est conçu mobile d'abord, léger à charger et conforme AA.</p>
+    </div>
+    <nav style="display:flex;flex-wrap:wrap;gap:8px">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="10">
+        <a href="#{{ n.id }}" style="font-size:13px;color:#fff;text-decoration:none;padding:8px 14px;border:1px solid rgba(255,255,255,.18);border-radius:999px" style-hover="border-color:#C9A24B;color:#C9A24B">{{ n.label }}</a>
+      </sc-for>
+    </nav>
+  </div>
+</header>
+
+<main style="max-width:1200px;width:100%;margin:0 auto;padding:0 32px 96px;display:flex;flex-direction:column">
+
+<!-- 01 COULEURS -->
+<section id="couleurs" style="padding:72px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568;font-variant-numeric:tabular-nums">01</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">Couleurs</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">Chaque couleur a un rôle unique. L'or est rare : CTA premium, badges, certificats. L'émeraude signale la progression et la réussite, jamais la décoration.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+    <sc-for list="{{ palette }}" as="g" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:16px 18px 12px;display:flex;flex-direction:column;gap:4px">
+          <span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px">{{ g.name }}</span>
+          <span style="font-size:13px;color:#4A5568;line-height:1.5">{{ g.role }}</span>
+        </div>
+        <sc-for list="{{ g.items }}" as="c" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:64px;background:{{ c.hex }};color:{{ c.fg }};border-top:1px solid rgba(0,0,0,.04)">
+            <span style="font-size:13px;font-weight:600">{{ c.token }}</span>
+            <span style="font-size:13px;font-variant-numeric:tabular-nums;opacity:.9">{{ c.hex }} · {{ c.use }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <span style="font-size:14px;font-weight:600">Paires de contraste validées (WCAG 2.1)</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+      <sc-for list="{{ contrasts }}" as="p" hint-placeholder-count="6">
+        <div style="border-radius:10px;padding:16px;background:{{ p.bg }};color:{{ p.fg }};border:1px solid #E3E1DA;display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:22px">Aa 80 %</span>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+            <span style="font-variant-numeric:tabular-nums">{{ p.ratio }}</span>
+            <span style="padding:3px 8px;border-radius:999px;background:{{ p.chipBg }};color:{{ p.chipFg }};font-weight:600">{{ p.verdict }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin:0;font-size:13px;color:#4A5568;line-height:1.6">Règle : pas de texte or sur fond blanc ou ivoire en dessous de 24 px gras. Sur fond clair, l'or est un filet, une icône ou un fond de badge avec texte bleu nuit.</p>
+  </div>
+</section>
+
+<!-- 02 TYPO -->
+<section id="typographie" style="padding:88px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568">02</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">Typographie</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">Plus Jakarta Sans pour les titres (600–800), Inter pour le texte et l'interface (400–600). Corps 16 px minimum sur mobile. Chiffres tabulaires pour prix, scores et dates.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+    <div style="background:#0B1F3A;color:#fff;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#C9A24B">Titres</span>
+      <span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:64px;line-height:1">Aa</span>
+      <span style="font-family:'Plus Jakarta Sans';font-size:18px;font-weight:600">Plus Jakarta Sans</span>
+      <span style="font-size:13px;color:rgba(255,255,255,.72)">SemiBold 600 · Bold 700 · ExtraBold 800 (logotype)</span>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#4A5568">Texte & interface</span>
+      <span style="font-family:Inter;font-weight:500;font-size:64px;line-height:1">Aa</span>
+      <span style="font-size:18px;font-weight:600">Inter</span>
+      <span style="font-size:13px;color:#4A5568">Regular 400 · Medium 500 · SemiBold 600 (libellés)</span>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#4A5568">Chiffres tabulaires</span>
+      <div style="display:flex;flex-direction:column;gap:6px;font-variant-numeric:tabular-nums;font-size:20px;font-weight:600">
+        <span style="display:flex;justify-content:space-between"><span>Annuel</span><span>129 000 FCFA</span></span>
+        <span style="display:flex;justify-content:space-between"><span>Trimestriel</span><span>39 000 FCFA</span></span>
+        <span style="display:flex;justify-content:space-between;color:#0F7B5F"><span>Score</span><span>88 %</span></span>
+      </div>
+      <span style="font-size:13px;color:#4A5568">font-variant-numeric: tabular-nums</span>
+    </div>
+  </div>
+  <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden">
+    <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="9">
+      <div style="display:grid;grid-template-columns:140px 160px minmax(0,1fr);gap:24px;align-items:baseline;padding:18px 24px;border-bottom:1px solid #E3E1DA">
+        <span style="font-size:13px;font-weight:600">{{ t.token }}</span>
+        <span style="font-size:12px;color:#4A5568;font-variant-numeric:tabular-nums">{{ t.spec }}</span>
+        <span style="font-family:{{ t.family }};font-size:{{ t.size }};font-weight:{{ t.weight }};line-height:1.2;letter-spacing:{{ t.ls }};text-transform:{{ t.tt }};color:#0B1F3A">{{ t.sample }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- 03 BOUTONS -->
+<section id="boutons" style="padding:88px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568">03</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">Boutons</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">Hauteur 48 px (44 px minimum tactile). Un seul bouton premium or par écran. Survolez les boutons pour voir l'état actif.</p>
+  </div>
+  <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow-x:auto">
+    <div style="display:grid;grid-template-columns:160px repeat(5,minmax(150px,1fr));min-width:960px">
+      <span style="padding:14px 20px;font-size:12px;color:#4A5568;border-bottom:1px solid #E3E1DA">Variante</span>
+      <span style="padding:14px 20px;font-size:12px;color:#4A5568;border-bottom:1px solid #E3E1DA">Défaut</span>
+      <span style="padding:14px 20px;font-size:12px;color:#4A5568;border-bottom:1px solid #E3E1DA">Survol</span>
+      <span style="padding:14px 20px;font-size:12px;color:#4A5568;border-bottom:1px solid #E3E1DA">Focus clavier</span>
+      <span style="padding:14px 20px;font-size:12px;color:#4A5568;border-bottom:1px solid #E3E1DA">Désactivé</span>
+      <span style="padding:14px 20px;font-size:12px;color:#4A5568;border-bottom:1px solid #E3E1DA">Chargement</span>
+
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:14px">Primaire</span><span style="font-size:12px;color:#4A5568">Bleu nuit</span></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#0B1F3A;color:#fff;font:600 15px Inter;cursor:pointer;transition:background .16s" style-hover="background:#1E3A66">Commencer</button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#1E3A66;color:#fff;font:600 15px Inter">Commencer</button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#0B1F3A;color:#fff;font:600 15px Inter;box-shadow:0 0 0 2px #fff,0 0 0 4px #C9A24B">Commencer</button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button disabled="" style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#E3E1DA;color:#8A93A3;font:600 15px Inter;cursor:not-allowed">Commencer</button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#0B1F3A;color:#fff;font:600 15px Inter;display:flex;align-items:center;gap:10px">{{ spinnerLight }}Chargement…</button></div>
+
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:14px">Premium</span><span style="font-size:12px;color:#4A5568">Or · CTA d'exception</span></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#C9A24B;color:#0B1F3A;font:600 15px Inter;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .16s" style-hover="background:#A8802F;color:#fff">S'abonner <i class="icon-arrow-right" style="font-size:18px"></i></button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#A8802F;color:#fff;font:600 15px Inter;display:flex;align-items:center;gap:8px">S'abonner <i class="icon-arrow-right" style="font-size:18px"></i></button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#C9A24B;color:#0B1F3A;font:600 15px Inter;box-shadow:0 0 0 2px #fff,0 0 0 4px #0B1F3A;display:flex;align-items:center;gap:8px">S'abonner <i class="icon-arrow-right" style="font-size:18px"></i></button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button disabled="" style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#EFE6D2;color:#9C8A62;font:600 15px Inter;cursor:not-allowed">S'abonner</button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#C9A24B;color:#0B1F3A;font:600 15px Inter;display:flex;align-items:center;gap:10px">{{ spinnerDark }}Paiement…</button></div>
+
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:14px">Secondaire</span><span style="font-size:12px;color:#4A5568">Contour</span></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:1px solid #0B1F3A;background:#fff;color:#0B1F3A;font:600 15px Inter;cursor:pointer" style-hover="background:#F7F5F0">Voir le plan</button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:1px solid #0B1F3A;background:#F7F5F0;color:#0B1F3A;font:600 15px Inter">Voir le plan</button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:1px solid #0B1F3A;background:#fff;color:#0B1F3A;font:600 15px Inter;box-shadow:0 0 0 2px #fff,0 0 0 4px #C9A24B">Voir le plan</button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button disabled="" style="height:48px;padding:0 20px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#8A93A3;font:600 15px Inter">Voir le plan</button></div>
+      <div style="padding:20px;border-bottom:1px solid #E3E1DA"><button style="height:48px;padding:0 20px;border-radius:8px;border:1px solid #0B1F3A;background:#fff;color:#0B1F3A;font:600 15px Inter;display:flex;align-items:center;gap:10px">{{ spinnerNavy }}Envoi…</button></div>
+
+      <div style="padding:20px;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:14px">Ghost</span><span style="font-size:12px;color:#4A5568">Actions tertiaires</span></div>
+      <div style="padding:20px"><button style="height:48px;padding:0 14px;border-radius:8px;border:0;background:transparent;color:#0B1F3A;font:600 15px Inter;cursor:pointer;display:flex;align-items:center;gap:8px" style-hover="background:#EEF1F5"><i class="icon-bookmark" style="font-size:18px"></i>Enregistrer</button></div>
+      <div style="padding:20px"><button style="height:48px;padding:0 14px;border-radius:8px;border:0;background:#EEF1F5;color:#0B1F3A;font:600 15px Inter;display:flex;align-items:center;gap:8px"><i class="icon-bookmark" style="font-size:18px"></i>Enregistrer</button></div>
+      <div style="padding:20px"><button style="height:48px;padding:0 14px;border-radius:8px;border:0;background:transparent;color:#0B1F3A;font:600 15px Inter;box-shadow:0 0 0 2px #C9A24B;display:flex;align-items:center;gap:8px"><i class="icon-bookmark" style="font-size:18px"></i>Enregistrer</button></div>
+      <div style="padding:20px"><button disabled="" style="height:48px;padding:0 14px;border-radius:8px;border:0;background:transparent;color:#8A93A3;font:600 15px Inter;display:flex;align-items:center;gap:8px"><i class="icon-bookmark" style="font-size:18px"></i>Enregistrer</button></div>
+      <div style="padding:20px"><button style="height:48px;padding:0 14px;border-radius:8px;border:0;background:transparent;color:#0B1F3A;font:600 15px Inter;display:flex;align-items:center;gap:10px">{{ spinnerNavy2 }}Patientez…</button></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+    <div style="background:#0B1F3A;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
+      <span style="font-size:13px;color:rgba(255,255,255,.72)">Sur fond bleu nuit</span>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <button style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#C9A24B;color:#0B1F3A;font:600 15px Inter" style-hover="background:#D8B45F">Commencer mon abonnement</button>
+        <button style="height:48px;padding:0 20px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font:600 15px Inter" style-hover="border-color:#fff">Explorer</button>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
+      <span style="font-size:13px;color:#4A5568">Tailles & destructif</span>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <button style="height:52px;padding:0 24px;border-radius:10px;border:0;background:#0B1F3A;color:#fff;font:600 16px Inter">Large 52</button>
+        <button style="height:44px;padding:0 16px;border-radius:8px;border:0;background:#0B1F3A;color:#fff;font:600 14px Inter">Moyen 44</button>
+        <button style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #C0392B;background:#fff;color:#C0392B;font:600 14px Inter">Résilier</button>
+        <button style="width:44px;height:44px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;display:grid;place-items:center" aria-label="Plus"><i class="icon-more-horizontal" style="font-size:20px"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 FORMULAIRES -->
+<section id="formulaires" style="padding:88px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568">04</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">Champs de formulaire</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">Libellé toujours visible au-dessus du champ, jamais en placeholder seul. Texte d'aide sous le champ, erreur explicite avec solution.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px">
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:22px">
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:14px;font-weight:600">Prénom</span>
+        <input value="Sènami" style="height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font:400 16px Inter;color:#0B1F3A;outline:none" style-focus="border-color:#0B1F3A;box-shadow:0 0 0 3px rgba(30,58,102,.18)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:14px;font-weight:600">Adresse e-mail · focus</span>
+        <input value="s.hounkpatin@groupe-atlantique.bj" style="height:48px;padding:0 14px;border:1px solid #0B1F3A;border-radius:8px;font:400 16px Inter;color:#0B1F3A;box-shadow:0 0 0 3px rgba(30,58,102,.18);outline:none">
+        <span style="font-size:13px;color:#4A5568">Votre reçu et votre certificat seront envoyés à cette adresse.</span>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:14px;font-weight:600">Téléphone</span>
+        <div style="display:flex;gap:8px">
+          <div style="height:48px;padding:0 12px;border:1px solid #E3E1DA;border-radius:8px;display:flex;align-items:center;gap:8px;font-size:15px;min-width:118px;justify-content:space-between"><span style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;font-weight:700;padding:2px 5px;border-radius:3px;background:#F7F5F0;border:1px solid #E3E1DA">BJ</span>+229</span><i class="icon-chevron-down" style="font-size:16px;color:#4A5568"></i></div>
+          <input value="01 97 45 21 38" style="flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font:400 16px Inter;color:#0B1F3A;font-variant-numeric:tabular-nums;outline:none">
+        </div>
+      </label>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:22px">
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:14px;font-weight:600">Adresse e-mail · erreur</span>
+        <input value="a.diallo@groupe" style="height:48px;padding:0 14px;border:1px solid #C0392B;border-radius:8px;font:400 16px Inter;color:#0B1F3A;outline:none">
+        <span style="font-size:13px;color:#C0392B;display:flex;gap:6px;align-items:center"><i class="icon-alert-circle" style="font-size:15px"></i>Ajoutez l'extension du domaine (ex. .com, .ci).</span>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:14px;font-weight:600;color:#8A93A3">Identifiant apprenant · désactivé</span>
+        <input value="AFR-2026-04812" disabled="" style="height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font:400 16px Inter;color:#8A93A3;background:#F7F5F0">
+      </label>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:14px;font-weight:600">Recherche</span>
+        <div style="height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;display:flex;align-items:center;gap:10px;color:#4A5568"><i class="icon-search" style="font-size:18px"></i><span style="font-size:16px">Leadership, finance, agile…</span></div>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:20px">
+      <span style="font-size:14px;font-weight:600">Sélections</span>
+      <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+        <span style="flex:none;width:22px;height:22px;border-radius:5px;background:#0B1F3A;display:grid;place-items:center;color:#fff;margin-top:1px"><i class="icon-check" style="font-size:15px"></i></span>
+        <span style="font-size:14px;line-height:1.55;color:#4A5568">J'accepte que mes données (nom, e-mail, téléphone) soient traitées pour la gestion de mon compte. <a href="#">Politique de confidentialité</a></span>
+      </label>
+      <label style="display:flex;gap:12px;align-items:center"><span style="flex:none;width:22px;height:22px;border-radius:5px;border:1.5px solid #8A93A3;background:#fff"></span><span style="font-size:14px;color:#4A5568">Recevoir les nouveautés du catalogue</span></label>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <label style="display:flex;gap:12px;align-items:center;padding:12px 14px;border:1px solid #0B1F3A;border-radius:8px;background:#F7F5F0"><span style="width:22px;height:22px;border-radius:50%;border:6px solid #0B1F3A;background:#fff"></span><span style="font-size:15px;font-weight:500">Vrai</span></label>
+        <label style="display:flex;gap:12px;align-items:center;padding:12px 14px;border:1px solid #E3E1DA;border-radius:8px"><span style="width:22px;height:22px;border-radius:50%;border:1.5px solid #8A93A3"></span><span style="font-size:15px">Faux</span></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px"><span style="width:44px;height:26px;border-radius:999px;background:#0F7B5F;position:relative"><span style="position:absolute;right:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff"></span></span><span style="font-size:14px">Renouvellement automatique</span></div>
+      <div style="display:inline-flex;padding:4px;background:#F7F5F0;border:1px solid #E3E1DA;border-radius:10px;align-self:flex-start">
+        <span style="padding:8px 14px;border-radius:7px;background:#fff;box-shadow:0 1px 2px rgba(11,31,58,.08);font-size:13px;font-weight:600">FCFA</span>
+        <span style="padding:8px 14px;font-size:13px;color:#4A5568">EUR</span>
+        <span style="padding:8px 14px;font-size:13px;color:#4A5568">USD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 BADGES -->
+<section id="badges" style="padding:88px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568">05</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">Badges de statut</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">Toujours une pastille + un libellé : la couleur ne porte jamais seule l'information.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+    <sc-for list="{{ badgeGroups }}" as="bg" hint-placeholder-count="3">
+      <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;color:#4A5568">{{ bg.title }}</span>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ bg.items }}" as="b" hint-placeholder-count="4">
+            <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:{{ b.bg }};color:{{ b.fg }};font-size:13px;font-weight:600;border:1px solid {{ b.bd }}"><span style="width:6px;height:6px;border-radius:50%;background:{{ b.dot }}"></span>{{ b.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- 06 CARTES -->
+<section id="cartes" style="padding:88px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568">06</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">Cartes de cours</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">Vignette 16:9, thématique, titre (2 lignes max), expert, niveau et durée. Variante « en cours » avec progression émeraude.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+    <sc-for list="{{ courses }}" as="c" hint-placeholder-count="3">
+      <article style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .16s,box-shadow .16s" style-hover="border-color:#1E3A66;box-shadow:0 6px 20px rgba(11,31,58,.08)">
+        <div style="aspect-ratio:16/9;background:{{ c.thumb }};position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.14) 0 1px,transparent 1px 18px),repeating-linear-gradient(-45deg,rgba(201,162,75,.14) 0 1px,transparent 1px 18px)"></div>
+          <span style="position:absolute;left:14px;bottom:12px;font-family:'Plus Jakarta Sans';font-weight:700;color:rgba(255,255,255,.95);font-size:15px;letter-spacing:.02em">{{ c.code }}</span>
+          <span style="position:absolute;right:12px;top:12px;height:26px;padding:0 10px;border-radius:999px;background:rgba(11,31,58,.72);color:#fff;font-size:12px;display:flex;align-items:center;gap:6px"><i class="icon-file-text" style="font-size:13px"></i>{{ c.pages }} pages</span>
+        </div>
+        <div style="padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4A5568">{{ c.theme }}</span>
+          <h3 style="margin:0;font-family:'Plus Jakarta Sans';font-size:18px;font-weight:700;line-height:1.3;text-wrap:pretty">{{ c.title }}</h3>
+          <span style="font-size:14px;color:#4A5568">{{ c.expert }}</span>
+          <div style="display:flex;gap:14px;font-size:13px;color:#4A5568;margin-top:auto;padding-top:6px">
+            <span style="display:flex;gap:6px;align-items:center"><i class="icon-bar-chart-2" style="font-size:15px"></i>{{ c.level }}</span>
+            <span style="display:flex;gap:6px;align-items:center"><i class="icon-clock" style="font-size:15px"></i>{{ c.duration }}</span>
+          </div>
+          <sc-if value="{{ c.hasProgress }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:6px;padding-top:8px;border-top:1px solid #E3E1DA;margin-top:4px">
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#4A5568">Progression</span><span style="font-weight:600;color:#0F7B5F;font-variant-numeric:tabular-nums">{{ c.progress }} %</span></div>
+              <div style="height:6px;border-radius:999px;background:#E6EFEC"><div style="height:100%;width:{{ c.progress }}%;background:#0F7B5F;border-radius:999px"></div></div>
+            </div>
+          </sc-if>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<!-- 07 PROGRESSION -->
+<section id="progression" style="padding:88px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568">07</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">Progression</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">Émeraude pour la lecture et les scores réussis. Le seuil de 80 % est matérialisé par un repère or sur les jauges de score.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px">
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;font-size:14px"><span style="font-weight:600">Lecture du cours</span><span style="color:#0F7B5F;font-weight:600;font-variant-numeric:tabular-nums">64 %</span></div>
+        <div style="height:8px;border-radius:999px;background:#E6EFEC"><div style="height:100%;width:64%;background:#0F7B5F;border-radius:999px"></div></div>
+        <span style="font-size:13px;color:#4A5568">Page 31 sur 48</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;font-size:14px"><span style="font-weight:600">Évaluation · question 7 / 20</span><span style="color:#4A5568;font-variant-numeric:tabular-nums">35 %</span></div>
+        <div style="display:grid;grid-template-columns:repeat(20,1fr);gap:3px">
+          <sc-for list="{{ qSteps }}" as="s" hint-placeholder-count="20"><span style="height:6px;border-radius:2px;background:{{ s }}"></span></sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;font-size:14px"><span style="font-weight:600">Score obtenu</span><span style="color:#0F7B5F;font-weight:700;font-variant-numeric:tabular-nums">88 %</span></div>
+        <div style="height:10px;border-radius:999px;background:#EEF1F5;position:relative"><div style="height:100%;width:88%;background:#0F7B5F;border-radius:999px"></div><span style="position:absolute;left:80%;top:-4px;bottom:-4px;width:2px;background:#C9A24B"></span></div>
+        <div style="position:relative;height:16px;font-size:12px;color:#4A5568"><span style="position:absolute;left:80%;transform:translateX(-50%)">seuil 80 %</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;font-size:14px"><span style="font-weight:600">Score · échec</span><span style="color:#C0392B;font-weight:700;font-variant-numeric:tabular-nums">65 %</span></div>
+        <div style="height:10px;border-radius:999px;background:#EEF1F5;position:relative"><div style="height:100%;width:65%;background:#C0392B;border-radius:999px"></div><span style="position:absolute;left:80%;top:-4px;bottom:-4px;width:2px;background:#C9A24B"></span></div>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:28px;display:flex;gap:28px;align-items:center;flex-wrap:wrap">
+      <div style="width:132px;height:132px;border-radius:50%;background:conic-gradient(#0F7B5F 0 72%,#E6EFEC 72% 100%);display:grid;place-items:center">
+        <div style="width:108px;height:108px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <span style="font-family:'Plus Jakarta Sans';font-size:30px;font-weight:700;font-variant-numeric:tabular-nums">72 %</span>
+          <span style="font-size:12px;color:#4A5568">parcours</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;flex:1;min-width:180px">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;gap:12px;align-items:center">
+            <span style="flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:{{ s.bg }};color:{{ s.fg }};border:1.5px solid {{ s.bd }};font-size:12px;font-weight:700"><i class="{{ s.icon }}" style="font-size:14px"></i></span>
+            <span style="font-size:14px;color:{{ s.tc }}">{{ s.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 TABLEAUX -->
+<section id="tableaux" style="padding:88px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568">08</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">Tableaux</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">Lignes de 56 px, montants alignés à droite en chiffres tabulaires, statut en badge. Sur mobile, chaque ligne devient une carte.</p>
+  </div>
+  <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #E3E1DA;gap:12px;flex-wrap:wrap">
+      <span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px">Transactions récentes</span>
+      <div style="display:flex;gap:8px">
+        <span style="height:36px;padding:0 12px;border:1px solid #E3E1DA;border-radius:8px;display:flex;align-items:center;gap:6px;font-size:13px"><i class="icon-filter" style="font-size:15px"></i>Statut : tous</span>
+        <span style="height:36px;padding:0 12px;border:1px solid #E3E1DA;border-radius:8px;display:flex;align-items:center;gap:6px;font-size:13px"><i class="icon-download" style="font-size:15px"></i>Exporter</span>
+      </div>
+    </div>
+    <table style="width:100%;border-collapse:collapse;min-width:760px;font-size:14px">
+      <thead><tr style="background:#F7F5F0;text-align:left;color:#4A5568;font-size:12px;text-transform:uppercase;letter-spacing:.06em">
+        <th style="padding:12px 20px;font-weight:600">Référence</th><th style="padding:12px 20px;font-weight:600">Apprenant</th><th style="padding:12px 20px;font-weight:600">Moyen</th><th style="padding:12px 20px;font-weight:600">Formule</th><th style="padding:12px 20px;font-weight:600;text-align:right">Montant</th><th style="padding:12px 20px;font-weight:600">Statut</th>
+      </tr></thead>
+      <tbody>
+        <sc-for list="{{ txs }}" as="t" hint-placeholder-count="4">
+          <tr style="border-top:1px solid #E3E1DA;height:56px" style-hover="background:#FBFAF7">
+            <td style="padding:0 20px;font-variant-numeric:tabular-nums;color:#4A5568">{{ t.ref }}</td>
+            <td style="padding:0 20px;font-weight:500">{{ t.name }}</td>
+            <td style="padding:0 20px">{{ t.method }}</td>
+            <td style="padding:0 20px">{{ t.plan }}</td>
+            <td style="padding:0 20px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600">{{ t.amount }}</td>
+            <td style="padding:0 20px"><span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:{{ t.sbg }};color:{{ t.sfg }};font-size:12px;font-weight:600"><span style="width:6px;height:6px;border-radius:50%;background:{{ t.sfg }}"></span>{{ t.status }}</span></td>
+          </tr>
+        </sc-for>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 09 MODALES & TOASTS -->
+<section id="retours" style="padding:88px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568">09</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">Modales & toasts</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">La modale confirme une action irréversible. Le toast informe sans bloquer — 5 secondes, fermable.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px">
+    <div style="border-radius:12px;background:rgba(11,31,58,.55);padding:48px 32px;display:grid;place-items:center;min-height:380px;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 1px,transparent 1px 20px)">
+      <div role="dialog" style="background:#fff;border-radius:12px;max-width:440px;width:100%;box-shadow:0 20px 50px rgba(11,31,58,.3);display:flex;flex-direction:column">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;gap:16px">
+          <span style="width:44px;height:44px;border-radius:10px;background:#F6F1E4;color:#A8802F;display:grid;place-items:center"><i class="icon-send" style="font-size:20px"></i></span>
+          <button aria-label="Fermer" style="width:40px;height:40px;border:0;background:transparent;border-radius:8px;color:#4A5568"><i class="icon-x" style="font-size:20px"></i></button>
+        </div>
+        <div style="padding:16px 24px 24px;display:flex;flex-direction:column;gap:8px">
+          <h3 style="margin:0;font-family:'Plus Jakarta Sans';font-size:20px;font-weight:700">Soumettre votre évaluation ?</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#4A5568">Vous avez répondu à 19 questions sur 20. Une fois soumise, cette tentative sera comptabilisée (2 restantes).</p>
+        </div>
+        <div style="padding:16px 24px;border-top:1px solid #E3E1DA;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap">
+          <button style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font:600 14px Inter">Revoir mes réponses</button>
+          <button style="height:44px;padding:0 16px;border-radius:8px;border:0;background:#0B1F3A;color:#fff;font:600 14px Inter">Soumettre</button>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+      <sc-for list="{{ toasts }}" as="t" hint-placeholder-count="4">
+        <div style="background:{{ t.bg }};color:{{ t.fg }};border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 8px 24px rgba(11,31,58,.14);border:1px solid {{ t.bd }}">
+          <i class="{{ t.icon }}" style="font-size:20px;color:{{ t.ic }};margin-top:1px"></i>
+          <div style="display:flex;flex-direction:column;gap:2px;flex:1"><span style="font-weight:600;font-size:14px">{{ t.title }}</span><span style="font-size:13px;line-height:1.5;opacity:.85">{{ t.text }}</span></div>
+          <i class="icon-x" style="font-size:16px;opacity:.6"></i>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 10 ETATS -->
+<section id="etats" style="padding:88px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568">10</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">États vides & chargement</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">Connexions variables : squelettes qui reprennent la forme exacte du contenu, jamais d'écran blanc. Chaque état vide propose l'action suivante.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:40px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+      <span style="width:64px;height:64px;border-radius:50%;background:#F6F1E4;color:#A8802F;display:grid;place-items:center"><i class="icon-award" style="font-size:30px"></i></span>
+      <h3 style="margin:0;font-family:'Plus Jakarta Sans';font-size:18px;font-weight:700">Votre premier certificat vous attend</h3>
+      <p style="margin:0;font-size:14px;line-height:1.6;color:#4A5568;max-width:280px">Terminez un cours et obtenez au moins 80 % à son évaluation pour le recevoir ici.</p>
+      <button style="height:44px;padding:0 16px;border-radius:8px;border:0;background:#0B1F3A;color:#fff;font:600 14px Inter;margin-top:6px">Reprendre ma formation</button>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:40px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+      <span style="width:64px;height:64px;border-radius:50%;background:#EEF1F5;color:#0B1F3A;display:grid;place-items:center"><i class="icon-search-x" style="font-size:30px"></i></span>
+      <h3 style="margin:0;font-family:'Plus Jakarta Sans';font-size:18px;font-weight:700">Aucun cours ne correspond</h3>
+      <p style="margin:0;font-size:14px;line-height:1.6;color:#4A5568;max-width:280px">Essayez un autre mot-clé ou retirez un filtre (niveau « Expert » actif).</p>
+      <button style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #0B1F3A;background:#fff;color:#0B1F3A;font:600 14px Inter;margin-top:6px">Réinitialiser les filtres</button>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden;display:flex;flex-direction:column" aria-busy="true">
+      {{ skeletonCard }}
+    </div>
+  </div>
+</section>
+
+<!-- 11 ICONES & MOTIF -->
+<section id="icones" style="padding:88px 0 0;display:flex;flex-direction:column;gap:32px">
+  <div style="display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:32px;align-items:end;border-bottom:1px solid #E3E1DA;padding-bottom:20px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568">11</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;letter-spacing:-.01em">Iconographie, motif & logotype</h2></div>
+    <p style="margin:0;color:#4A5568;font-size:16px;line-height:1.6;max-width:640px">Lucide, trait linéaire, 20 px dans l'interface, 24 px en navigation. Le motif en losanges, inspiré des tissages, n'apparaît qu'en héros et sur le certificat.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:24px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px">
+      <sc-for list="{{ icons }}" as="i" hint-placeholder-count="18">
+        <div style="aspect-ratio:1;border-radius:8px;display:grid;place-items:center;color:#0B1F3A" style-hover="background:#F7F5F0" title="{{ i }}"><i class="icon-{{ i }}" style="font-size:22px"></i></div>
+      </sc-for>
+    </div>
+    <div style="border-radius:12px;background:#0B1F3A;position:relative;overflow:hidden;min-height:220px;display:flex;align-items:flex-end;padding:24px">
+      <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.18) 0 1px,transparent 1px 26px),repeating-linear-gradient(-45deg,rgba(201,162,75,.18) 0 1px,transparent 1px 26px)"></div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:4px"><span style="color:#fff;font-weight:600;font-size:14px">Motif « Tissage »</span><span style="color:rgba(255,255,255,.72);font-size:13px">Losanges or · opacité 8 à 18 % · pas de 26 px</span></div>
+    </div>
+    <div style="border-radius:12px;background:#fff;border:1px solid #E3E1DA;display:flex;flex-direction:column;overflow:hidden">
+      <div style="flex:1;display:grid;place-items:center;padding:28px;gap:20px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:9px;background:#0B1F3A;display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:24px;color:#fff;position:relative">A<span style="position:absolute;right:7px;top:9px;width:15px;height:15px;border-top:2px solid #C9A24B;border-radius:50% 50% 0 0;transform:rotate(-35deg)"></span></div>
+          <div style="display:flex;flex-direction:column;line-height:1.05"><span style="font-family:'Plus Jakarta Sans';font-size:22px;letter-spacing:.04em;color:#0B1F3A"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span><span style="font-size:11px;color:#4A5568;letter-spacing:.14em;text-transform:uppercase">Learn to improve</span></div>
+        </div>
+      </div>
+      <div style="padding:14px 20px;border-top:1px solid #E3E1DA;font-size:13px;color:#4A5568">Logotype typographique · remplaçable. Emblème complet : <a href="assets/logo-africadres.jpeg">logo-africadres.jpeg</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer style="border-top:1px solid #E3E1DA;padding:24px 32px;text-align:center;font-size:13px;color:#4A5568">Africadres — Design System · Suite : <a href="Landing Page.dc.html">Landing page</a></footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  spinner(color, track) {
+    return React.createElement('span', { style: { width: 18, height: 18, borderRadius: '50%', border: `2px solid ${track}`, borderTopColor: color, animation: 'afSpin .8s linear infinite', display: 'inline-block', flex: 'none' } });
+  }
+  sk(style) {
+    return React.createElement('div', { style: Object.assign({ background: '#ECEAE3', borderRadius: 6, animation: 'afPulse 1.4s ease-in-out infinite' }, style) });
+  }
+  renderVals() {
+    const e = React.createElement;
+    const W = '#FFFFFF', N = '#0B1F3A';
+    return {
+      nav: [['couleurs','Couleurs'],['typographie','Typographie'],['boutons','Boutons'],['formulaires','Formulaires'],['badges','Badges'],['cartes','Cartes de cours'],['progression','Progression'],['tableaux','Tableaux'],['retours','Modales & toasts'],['etats','États'],['icones','Icônes & motif']].map(([id,label])=>({id,label})),
+      palette: [
+        { name: 'Bleu nuit', role: 'Dominante institutionnelle : navigation, titres, boutons primaires.', items: [
+          { token: 'navy-900', hex: '#0B1F3A', fg: W, use: 'principal' },
+          { token: 'navy-800', hex: '#132C52', fg: W, use: 'surfaces' },
+          { token: 'navy-700', hex: '#1E3A66', fg: W, use: 'survol' }] },
+        { name: 'Or / bronze', role: 'Prestige : CTA premium, badges, certificats. Avec parcimonie.', items: [
+          { token: 'gold-500', hex: '#C9A24B', fg: N, use: 'accent' },
+          { token: 'gold-600', hex: '#A8802F', fg: W, use: 'hover' },
+          { token: 'gold-50', hex: '#F6F1E4', fg: N, use: 'fond badge' }] },
+        { name: 'Émeraude', role: 'Croissance : progression, scores réussis, validations, états actifs.', items: [
+          { token: 'emerald-600', hex: '#0F7B5F', fg: W, use: 'succès' },
+          { token: 'emerald-50', hex: '#E6EFEC', fg: N, use: 'piste' }] },
+        { name: 'Neutres & états', role: 'Fonds ivoire, texte gris, bordures chaudes. Erreur et alerte.', items: [
+          { token: 'ivory', hex: '#F7F5F0', fg: N, use: 'fond' },
+          { token: 'white', hex: '#FFFFFF', fg: N, use: 'surface' },
+          { token: 'gray-text', hex: '#4A5568', fg: W, use: 'texte' },
+          { token: 'border', hex: '#E3E1DA', fg: N, use: 'bordure' },
+          { token: 'error', hex: '#C0392B', fg: W, use: 'erreur' },
+          { token: 'warning', hex: '#D98E04', fg: N, use: 'alerte' }] },
+      ],
+      contrasts: [
+        { bg: '#0B1F3A', fg: '#C9A24B', ratio: '7,0 : 1', verdict: 'AAA', chipBg: '#0F7B5F', chipFg: W },
+        { bg: '#0B1F3A', fg: W, ratio: '16,1 : 1', verdict: 'AAA', chipBg: '#0F7B5F', chipFg: W },
+        { bg: '#C9A24B', fg: N, ratio: '7,0 : 1', verdict: 'AAA', chipBg: '#0F7B5F', chipFg: W },
+        { bg: W, fg: '#0F7B5F', ratio: '5,4 : 1', verdict: 'AA', chipBg: '#0F7B5F', chipFg: W },
+        { bg: '#F7F5F0', fg: '#4A5568', ratio: '7,0 : 1', verdict: 'AAA', chipBg: '#0F7B5F', chipFg: W },
+        { bg: W, fg: '#C9A24B', ratio: '2,3 : 1', verdict: 'Interdit', chipBg: '#C0392B', chipFg: W },
+      ],
+      typeScale: [
+        { token: 'display', spec: '56/60 · 700 · −2 %', family: "'Plus Jakarta Sans'", size: '56px', weight: 700, ls: '-.02em', tt: 'none', sample: 'Certifiez votre excellence' },
+        { token: 'h1', spec: '40/48 · 700', family: "'Plus Jakarta Sans'", size: '40px', weight: 700, ls: '-.015em', tt: 'none', sample: 'Leadership et management' },
+        { token: 'h2', spec: '32/40 · 700', family: "'Plus Jakarta Sans'", size: '32px', weight: 700, ls: '-.01em', tt: 'none', sample: 'Formations en cours' },
+        { token: 'h3', spec: '24/32 · 600', family: "'Plus Jakarta Sans'", size: '24px', weight: 600, ls: '0', tt: 'none', sample: 'Finance pour non-financiers' },
+        { token: 'h4', spec: '18/26 · 700', family: "'Plus Jakarta Sans'", size: '18px', weight: 700, ls: '0', tt: 'none', sample: 'Objectifs pédagogiques' },
+        { token: 'body-lg', spec: '18/28 · 400', family: 'Inter', size: '18px', weight: 400, ls: '0', tt: 'none', sample: 'Progressez à votre rythme, où que vous soyez.' },
+        { token: 'body', spec: '16/26 · 400', family: 'Inter', size: '16px', weight: 400, ls: '0', tt: 'none', sample: 'Accédez à l\u2019intégralité du catalogue pendant votre abonnement.' },
+        { token: 'label', spec: '14/20 · 600', family: 'Inter', size: '14px', weight: 600, ls: '0', tt: 'none', sample: 'Adresse e-mail' },
+        { token: 'eyebrow', spec: '12/16 · 600 · +14 %', family: 'Inter', size: '12px', weight: 600, ls: '.14em', tt: 'uppercase', sample: 'Institut d\u2019excellence' },
+      ],
+      spinnerLight: this.spinner('#fff', 'rgba(255,255,255,.3)'),
+      spinnerDark: this.spinner('#0B1F3A', 'rgba(11,31,58,.25)'),
+      spinnerNavy: this.spinner('#0B1F3A', '#E3E1DA'),
+      spinnerNavy2: this.spinner('#0B1F3A', '#E3E1DA'),
+      badgeGroups: [
+        { title: 'Abonnement & paiement', items: [
+          { label: 'Actif', bg: '#E6EFEC', fg: '#0B5C47', bd: '#CFE3DB', dot: '#0F7B5F' },
+          { label: 'Expire dans 5 j', bg: '#FBF1DD', fg: '#7A5000', bd: '#F2DDB0', dot: '#D98E04' },
+          { label: 'Échoué', bg: '#F8E4E1', fg: '#962D22', bd: '#EFC9C3', dot: '#C0392B' },
+          { label: 'Expiré', bg: '#EEF1F5', fg: '#4A5568', bd: '#E3E1DA', dot: '#8A93A3' }] },
+        { title: 'Cours (back-office)', items: [
+          { label: 'Publié', bg: '#E6EFEC', fg: '#0B5C47', bd: '#CFE3DB', dot: '#0F7B5F' },
+          { label: 'Brouillon', bg: '#EEF1F5', fg: '#132C52', bd: '#DCE2EA', dot: '#1E3A66' },
+          { label: 'Retiré', bg: '#F3F2EE', fg: '#4A5568', bd: '#E3E1DA', dot: '#8A93A3' },
+          { label: 'IA · à valider', bg: '#FBF1DD', fg: '#7A5000', bd: '#F2DDB0', dot: '#D98E04' }] },
+        { title: 'Prestige & niveaux', items: [
+          { label: 'Certifié', bg: '#0B1F3A', fg: '#C9A24B', bd: '#0B1F3A', dot: '#C9A24B' },
+          { label: 'Recommandé', bg: '#C9A24B', fg: '#0B1F3A', bd: '#C9A24B', dot: '#0B1F3A' },
+          { label: 'Intermédiaire', bg: '#fff', fg: '#0B1F3A', bd: '#E3E1DA', dot: '#1E3A66' },
+          { label: 'Expert', bg: '#fff', fg: '#0B1F3A', bd: '#E3E1DA', dot: '#0B1F3A' }] },
+      ],
+      courses: [
+        { code: 'LEAD · 204', thumb: '#132C52', pages: 64, theme: 'Leadership', title: 'Leadership et management d\u2019équipe', expert: 'Dr Aïssatou Ndiaye', level: 'Intermédiaire', duration: '6 h', hasProgress: false },
+        { code: 'FIN · 110', thumb: '#0F4D40', pages: 48, theme: 'Finance', title: 'Finance pour non-financiers', expert: 'Jean-Marc Kouassi, CFA', level: 'Fondamental', duration: '5 h', hasProgress: true, progress: 64 },
+        { code: 'NEG · 310', thumb: '#3A2E14', pages: 52, theme: 'Stratégie', title: 'Négociation stratégique', expert: 'Mariam Traoré', level: 'Expert', duration: '4 h 30', hasProgress: false },
+      ],
+      qSteps: Array.from({ length: 20 }, (_, i) => i < 6 ? '#0F7B5F' : i === 6 ? '#0B1F3A' : '#E3E1DA'),
+      steps: [
+        { label: 'Abonnement activé', icon: 'icon-check', bg: '#0F7B5F', fg: '#fff', bd: '#0F7B5F', tc: '#0B1F3A' },
+        { label: 'Cours lu en intégralité', icon: 'icon-check', bg: '#0F7B5F', fg: '#fff', bd: '#0F7B5F', tc: '#0B1F3A' },
+        { label: 'Évaluation (≥ 80 %)', icon: 'icon-circle-dot', bg: '#fff', fg: '#0B1F3A', bd: '#0B1F3A', tc: '#0B1F3A' },
+        { label: 'Certificat délivré', icon: 'icon-award', bg: '#fff', fg: '#8A93A3', bd: '#E3E1DA', tc: '#4A5568' },
+      ],
+      txs: [
+        { ref: 'RC-2026-09-01842', name: 'Sènami Hounkpatin', method: 'Orange Money', plan: 'Annuel', amount: '129 000 FCFA', status: 'Réussi', sbg: '#E6EFEC', sfg: '#0B5C47' },
+        { ref: 'RC-2026-09-01841', name: 'Kofi Mensah', method: 'Carte Visa', plan: 'Trimestriel', amount: '59,00 €', status: 'Réussi', sbg: '#E6EFEC', sfg: '#0B5C47' },
+        { ref: 'RC-2026-09-01840', name: 'Fatou Sow', method: 'Wave', plan: 'Mensuel', amount: '15 000 FCFA', status: 'En attente', sbg: '#FBF1DD', sfg: '#7A5000' },
+        { ref: 'RC-2026-09-01839', name: 'Serge Ahouansou', method: 'MTN MoMo', plan: 'Annuel', amount: '129 000 FCFA', status: 'Échoué', sbg: '#F8E4E1', sfg: '#962D22' },
+      ],
+      toasts: [
+        { title: 'Paiement confirmé', text: 'Votre abonnement Annuel est actif jusqu\u2019au 27 sept. 2027.', icon: 'icon-check-circle-2', bg: '#fff', fg: '#0B1F3A', bd: '#E3E1DA', ic: '#0F7B5F' },
+        { title: 'Certificat disponible', text: 'Leadership et management d\u2019équipe · score 88 %.', icon: 'icon-award', bg: '#0B1F3A', fg: '#fff', bd: '#0B1F3A', ic: '#C9A24B' },
+        { title: 'Connexion instable', text: 'Vos réponses sont enregistrées localement.', icon: 'icon-wifi-off', bg: '#fff', fg: '#0B1F3A', bd: '#E3E1DA', ic: '#D98E04' },
+        { title: 'Paiement refusé', text: 'Solde Mobile Money insuffisant. Réessayez ou changez de moyen.', icon: 'icon-x-circle', bg: '#fff', fg: '#0B1F3A', bd: '#E3E1DA', ic: '#C0392B' },
+      ],
+      skeletonCard: e(React.Fragment, null,
+        this.sk({ aspectRatio: '16/9', borderRadius: 0 }),
+        e('div', { style: { padding: 18, display: 'flex', flexDirection: 'column', gap: 12 } },
+          this.sk({ width: '30%', height: 10 }), this.sk({ width: '90%', height: 16 }), this.sk({ width: '60%', height: 16 }), this.sk({ width: '45%', height: 12, marginTop: 6 }),
+          e('div', { style: { display: 'flex', gap: 10, marginTop: 6 } }, this.sk({ width: 80, height: 12 }), this.sk({ width: 50, height: 12 })))),
+      icons: ['book-open','file-text','award','graduation-cap','clipboard-check','timer','bar-chart-2','shield-check','lock','credit-card','smartphone','receipt','users','user-round','search','sliders-horizontal','sparkles','upload-cloud'],
+    };
+  }
+}
+</script>
+</body>
+</html>

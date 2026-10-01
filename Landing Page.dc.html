@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Landing page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<script src="./image-slot.js"></script>
+<script src="./pricing-data.js"></script>
+<script src="./courses-data.js"></script>
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button{font-family:Inter,system-ui,sans-serif}
+button:focus-visible,a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+</style>
+</helmet>
+
+<div style="display:flex;gap:80px;align-items:flex-start;padding:80px">
+
+<!-- ================= DESKTOP ================= -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#0B1F3A"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">1a</span><span style="font-weight:600">Landing page · Desktop 1440</span></div>
+<div id="1a" data-screen-label="Landing desktop" style="width:1440px;background:#F7F5F0;box-shadow:0 30px 80px rgba(11,31,58,.18);overflow:hidden">
+
+  <!-- Top bar -->
+
+  <!-- HERO -->
+  <section style="background:#0B1F3A;color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.09) 0 1px,transparent 1px 26px),repeating-linear-gradient(-45deg,rgba(201,162,75,.09) 0 1px,transparent 1px 26px);-webkit-mask-image:radial-gradient(ellipse at 85% 30%,#000 0,transparent 60%);mask-image:radial-gradient(ellipse at 85% 30%,#000 0,transparent 60%)"></div>
+  <sc-if value="{{ promoOn }}" hint-placeholder-val="{{ false }}"><div style="background:#C9A24B;color:#0B1F3A;display:flex;justify-content:center;align-items:center;gap:10px;padding:10px 20px;font-size:14px;font-weight:600;text-align:center"><i class="icon-badge-percent" style="font-size:17px;flex:none"></i><span>{{ promoBanner }}</span></div></sc-if>
+    <nav style="position:relative;max-width:1280px;margin:0 auto;padding:0 40px;height:80px;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:40px;height:40px;border-radius:8px;background:#132C52;border:1px solid rgba(201,162,75,.5);display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:22px;position:relative">A<span style="position:absolute;right:7px;top:8px;width:14px;height:14px;border-top:2px solid #C9A24B;border-radius:50% 50% 0 0;transform:rotate(-35deg)"></span></div>
+        <div style="display:flex;flex-direction:column;line-height:1.05"><span style="font-family:'Plus Jakarta Sans';font-size:20px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span><span style="font-size:10px;color:#C9A24B;letter-spacing:.16em;text-transform:uppercase">Learn to improve</span></div>
+      </div>
+      <div style="display:flex;gap:36px;font-size:15px;font-weight:500">
+        <a href="Formations.dc.html" style="color:#fff" style-hover="color:#C9A24B">Formations</a>
+        <a href="Experts.dc.html" style="color:#fff" style-hover="color:#C9A24B">Experts</a>
+        <a href="#certification" style="color:#fff" style-hover="color:#C9A24B">Certification</a>
+        <a href="Tarifs.dc.html" style="color:#fff" style-hover="color:#C9A24B">Tarifs</a>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a href="Inscription.dc.html" style="height:44px;padding:0 16px;display:flex;align-items:center;font-size:15px;font-weight:600;color:#fff">Se connecter</a>
+        <a href="Inscription.dc.html" style="height:44px;padding:0 18px;border-radius:8px;border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;font-size:15px;font-weight:600;color:#fff" style-hover="border-color:#fff;color:#fff">Créer un compte</a>
+      </div>
+    </nav>
+
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:72px 40px 96px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;height:32px;padding:0 14px;border:1px solid rgba(201,162,75,.45);border-radius:999px;font-size:13px;color:#C9A24B;font-weight:600;letter-spacing:.02em"><i class="icon-award" style="font-size:15px"></i>Institut de formation continue pour cadres</span>
+        <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-weight:700;font-size:62px;line-height:1.06;letter-spacing:-.025em;text-wrap:balance">Progressez à votre rythme, faites <span style="color:#C9A24B">certifier</span> votre excellence.</h1>
+        <p style="margin:0;font-size:19px;line-height:1.6;color:rgba(255,255,255,.8);max-width:540px;text-wrap:pretty">Des formations conçues par des experts reconnus. Un abonnement mensuel ouvre l'accès à toutes les formations. Certificat délivré après l'examen final, une fois le cours suivi à 100 %.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;padding-top:4px">
+          <a href="Inscription.dc.html" style="height:56px;padding:0 26px;border-radius:10px;background:#C9A24B;color:#0B1F3A;display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;transition:background .16s" style-hover="background:#D8B45F;color:#0B1F3A">Commencer mon abonnement<i class="icon-arrow-right" style="font-size:19px"></i></a>
+          <a href="Formations.dc.html" style="height:56px;padding:0 24px;border-radius:10px;border:1px solid rgba(255,255,255,.35);color:#fff;display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px" style-hover="border-color:#fff;color:#fff">Explorer le catalogue</a>
+        </div>
+        <div style="display:flex;gap:28px;padding-top:12px;font-size:14px;color:rgba(255,255,255,.72)">
+          <span style="display:flex;gap:8px;align-items:center"><i class="icon-smartphone" style="font-size:17px;color:#C9A24B"></i>Mobile Money & carte</span>
+          <span style="display:flex;gap:8px;align-items:center"><i class="icon-calendar-x" style="font-size:17px;color:#C9A24B"></i>Sans engagement</span>
+          <span style="display:flex;gap:8px;align-items:center"><i class="icon-qr-code" style="font-size:17px;color:#C9A24B"></i>Certificat vérifiable</span>
+        </div>
+      </div>
+      <div style="position:relative;height:540px">
+        <div style="position:absolute;right:0;top:0;width:470px;height:540px;border-radius:12px;overflow:hidden;border:1px solid rgba(201,162,75,.3)">
+          <image-slot id="hero-photo" shape="rect" placeholder="Photo : cadre africaine en réunion, lumière naturelle" style="width:100%;height:100%;background:#132C52"></image-slot>
+        </div>
+        <div style="position:absolute;left:0;bottom:64px;width:300px;background:#fff;color:#0B1F3A;border-radius:12px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:14px;pointer-events:none">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4A5568">En cours</span><span style="font-size:12px;color:#4A5568">Page 31 / 48</span></div>
+          <span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px;line-height:1.3">Finance pour non-financiers</span>
+          <div style="height:6px;border-radius:999px;background:#E6EFEC"><div style="width:64%;height:100%;border-radius:999px;background:#0F7B5F"></div></div>
+          <span style="font-size:13px;color:#0F7B5F;font-weight:600">64 % · évaluation disponible à 100 %</span>
+        </div>
+        <div style="position:absolute;left:60px;top:40px;background:#132C52;border:1px solid rgba(201,162,75,.5);border-radius:12px;padding:16px 18px;display:flex;gap:14px;align-items:center;box-shadow:0 20px 50px rgba(0,0,0,.35);pointer-events:none">
+          <span style="width:44px;height:44px;border-radius:50%;background:#C9A24B;color:#0B1F3A;display:grid;place-items:center"><i class="icon-award" style="font-size:22px"></i></span>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;color:rgba(255,255,255,.72)">Certificat délivré</span><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:18px;font-variant-numeric:tabular-nums">Score 88 %</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDIBILITY -->
+  <section style="background:#fff;border-bottom:1px solid #E3E1DA">
+    <div style="max-width:1280px;margin:0 auto;padding:40px;display:grid;grid-template-columns:repeat(4,1fr)">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:6px;padding:0 32px;border-left:1px solid #E3E1DA">
+          <span style="font-family:'Plus Jakarta Sans';font-size:40px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums">{{ s.value }}</span>
+          <span style="font-size:15px;color:#4A5568">{{ s.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- DOMAINES -->
+  <section style="max-width:1280px;margin:0 auto;padding:112px 40px 0">
+    <div style="display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:80px">
+      <div style="display:flex;flex-direction:column;gap:20px;position:sticky;top:0;align-self:start">
+        <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F7B5F">Domaines de formation</span>
+        <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:42px;font-weight:700;line-height:1.12;letter-spacing:-.02em;text-wrap:balance">Les compétences qui font les dirigeants.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.65;color:#4A5568;text-wrap:pretty">Six domaines, 124 formations. Chaque cours est un support de référence rédigé par un praticien, suivi d'une évaluation exigeante.</p>
+        <a href="Formations.dc.html" style="align-self:flex-start;height:48px;padding:0 20px;border-radius:8px;border:1px solid #0B1F3A;display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;margin-top:8px" style-hover="background:#fff">Voir tout le catalogue<i class="icon-arrow-right" style="font-size:17px"></i></a>
+      </div>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #E3E1DA">
+        <sc-for list="{{ domains }}" as="d" hint-placeholder-count="6">
+          <a href="Formations.dc.html?domaine={{ d.id }}" style="display:grid;grid-template-columns:56px minmax(0,1fr) auto 32px;gap:24px;align-items:center;padding:26px 8px;border-bottom:1px solid #E3E1DA;transition:background .16s" style-hover="background:#fff">
+            <span style="width:48px;height:48px;border-radius:10px;background:#fff;border:1px solid #E3E1DA;display:grid;place-items:center;color:#0B1F3A"><i class="icon-{{ d.icon }}" style="font-size:22px"></i></span>
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Plus Jakarta Sans';font-size:21px;font-weight:600">{{ d.name }}</span><span style="font-size:15px;color:#4A5568">{{ d.sample }}</span></div>
+            <span style="font-size:14px;color:#4A5568;font-variant-numeric:tabular-nums">{{ d.count }} cours</span>
+            <i class="icon-arrow-up-right" style="font-size:20px;color:#0B1F3A"></i>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- FONCTIONNEMENT -->
+  <section style="max-width:1280px;margin:0 auto;padding:128px 40px 0;display:flex;flex-direction:column;gap:56px">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:40px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:640px">
+        <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F7B5F">Comment ça marche</span>
+        <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:42px;font-weight:700;line-height:1.12;letter-spacing:-.02em">Trois étapes, zéro démarche administrative.</h2>
+      </div>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#4A5568;max-width:380px">Tout se fait en ligne, en autonomie : paiement, lecture, évaluation et délivrance du certificat.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden">
+      <sc-for list="{{ howSteps }}" as="h" hint-placeholder-count="3">
+        <div style="padding:40px 36px;display:flex;flex-direction:column;gap:18px;border-left:1px solid #E3E1DA;position:relative;background:{{ h.bg }};color:{{ h.fg }}">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-family:'Plus Jakarta Sans';font-size:15px;font-weight:700;color:{{ h.num }};font-variant-numeric:tabular-nums">{{ h.n }}</span>
+            <i class="icon-{{ h.icon }}" style="font-size:26px;color:{{ h.num }}"></i>
+          </div>
+          <h3 style="margin:24px 0 0;font-family:'Plus Jakarta Sans';font-size:26px;font-weight:700">{{ h.title }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:{{ h.sub }}">{{ h.text }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CERTIFICAT -->
+  <section id="certification" style="margin-top:128px;background:#0B1F3A;color:#fff;position:relative;overflow:hidden">
+    <div style="max-width:1280px;margin:0 auto;padding:112px 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,640px);gap:80px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#C9A24B">La certification</span>
+        <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:42px;font-weight:700;line-height:1.12;letter-spacing:-.02em;text-wrap:balance">Un certificat qui se mérite, et qui se vérifie.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.65;color:rgba(255,255,255,.8)">Délivré automatiquement après l'examen final, une fois le cours suivi à 100 %. Chaque certificat porte un identifiant unique et un QR code : un recruteur peut en contrôler l'authenticité en quelques secondes.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;padding-top:8px">
+          <sc-for list="{{ certPoints }}" as="p" hint-placeholder-count="3">
+            <div style="display:flex;gap:14px;align-items:center;font-size:16px"><span style="width:32px;height:32px;border-radius:8px;background:#132C52;border:1px solid rgba(201,162,75,.4);color:#C9A24B;display:grid;place-items:center"><i class="icon-{{ p.icon }}" style="font-size:16px"></i></span>{{ p.text }}</div>
+          </sc-for>
+        </div>
+      </div>
+      <!-- certificate mock -->
+      <div style="aspect-ratio:297/210;background:#FBF9F4;border-radius:6px;box-shadow:0 30px 70px rgba(0,0,0,.45);position:relative;overflow:hidden;color:#0B1F3A;transform:rotate(-1.5deg)">
+        <div style="position:absolute;inset:14px;border:1px solid #C9A24B"></div>
+        <div style="position:absolute;inset:19px;border:1px solid rgba(201,162,75,.45)"></div>
+        <div style="position:absolute;left:0;top:0;bottom:0;width:120px;background:#0B1F3A;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.22) 0 1px,transparent 1px 14px),repeating-linear-gradient(-45deg,rgba(201,162,75,.22) 0 1px,transparent 1px 14px)"></div>
+        <div style="position:absolute;left:150px;right:44px;top:44px;bottom:36px;display:flex;flex-direction:column">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Plus Jakarta Sans';font-size:13px;letter-spacing:.06em"><b style="font-weight:800">AFRI</b>CADRES</span><span style="font-size:9px;color:#4A5568;letter-spacing:.1em">N° AFR-C-2026-0918-4471</span></div>
+          <span style="margin-top:22px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#A8802F;font-weight:600">Certificat de réussite</span>
+          <span style="margin-top:10px;font-size:11px;color:#4A5568">Décerné à</span>
+          <span style="font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;letter-spacing:-.01em;margin-top:2px">Sènami Hounkpatin</span>
+          <span style="margin-top:10px;font-size:11px;color:#4A5568;line-height:1.5">pour avoir validé avec succès l'évaluation de la formation</span>
+          <span style="font-family:'Plus Jakarta Sans';font-size:15px;font-weight:700;margin-top:2px">Leadership et management d'équipe</span>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+            <div style="display:flex;gap:26px;font-size:9px;color:#4A5568"><div style="display:flex;flex-direction:column;gap:2px"><span>Score</span><b style="font-size:13px;color:#0B1F3A;font-variant-numeric:tabular-nums">88 %</b></div><div style="display:flex;flex-direction:column;gap:2px"><span>Délivré le</span><b style="font-size:13px;color:#0B1F3A">18 sept. 2026</b></div></div>
+            <div style="width:58px;height:58px;background:#fff;border:1px solid #E3E1DA;padding:5px"><div style="width:100%;height:100%;background-image:linear-gradient(90deg,#0B1F3A 50%,transparent 50%),linear-gradient(#0B1F3A 50%,transparent 50%);background-size:8px 8px,6px 6px;opacity:.85"></div></div>
+          </div>
+        </div>
+        <div style="position:absolute;left:84px;top:50%;transform:translateY(-50%);width:72px;height:72px;border-radius:50%;background:#C9A24B;display:grid;place-items:center;box-shadow:0 0 0 4px #FBF9F4"><i class="icon-award" style="font-size:32px;color:#0B1F3A"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMOIGNAGES -->
+  <section style="max-width:1280px;margin:0 auto;padding:128px 40px 0;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:48px">
+    <div style="display:flex;flex-direction:column;gap:32px;padding-right:24px">
+      <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F7B5F">Ils ont été certifiés</span>
+      <blockquote style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:600;line-height:1.35;letter-spacing:-.01em;text-wrap:pretty">« J'ai suivi la formation en négociation entre deux missions, souvent sur mon téléphone. Le niveau d'exigence de l'évaluation donne une vraie valeur au certificat. »</blockquote>
+      <div style="display:flex;gap:16px;align-items:center">
+        <image-slot id="testi-1" shape="circle" placeholder="Portrait" style="width:56px;height:56px;background:#E3E1DA"></image-slot>
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:16px">Kouamé Yao</span><span style="font-size:14px;color:#4A5568">Directeur commercial, groupe agro-industriel · Abidjan</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="2">
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:18px">
+          <p style="margin:0;font-size:16px;line-height:1.6;text-wrap:pretty">« {{ t.quote }} »</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:15px">{{ t.name }}</span><span style="font-size:13px;color:#4A5568">{{ t.role }}</span></div>
+            <span style="font-size:12px;font-weight:600;color:#0B5C47;background:#E6EFEC;padding:4px 10px;border-radius:999px;white-space:nowrap">{{ t.cert }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- EXPERTS -->
+  <section id="experts" style="max-width:1280px;margin:0 auto;padding:128px 40px 0;display:flex;flex-direction:column;gap:48px">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:40px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:640px">
+        <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F7B5F">Nos experts</span>
+        <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:42px;font-weight:700;line-height:1.12;letter-spacing:-.02em">Des experts reconnus dans leur domaine.</h2>
+      </div>
+      <a href="Experts.dc.html" style="height:48px;padding:0 20px;border-radius:8px;border:1px solid #0B1F3A;background:transparent;color:#0B1F3A;display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px" style-hover="background:#fff">{{ expertsBtn }}<i class="icon-{{ expertsBtnIcon }}" style="font-size:17px"></i></a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+      <sc-for list="{{ experts }}" as="x" hint-placeholder-count="4">
+        <button onClick="{{ x.open }}" style="display:flex;flex-direction:column;gap:16px;border:0;background:transparent;padding:0;text-align:left;color:#0B1F3A;cursor:pointer" style-hover="opacity:.88">
+          <div style="aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#E3E1DA;pointer-events:none"><image-slot id="{{ x.slot }}" shape="rect" placeholder="Portrait expert" style="width:100%;height:100%"></image-slot></div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:18px">{{ x.name }}</span>
+            <span style="font-size:14px;color:#4A5568;line-height:1.5">{{ x.role }}</span>
+            <span style="font-size:13px;color:#0B1F3A;font-weight:600;margin-top:6px;display:flex;gap:6px;align-items:center">{{ x.course }}<i class="icon-arrow-up-right" style="font-size:14px;color:#A8802F"></i></span>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+      <sc-if value="{{ xOpen }}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{ xClose }}" style="position:fixed;inset:0;background:rgba(11,31,58,.55);z-index:50"></div>
+      <div role="dialog" style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;max-width:calc(100vw - 32px);background:#fff;border-radius:14px;overflow:hidden;z-index:51;box-shadow:0 30px 70px rgba(11,31,58,.35)">
+        <div style="background:#0B1F3A;color:#fff;padding:24px;display:flex;gap:16px;align-items:center"><span style="width:64px;height:64px;border-radius:50%;background:#132C52;border:1px solid #C9A24B;color:#C9A24B;font-size:20px;font-weight:700;display:grid;place-items:center;flex:none">{{ xd.ini }}</span><div style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Plus Jakarta Sans';font-size:20px;font-weight:700">{{ xd.name }}</span><span style="font-size:14px;color:rgba(255,255,255,.8)">{{ xd.title }}</span></div><button onClick="{{ xClose }}" aria-label="Fermer" style="width:44px;height:44px;border:0;background:transparent;color:#fff;border-radius:8px;flex:none"><i class="icon-x" style="font-size:22px"></i></button></div>
+        <div style="padding:22px 24px 24px;display:flex;flex-direction:column;gap:16px">
+          <p style="margin:0;font-size:15px;line-height:1.65;color:#4A5568">{{ xd.bio }}</p>
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:700">Ses formations</span>
+            <sc-for list="{{ xd.courses }}" as="c" hint-placeholder-count="2"><a href="Formations.dc.html" style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid #E3E1DA;border-radius:10px;font-size:14px" style-hover="border-color:#0B1F3A"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">{{ c.title }}</span><span style="font-size:12px;color:#4A5568">{{ c.meta }}</span></div><i class="icon-arrow-right" style="font-size:16px;flex:none"></i></a></sc-for>
+          </div>
+          <a href="Formations.dc.html" style="height:48px;border-radius:10px;background:#0B1F3A;color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px">Voir toutes les formations<i class="icon-arrow-right" style="font-size:17px"></i></a>
+        </div>
+      </div>
+    </sc-if>
+  </section>
+
+  <!-- TARIFS -->
+  <section id="tarifs" style="max-width:1280px;margin:0 auto;padding:128px 40px 0;display:flex;flex-direction:column;gap:48px">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:40px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:640px">
+        <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F7B5F">Formules d'abonnement</span>
+        <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:42px;font-weight:700;line-height:1.12;letter-spacing:-.02em">Tout le catalogue, pour la durée qui vous convient.</h2><sc-if value="{{ promoOn }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border-radius:999px;background:#E6EFEC;color:#0B5C47;font-size:14px;font-weight:700;margin-top:10px"><i class="icon-badge-percent" style="font-size:16px"></i>{{ promoName }} : −{{ promoOff }} % jusqu'au {{ promoUntil }} · au lieu de {{ promoBase }}</span></sc-if>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;align-items:stretch">
+      <sc-for list="{{ plans }}" as="p" hint-placeholder-count="4">
+        <div style="background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};border-radius:12px;padding:36px 32px;display:flex;flex-direction:column;gap:24px;position:relative">
+          <sc-if value="{{ p.featured }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-14px;left:32px;height:28px;padding:0 12px;border-radius:999px;background:#C9A24B;color:#0B1F3A;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:6px"><i class="icon-star" style="font-size:13px"></i>Meilleure offre</span></sc-if>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Plus Jakarta Sans';font-size:22px;font-weight:700">{{ p.name }}</span><span style="font-size:14px;color:{{ p.sub }}">{{ p.desc }}</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'Plus Jakarta Sans';font-size:44px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums">{{ p.price }}</span><span style="font-size:15px;color:{{ p.sub }}">{{ p.unit }}</span></div>
+            <span style="font-size:14px;color:{{ p.accent }};font-weight:600;font-variant-numeric:tabular-nums">{{ p.note }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:1px solid {{ p.line }}">
+            <sc-for list="{{ p.features }}" as="f" hint-placeholder-count="4"><span style="display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.45"><i class="icon-check" style="font-size:17px;color:{{ p.check }};margin-top:1px"></i>{{ f }}</span></sc-for>
+          </div>
+          <a href="Paiement.dc.html" onClick="{{ p.choose }}" style="margin-top:auto;height:52px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;background:{{ p.ctaBg }};color:{{ p.ctaFg }};border:1px solid {{ p.ctaBd }}">{{ p.cta }}</a>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin:0;text-align:center;font-size:14px;color:#4A5568">Paiement sécurisé par carte, MTN MoMo, Orange Money, Moov Money ou Wave. Un reçu de paiement est émis après chaque règlement.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section style="max-width:1280px;margin:0 auto;padding:128px 40px;display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:80px">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F7B5F">Questions fréquentes</span>
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:42px;font-weight:700;line-height:1.12;letter-spacing:-.02em">Tout ce qu'il faut savoir avant de commencer.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #E3E1DA">
+      <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="6">
+        <div style="border-bottom:1px solid #E3E1DA">
+          <button onClick="{{ q.toggle }}" aria-expanded="{{ q.open }}" style="width:100%;min-height:72px;background:transparent;border:0;display:flex;justify-content:space-between;align-items:center;gap:24px;text-align:left;cursor:pointer;color:#0B1F3A;padding:0 4px">
+            <span style="font-family:'Plus Jakarta Sans';font-size:19px;font-weight:600">{{ q.q }}</span>
+            <i class="{{ q.icon }}" style="font-size:22px;flex:none"></i>
+          </button>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 48px 26px 4px;font-size:16px;line-height:1.65;color:#4A5568;text-wrap:pretty">{{ q.a }}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 40px 112px">
+    <div style="background:#132C52;border-radius:12px;padding:64px;display:flex;justify-content:space-between;align-items:center;gap:40px;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.10) 0 1px,transparent 1px 26px),repeating-linear-gradient(-45deg,rgba(201,162,75,.10) 0 1px,transparent 1px 26px);-webkit-mask-image:linear-gradient(90deg,transparent 40%,#000);mask-image:linear-gradient(90deg,transparent 40%,#000)"></div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:12px;color:#fff;max-width:640px"><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1.15">Votre prochain certificat commence aujourd'hui.</h2><p style="margin:0;font-size:17px;color:rgba(255,255,255,.8)">Inscription en 2 minutes. Accès immédiat au catalogue après paiement.</p></div>
+      <a href="Inscription.dc.html" style="position:relative;flex:none;height:56px;padding:0 26px;border-radius:10px;background:#C9A24B;color:#0B1F3A;display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px" style-hover="background:#D8B45F;color:#0B1F3A">Commencer mon abonnement<i class="icon-arrow-right" style="font-size:19px"></i></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#0B1F3A;color:rgba(255,255,255,.72)">
+    <div style="max-width:1280px;margin:0 auto;padding:72px 40px 40px;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(4,minmax(0,1fr));gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:12px;color:#fff">
+          <div style="width:40px;height:40px;border-radius:8px;background:#132C52;border:1px solid rgba(201,162,75,.5);display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:22px;position:relative">A<span style="position:absolute;right:7px;top:8px;width:14px;height:14px;border-top:2px solid #C9A24B;border-radius:50% 50% 0 0;transform:rotate(-35deg)"></span></div>
+          <div style="display:flex;flex-direction:column;line-height:1.05"><span style="font-family:'Plus Jakarta Sans';font-size:20px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span><span style="font-size:10px;color:#C9A24B;letter-spacing:.16em;text-transform:uppercase">Learn to improve</span></div>
+        </div>
+        <p style="margin:0;font-size:15px;line-height:1.65;max-width:320px">Institut de formation continue en ligne pour cadres et dirigeants, en Afrique et à l'international.</p>
+        <div style="display:flex;gap:10px">
+          <sc-for list="{{ socials }}" as="s" hint-placeholder-count="3"><a href="#" aria-label="{{ s }}" style="width:44px;height:44px;border-radius:8px;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;color:#fff" style-hover="border-color:#C9A24B;color:#C9A24B"><i class="icon-{{ s }}" style="font-size:18px"></i></a></sc-for>
+        </div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff">{{ col.title }}</span>
+          <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4"><a href="#" style="font-size:15px;color:rgba(255,255,255,.72)" style-hover="color:#C9A24B">{{ l }}</a></sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:24px 40px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;font-size:13px;gap:24px">
+      <span>© 2026 Africadres. Tous droits réservés.</span>
+      <div style="display:flex;gap:18px;align-items:center"><span style="display:flex;gap:6px;align-items:center"><i class="icon-lock" style="font-size:14px"></i>Paiements chiffrés</span><span>Visa</span><span>Mastercard</span><span>MTN MoMo</span><span>Orange Money</span><span>Moov</span><span>Wave</span></div>
+    </div>
+  </footer>
+</div>
+</div>
+
+<!-- ================= MOBILE ================= -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#0B1F3A"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">1b</span><span style="font-weight:600">Landing page · Mobile 390</span></div>
+<div id="1b" data-screen-label="Landing mobile" style="width:390px;background:#F7F5F0;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.22);border:8px solid #0B1F3A">
+  <div style="background:#0B1F3A;color:#fff;height:44px;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <section style="background:#0B1F3A;color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.09) 0 1px,transparent 1px 22px),repeating-linear-gradient(-45deg,rgba(201,162,75,.09) 0 1px,transparent 1px 22px);-webkit-mask-image:linear-gradient(180deg,#000,transparent 70%);mask-image:linear-gradient(180deg,#000,transparent 70%)"></div>
+    <div style="position:relative;height:64px;padding:0 16px 0 20px;display:flex;justify-content:space-between;align-items:center">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:34px;height:34px;border-radius:7px;background:#132C52;border:1px solid rgba(201,162,75,.5);display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:19px;position:relative">A<span style="position:absolute;right:5px;top:6px;width:12px;height:12px;border-top:2px solid #C9A24B;border-radius:50% 50% 0 0;transform:rotate(-35deg)"></span></div>
+        <span style="font-family:'Plus Jakarta Sans';font-size:17px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span>
+      </div>
+      <div style="display:flex;gap:4px;align-items:center">
+        <button aria-label="Menu" style="width:44px;height:44px;background:transparent;border:0;color:#fff;display:grid;place-items:center"><i class="icon-menu" style="font-size:24px"></i></button>
+      </div>
+    </div>
+    <div style="position:relative;padding:28px 20px 36px;display:flex;flex-direction:column;gap:20px">
+      <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:6px;height:28px;padding:0 12px;border:1px solid rgba(201,162,75,.45);border-radius:999px;font-size:12px;color:#C9A24B;font-weight:600"><i class="icon-award" style="font-size:14px"></i>Formation continue pour cadres</span>
+      <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-weight:700;font-size:36px;line-height:1.1;letter-spacing:-.02em">Progressez à votre rythme, faites <span style="color:#C9A24B">certifier</span> votre excellence.</h1>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:rgba(255,255,255,.8)">Un abonnement mensuel, toutes les formations. Certificat après l'examen final.</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="Inscription.dc.html#9b" style="height:52px;border-radius:10px;background:#C9A24B;color:#0B1F3A;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:16px">Commencer mon abonnement<i class="icon-arrow-right" style="font-size:18px"></i></a>
+        <a href="Formations.dc.html#12b" style="height:52px;border-radius:10px;border:1px solid rgba(255,255,255,.35);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px">Explorer le catalogue</a>
+      </div>
+      <div style="height:220px;border-radius:12px;overflow:hidden;border:1px solid rgba(201,162,75,.3);margin-top:8px;position:relative">
+        <image-slot id="hero-photo-m" shape="rect" placeholder="Photo héros mobile" style="width:100%;height:100%;background:#132C52"></image-slot>
+        <div style="position:absolute;left:12px;bottom:12px;right:12px;background:#fff;color:#0B1F3A;border-radius:10px;padding:12px 14px;display:flex;gap:12px;align-items:center;pointer-events:none">
+          <span style="width:36px;height:36px;border-radius:50%;background:#C9A24B;display:grid;place-items:center;flex:none"><i class="icon-award" style="font-size:18px"></i></span>
+          <div style="display:flex;flex-direction:column"><span style="font-size:12px;color:#4A5568">Certificat délivré · 18 sept.</span><span style="font-size:15px;font-weight:600">Négociation stratégique · 92 %</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section style="background:#fff;display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #E3E1DA">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+      <div style="padding:20px;display:flex;flex-direction:column;gap:2px;border-right:1px solid #E3E1DA;border-bottom:1px solid #E3E1DA">
+        <span style="font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;font-variant-numeric:tabular-nums">{{ s.value }}</span>
+        <span style="font-size:14px;color:#4A5568;line-height:1.4">{{ s.label }}</span>
+      </div>
+    </sc-for>
+  </section>
+  <section style="padding:48px 20px 0;display:flex;flex-direction:column;gap:20px">
+    <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F7B5F">Comment ça marche</span>
+    <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;line-height:1.15;letter-spacing:-.01em">Trois étapes, en autonomie.</h2>
+    <div style="display:flex;flex-direction:column;gap:0;background:#fff;border:1px solid #E3E1DA;border-radius:12px">
+      <sc-for list="{{ howSteps }}" as="h" hint-placeholder-count="3">
+        <div style="display:flex;gap:16px;padding:20px;border-bottom:1px solid #E3E1DA">
+          <span style="flex:none;width:40px;height:40px;border-radius:10px;background:#0B1F3A;color:#C9A24B;display:grid;place-items:center"><i class="icon-{{ h.icon }}" style="font-size:19px"></i></span>
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Plus Jakarta Sans';font-size:18px;font-weight:700">{{ h.n }} · {{ h.title }}</span><span style="font-size:15px;line-height:1.55;color:#4A5568">{{ h.text }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section style="padding:48px 20px 0;display:flex;flex-direction:column;gap:16px">
+    <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F7B5F">Domaines</span>
+    <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;line-height:1.15">Les compétences qui font les dirigeants.</h2>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #E3E1DA">
+      <sc-for list="{{ domains }}" as="d" hint-placeholder-count="6">
+        <a href="Formations.dc.html?domaine={{ d.id }}#12b" style="min-height:64px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #E3E1DA">
+          <i class="icon-{{ d.icon }}" style="font-size:20px;width:24px"></i>
+          <span style="flex:1;font-size:16px;font-weight:600">{{ d.name }}</span>
+          <span style="font-size:14px;color:#4A5568">{{ d.count }}</span>
+          <i class="icon-chevron-right" style="font-size:18px;color:#4A5568"></i>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+  <section style="margin-top:48px;background:#0B1F3A;color:#fff;padding:44px 20px;display:flex;flex-direction:column;gap:18px">
+    <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#C9A24B">La certification</span>
+    <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;line-height:1.15">Un certificat qui se mérite, et qui se vérifie.</h2>
+    <div style="aspect-ratio:297/210;background:#FBF9F4;border-radius:4px;position:relative;overflow:hidden;color:#0B1F3A;margin:6px 0">
+      <div style="position:absolute;inset:8px;border:1px solid #C9A24B"></div>
+      <div style="position:absolute;left:0;top:0;bottom:0;width:58px;background:#0B1F3A;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.22) 0 1px,transparent 1px 10px),repeating-linear-gradient(-45deg,rgba(201,162,75,.22) 0 1px,transparent 1px 10px)"></div>
+      <div style="position:absolute;left:76px;right:20px;top:20px;bottom:18px;display:flex;flex-direction:column">
+        <span style="font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#A8802F;font-weight:600">Certificat de réussite</span>
+        <span style="font-family:'Plus Jakarta Sans';font-size:17px;font-weight:700;margin-top:10px">Sènami Hounkpatin</span>
+        <span style="font-size:10px;font-weight:700;margin-top:6px">Leadership et management d'équipe</span>
+        <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-size:8px;color:#4A5568"><span>Score <b style="color:#0B1F3A">88 %</b> · 18 sept. 2026</span><div style="width:30px;height:30px;background-image:linear-gradient(90deg,#0B1F3A 50%,transparent 50%),linear-gradient(#0B1F3A 50%,transparent 50%);background-size:5px 5px,4px 4px;opacity:.85"></div></div>
+      </div>
+    </div>
+    <sc-for list="{{ certPoints }}" as="p" hint-placeholder-count="3"><div style="display:flex;gap:12px;align-items:center;font-size:15px"><i class="icon-{{ p.icon }}" style="font-size:18px;color:#C9A24B"></i>{{ p.text }}</div></sc-for>
+  </section>
+  <section style="padding:48px 20px 0;display:flex;flex-direction:column;gap:20px">
+    <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F7B5F">Formules</span>
+    <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;line-height:1.15">Un seul abonnement, tout le catalogue.</h2><sc-if value="{{ promoOn }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border-radius:999px;background:#E6EFEC;color:#0B5C47;font-size:14px;font-weight:700;margin-top:10px"><i class="icon-badge-percent" style="font-size:16px"></i>{{ promoName }} : −{{ promoOff }} % jusqu'au {{ promoUntil }} · au lieu de {{ promoBase }}</span></sc-if>
+    <sc-for list="{{ plansMobile }}" as="p" hint-placeholder-count="4">
+      <div style="background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+          <span style="font-family:'Plus Jakarta Sans';font-size:19px;font-weight:700">{{ p.name }}</span>
+          <sc-if value="{{ p.featured }}" hint-placeholder-val="{{ false }}"><span style="height:26px;padding:0 10px;border-radius:999px;background:#C9A24B;color:#0B1F3A;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center">Recommandé</span></sc-if>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:6px"><span style="font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;font-variant-numeric:tabular-nums">{{ p.price }}</span><span style="font-size:14px;color:{{ p.sub }}">{{ p.unit }}</span></div>
+        <span style="font-size:14px;color:{{ p.accent }};font-weight:600">{{ p.note }}</span>
+        <a href="Tarifs.dc.html#10b" style="height:48px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;background:{{ p.ctaBg }};color:{{ p.ctaFg }};border:1px solid {{ p.ctaBd }}">{{ p.cta }}</a>
+      </div>
+    </sc-for>
+  </section>
+  <section style="padding:48px 20px 0;display:flex;flex-direction:column;gap:16px">
+    <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F7B5F">Témoignage</span>
+    <blockquote style="margin:0;font-family:'Plus Jakarta Sans';font-size:21px;font-weight:600;line-height:1.4">« Le niveau d'exigence de l'évaluation donne une vraie valeur au certificat. »</blockquote>
+    <div style="display:flex;gap:12px;align-items:center"><image-slot id="testi-1-m" shape="circle" placeholder="" style="width:44px;height:44px;background:#E3E1DA"></image-slot><div style="display:flex;flex-direction:column"><span style="font-weight:600;font-size:15px">Kouamé Yao</span><span style="font-size:13px;color:#4A5568">Directeur commercial · Abidjan</span></div></div>
+  </section>
+  <section style="padding:48px 20px;display:flex;flex-direction:column;gap:12px">
+    <h2 style="margin:0 0 4px;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;line-height:1.15">Questions fréquentes</h2>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #E3E1DA">
+      <sc-for list="{{ faqsMobile }}" as="q" hint-placeholder-count="4">
+        <div style="border-bottom:1px solid #E3E1DA">
+          <button onClick="{{ q.toggle }}" style="width:100%;min-height:60px;background:transparent;border:0;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;color:#0B1F3A;padding:12px 0"><span style="font-size:16px;font-weight:600;line-height:1.4">{{ q.q }}</span><i class="{{ q.icon }}" style="font-size:20px;flex:none"></i></button>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 0 18px;font-size:15px;line-height:1.6;color:#4A5568">{{ q.a }}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <footer style="background:#0B1F3A;color:rgba(255,255,255,.72);padding:36px 20px 28px;display:flex;flex-direction:column;gap:22px;font-size:14px">
+    <span style="font-family:'Plus Jakarta Sans';font-size:18px;letter-spacing:.04em;color:#fff"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px"><a href="Formations.dc.html#12b" style="min-height:32px">Formations</a><a href="Tarifs.dc.html#10b" style="min-height:32px">Tarifs</a><a href="#" style="min-height:32px">Experts</a><a href="#" style="min-height:32px">Vérifier un certificat</a><a href="#" style="min-height:32px">Aide</a><a href="#" style="min-height:32px">Confidentialité</a></div>
+    <span style="font-size:13px;border-top:1px solid rgba(255,255,255,.1);padding-top:18px">© 2026 Africadres · Prix en FCFA</span>
+  </footer>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { cur: 'FCFA', lang: 'FR', faq: 0 };
+  componentDidMount() { const h = () => { if (window.AFD_PRICE && window.AFD) { this._unP = window.AFD_PRICE.subscribe(() => this.forceUpdate()); this._unC = window.AFD.subscribe(() => this.forceUpdate()); this.forceUpdate(); } else this._wP = setTimeout(h, 50); }; h(); }
+  componentWillUnmount() { this._unP && this._unP(); this._unC && this._unC(); clearTimeout(this._wP); }
+  fmt(n) {
+    const c = this.state.cur;
+    if (c === 'FCFA') return n.toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, ' ');
+    return c === 'EUR' ? n.toFixed(0) + ' €' : '$' + n.toFixed(0);
+  }
+  renderVals() {
+    const { cur, lang, faq } = this.state;
+    const conv = v => cur === 'FCFA' ? v : cur === 'EUR' ? Math.round(v / 655.957) : Math.round(v / 600);
+    const fac = [1, 2, 3];
+    const PRC = window.AFD_PRICE ? window.AFD_PRICE.current() : { price: 15000, base: 15000, promo: null, off: 0, until: '' };
+    const P = fac.map(f => conv(PRC.price * f));
+    const unitCur = cur === 'FCFA' ? ' FCFA' : '';
+    const PLX = window.AFD_PRICE && window.AFD_PRICE.plans ? window.AFD_PRICE.plans() : [1, 3, 6, 12].map((m, i) => { const disc = [0, 5, 10, 20][i], total = Math.round(15000 * m * (1 - disc / 100) / 100) * 100, f = v => v.toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, ' ') + ' FCFA'; return { m, disc, name: m === 12 ? '1 an' : m + ' mois', total, save: 15000 * m - total, label: f(total), perMonthLabel: f(Math.round(total / m / 100) * 100), saveLabel: f(15000 * m - total) }; });
+    const PLP = window.AFD_PRICE ? window.AFD_PRICE.current().off : 0;
+    const FT = { 1: ['Tout le catalogue pendant 1 mois', 'Évaluations et certificats inclus', 'Sans engagement'], 3: ['Tout le catalogue pendant 3 mois', 'Idéal pour 1 à 2 formations', 'Un seul paiement'], 6: ['Tout le catalogue pendant 6 mois', 'Le temps de suivre plusieurs parcours', 'Un seul paiement'], 12: ['Tout le catalogue pendant 1 an', 'Le meilleur prix mensuel', 'Un seul paiement'] };
+    const base = PLX.map(x => ({ name: x.name, desc: x.m === 1 ? 'Accès immédiat' : x.m === 12 ? 'L\u2019année complète' : x.m + ' mois d\u2019accès continu', price: x.label.replace(' FCFA', ''), unit: 'FCFA', note: (x.m === 1 ? (PLP ? 'Prix promo · −' + PLP + ' %' : 'Sans réduction') : 'soit ' + x.perMonthLabel + ' / mois · ' + [PLP ? '−' + PLP + ' % promo' : '', '−' + x.disc + ' % durée'].filter(Boolean).join(' + ')), features: FT[x.m] || [], featured: x.m === 12, m: x.m }));
+    const style = p => p.featured
+      ? { bg: '#0B1F3A', fg: '#fff', bd: '#C9A24B', sub: 'rgba(255,255,255,.72)', accent: '#C9A24B', line: 'rgba(255,255,255,.14)', check: '#C9A24B', ctaBg: '#C9A24B', ctaFg: '#0B1F3A', ctaBd: '#C9A24B', cta: 'Choisir 1 an' }
+      : { bg: '#fff', fg: '#0B1F3A', bd: '#E3E1DA', sub: '#4A5568', accent: '#0F7B5F', line: '#E3E1DA', check: '#0F7B5F', ctaBg: '#fff', ctaFg: '#0B1F3A', ctaBd: '#0B1F3A', cta: 'Choisir' };
+    const plans = base.map(p => Object.assign({}, p, style(p), { cta: p.featured ? 'Choisir 1 an' : 'Choisir ' + p.name, choose: () => { try { localStorage.setItem('afd-plan', String(p.m)); } catch (e) {} } }));
+    const faqData = [
+      ['Comment obtenir mon certificat ?', 'Lisez le cours en intégralité, puis passez son évaluation. Une fois l\u2019examen final réussi, votre certificat est généré automatiquement et téléchargeable depuis votre tableau de bord.'],
+      ['Que se passe-t-il si j\u2019échoue à l\u2019évaluation ?', 'Vous disposez de plusieurs tentatives, espacées de 24 heures, tant que votre abonnement est actif. Ce délai vous permet de revoir les chapitres concernés, indiqués dans vos résultats.'],
+      ['Quels moyens de paiement acceptez-vous ?', 'Cartes Visa et Mastercard, MTN MoMo, Orange Money, Moov Money et Wave. Les montants sont affichés en FCFA, EUR ou USD.'],
+      ['Puis-je télécharger les supports de cours ?', 'Les cours se consultent en ligne dans un lecteur sécurisé, sur ordinateur comme sur mobile. Ils ne sont pas téléchargeables afin de protéger le travail des experts.'],
+      ['Recevrai-je une facture ?', 'Un reçu de paiement vous est remis après chaque règlement, disponible dans votre espace. La facture réglementaire sera proposée ultérieurement.'],
+      ['Comment fonctionne l\u2019abonnement ?', 'Choisissez 1, 3, 6 mois ou 1 an : chaque formule donne accès à tout le catalogue, et plus elle est longue, plus le prix mensuel baisse. Une nouvelle formule démarre à la fin de l\u2019accès en cours.'],
+    ];
+    const mkFaq = (q, i) => ({ q: q[0], a: q[1], open: faq === i, icon: faq === i ? 'icon-minus' : 'icon-plus', toggle: () => this.setState({ faq: faq === i ? -1 : i }) });
+    const faqs = faqData.map(mkFaq);
+    return {
+      langs: ['FR', 'EN'].map(l => ({ code: l, color: l === lang ? '#fff' : 'rgba(255,255,255,.6)', weight: l === lang ? 700 : 500, select: () => this.setState({ lang: l }) })),
+      langLabel: lang,
+      toggleLang: () => this.setState({ lang: lang === 'FR' ? 'EN' : 'FR' }),
+      currencies: ['FCFA', 'EUR', 'USD'].map(c => ({ code: c, color: c === cur ? '#C9A24B' : 'rgba(255,255,255,.6)', weight: c === cur ? 700 : 500, segBg: c === cur ? '#0B1F3A' : 'transparent', segFg: c === cur ? '#fff' : '#4A5568', select: () => this.setState({ cur: c }) })),
+      stats: [
+        { value: '64', label: 'experts reconnus' },
+        { value: '124', label: 'formations certifiantes' },
+        { value: '8 400', label: 'certificats délivrés' },
+        { value: '21', label: 'pays représentés' },
+      ],
+      domains: [
+        { id: 'lead', icon: 'users', name: 'Leadership & management', sample: 'Leadership et management d\u2019équipe · Conduite du changement', count: 26 },
+        { id: 'fin', icon: 'landmark', name: 'Finance & gestion', sample: 'Finance pour non-financiers · Contrôle de gestion', count: 22 },
+        { id: 'proj', icon: 'square-kanban', name: 'Gestion de projet', sample: 'Gestion de projet agile · PMO et gouvernance', count: 18 },
+        { id: 'neg', icon: 'handshake', name: 'Négociation & influence', sample: 'Négociation stratégique · Prise de parole en public', count: 17 },
+        { id: 'dig', icon: 'cpu', name: 'Transformation digitale', sample: 'Transformation digitale des organisations · Data pour décideurs', count: 21 },
+        { id: 'law', icon: 'scale', name: 'Droit & conformité', sample: 'Droit OHADA des affaires · Conformité et éthique', count: 20 },
+      ],
+      howSteps: [
+        { n: '01', icon: 'credit-card', title: 'S\u2019abonner', text: 'Choisissez votre formule et payez par carte ou Mobile Money. L\u2019accès est immédiat.', bg: '#fff', fg: '#0B1F3A', num: '#0B1F3A', sub: '#4A5568' },
+        { n: '02', icon: 'book-open', title: 'Se former', text: 'Lisez les cours à votre rythme, sur ordinateur ou mobile. Votre progression est sauvegardée.', bg: '#fff', fg: '#0B1F3A', num: '#0B1F3A', sub: '#4A5568' },
+        { n: '03', icon: 'award', title: 'Se certifier', text: 'Terminez le cours à 100 % et réussissez l\u2019examen final : votre certificat vérifiable est délivré instantanément.', bg: '#0B1F3A', fg: '#fff', num: '#C9A24B', sub: 'rgba(255,255,255,.8)' },
+      ],
+      certPoints: [
+        { icon: 'qr-code', text: 'QR code et identifiant de vérification uniques' },
+        { icon: 'file-badge', text: 'Format A4 paysage, prêt à imprimer ou à partager' },
+        { icon: 'linkedin', text: 'Ajout en un clic à votre profil LinkedIn' },
+      ],
+      testimonials: [
+        { quote: 'La formation finance m\u2019a donné le vocabulaire qui me manquait face à mon comité de direction. Clair, dense, applicable dès le lundi.', name: 'Nadège Houngbédji', role: 'Responsable RH · Cotonou', cert: 'Certifiée 91 %' },
+        { quote: 'Le lecteur fonctionne très bien même avec une connexion moyenne. J\u2019ai pu avancer pendant mes déplacements.', name: 'Ibrahima Faye', role: 'Chef de projet télécoms · Dakar', cert: 'Certifié 86 %' },
+      ],
+      ...(() => { const A = window.AFD; const XL = A ? A.getExperts() : []; const pub = A ? A.getPublished() : []; const ini = n => n.replace(/^(Dr|Me)\s/, '').split(' ').map(w => w[0]).slice(0, 2).join(''); const mine = id => pub.filter(c => c.expert === id); const list = (this.state.allX ? XL : XL.slice(0, 4)).map((x, i) => ({ slot: 'exp-' + x.id, name: x.name, role: x.role, course: (mine(x.id)[0] || {}).title || 'Voir la fiche', open: () => { window.location.href = 'Experts.dc.html?x=' + x.id; } })); const xd = XL.find(x => x.id === this.state.xOpen);
+        return { experts: list, expertsBtn: 'Voir les ' + XL.length + ' experts', expertsBtnIcon: 'arrow-right', toggleAllExperts: () => this.setState(p => ({ allX: !p.allX })),
+          xOpen: !!xd, xClose: () => this.setState({ xOpen: null }),
+          xd: xd ? { ini: ini(xd.name), name: xd.name, title: [xd.role, xd.city].filter(Boolean).join(' · '), bio: xd.bio || '', courses: mine(xd.id).map(c => ({ title: c.title, meta: A.domainName(c.domain) + ' · ' + c.level + ' · ' + c.recMonths + ' mois conseillé(s)' })) } : { courses: [] },
+          goExperts: e => { const el = document.getElementById('experts'); if (!el) return; e.preventDefault(); let p = el.parentElement; while (p && !(p.scrollHeight > p.clientHeight && /(auto|scroll)/.test(getComputedStyle(p).overflowY))) p = p.parentElement; const top = el.getBoundingClientRect().top; if (p) p.scrollBy({ top: top - p.getBoundingClientRect().top - 20, behavior: 'smooth' }); else window.scrollBy({ top: top - 20, behavior: 'smooth' }); } }; })(),
+      plans,
+      promoOn: !!PRC.promo, promoBanner: PRC.promo ? PRC.promo.banner : '', promoBase: this.fmt(conv(PRC.base)) + (cur === 'FCFA' ? ' FCFA' : ''), promoOff: PRC.off, promoUntil: PRC.until, promoName: PRC.promo ? PRC.promo.name : '',
+      plansMobile: plans,
+      faqs,
+      faqsMobile: faqs.slice(0, 4),
+      socials: ['linkedin', 'facebook', 'youtube'],
+      footerCols: [
+        { title: 'Formations', links: ['Catalogue', 'Leadership', 'Finance', 'Gestion de projet', 'Transformation digitale'] },
+        { title: 'Institut', links: ['À propos', 'Nos experts', 'Devenir expert'] },
+        { title: 'Aide', links: ['Centre d\u2019aide', 'Vérifier un certificat', 'Moyens de paiement', 'Nous contacter'] },
+        { title: 'Légal', links: ['Conditions générales', 'Confidentialité', 'Protection des contenus', 'Cookies'] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

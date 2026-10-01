@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Certificats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<script src="./profile-data.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<script src="./image-slot.js"></script>
+<script src="./certificate-data.js"></script>
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button{font-family:Inter,system-ui,sans-serif;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:96px;padding:80px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;flex-wrap:wrap"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">5d</span><span style="font-weight:600">Demande de certificat</span><span style="color:#4A5568">— après l'examen final réussi : cours rempli automatiquement, nom à confirmer, puis téléchargement</span></div>
+<div id="5d" data-screen-label="Demande de certificat" style="width:1440px;min-height:900px;background:#F7F5F0;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);display:flex;flex-direction:column">
+  <header style="height:76px;flex:none;background:#fff;border-bottom:1px solid #E3E1DA;padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <div style="display:flex;align-items:center;gap:24px"><span style="font-family:'Plus Jakarta Sans';font-size:18px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span><a href="#5a" style="display:flex;gap:6px;align-items:center;font-size:14px;font-weight:600;color:#4A5568"><i class="icon-arrow-left" style="font-size:16px"></i>Mes certificats</a></div>
+    <div style="display:flex;align-items:center;gap:8px"><sc-for list="{{ cq.steps }}" as="p" hint-placeholder-count="3"><div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:50%;background:{{ p.bg }};color:{{ p.fg }};font-size:13px;font-weight:700;display:grid;place-items:center">{{ p.n }}</span><span style="font-size:14px;font-weight:600;color:{{ p.tc }}">{{ p.label }}</span><span style="width:40px;height:1px;background:#E3E1DA;display:{{ p.sep }}"></span></div></sc-for></div>
+    <span style="font-size:13px;color:#4A5568;display:flex;gap:6px;align-items:center"><i class="icon-shield-check" style="font-size:16px;color:#0F7B5F"></i>Certificat vérifiable</span>
+  </header>
+  <div style="flex:1;padding:36px 40px 48px;display:grid;grid-template-columns:480px minmax(0,1fr);gap:28px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:16px">
+
+      <sc-if value="{{ cq.s1 }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;letter-spacing:-.015em">Félicitations, vous pouvez demander votre certificat</h1><span style="font-size:15px;color:#4A5568;line-height:1.55">Choisissez la formation à certifier. Les informations viennent directement de vos résultats d'examen final.</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#4A5568"><span><b style="color:#0B1F3A">{{ cq.eligibleCount }}</b> formation(s) à certifier · {{ cq.doneCount }} déjà délivrée(s)</span><button onClick="{{ cq.resetTests }}" style="border:0;background:transparent;padding:0;min-height:32px;font-size:13px;font-weight:600;color:#1E3A66;text-decoration:underline;text-underline-offset:3px;display:flex;gap:6px;align-items:center"><i class="icon-rotate-ccw" style="font-size:14px"></i>Réinitialiser les tests</button></div>
+        <div style="display:flex;flex-direction:column;gap:8px;max-height:430px;overflow:auto;padding-right:4px"><sc-for list="{{ cq.courses }}" as="c" hint-placeholder-count="2"><button onClick="{{ c.select }}" style="min-height:72px;padding:12px 16px;border-radius:12px;border:1px solid {{ c.bd }};background:{{ c.bg }};box-shadow:{{ c.sh }};display:flex;gap:14px;align-items:center;text-align:left;opacity:{{ c.op }};cursor:{{ c.cur }}"><span style="width:20px;height:20px;border-radius:50%;border:{{ c.radio }};flex:none"></span><div style="flex:1;display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font-size:15px;font-weight:600">{{ c.title }}</span><span style="font-size:13px;color:#4A5568">Examen final réussi le {{ c.date }} · {{ c.score }}</span></div><span style="flex:none;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ c.pbg }};color:{{ c.pfg }}">{{ c.pill }}</span></button></sc-for></div>
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden">
+          <div style="padding:12px 18px;background:#F7F5F0;border-bottom:1px solid #E3E1DA;display:flex;gap:8px;align-items:center;font-size:13px;font-weight:600;color:#4A5568"><i class="icon-lock" style="font-size:14px"></i>Rempli automatiquement · non modifiable</div>
+          <sc-for list="{{ cq.details }}" as="d" hint-placeholder-count="5"><div style="display:flex;justify-content:space-between;gap:16px;padding:12px 18px;border-top:1px solid #F1EFE9;font-size:14px"><span style="color:#4A5568">{{ d.l }}</span><b style="font-weight:600;text-align:right;color:{{ d.c }}">{{ d.v }}</b></div></sc-for>
+        </div>
+        <button onClick="{{ cq.next }}" style="height:54px;border-radius:10px;border:0;background:#0B1F3A;color:#fff;font-size:16px;font-weight:600;display:flex;gap:10px;align-items:center;justify-content:center" style-hover="background:#1E3A66">Continuer<i class="icon-arrow-right" style="font-size:18px"></i></button>
+      </sc-if>
+
+      <sc-if value="{{ cq.s2 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;letter-spacing:-.015em">Vérifiez votre certificat</h1><span style="font-size:15px;color:#4A5568;line-height:1.55">Le certificat est établi au nom que vous avez certifié à l'inscription. Il ne peut pas être modifié à cette étape.</span></div>
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Titulaire du certificat<div style="min-height:50px;border:1px solid #E3E1DA;border-radius:8px;padding:8px 14px;background:#F3F2EE;display:flex;align-items:center;justify-content:space-between;gap:10px"><span style="font-family:'Plus Jakarta Sans';font-size:18px;font-weight:700;color:#0B1F3A;min-width:0;overflow-wrap:anywhere;line-height:1.3">{{ cq.certName }}</span><span style="display:flex;gap:6px;align-items:center;font-size:12px;font-weight:600;color:#0B5C47;flex:none;white-space:nowrap"><i class="icon-shield-check" style="font-size:15px"></i>Identité certifiée</span></div></div>
+          <div style="display:flex;gap:10px;padding:12px;border-radius:8px;background:#F7F5F0;font-size:13px;line-height:1.5;color:#4A5568"><i class="icon-lock" style="font-size:15px;flex:none;margin-top:1px"></i><span>Nom confirmé sur l'honneur lors de la création du compte{{ cq.confirmedOn }}. Une erreur ? <a href="Profil.dc.html" style="color:#1E3A66;font-weight:600;text-decoration:underline;text-underline-offset:3px">Demandez une correction depuis votre profil</a>, avec une pièce justificative.</span></div>
+          <button onClick="{{ cq.toggleOk }}" style="display:flex;gap:12px;align-items:flex-start;border:0;background:transparent;padding:4px 0;text-align:left;font-size:14px;line-height:1.5;color:#0B1F3A"><span style="width:24px;height:24px;border-radius:6px;background:{{ cq.okBox }};border:1.5px solid {{ cq.okBd }};display:grid;place-items:center;color:#fff;flex:none"><i class="icon-check" style="font-size:15px"></i></span>Je confirme que les informations affichées sur l'aperçu sont exactes.</button>
+        </div>
+        <div style="display:flex;gap:10px"><button onClick="{{ cq.back }}" style="height:54px;padding:0 20px;border-radius:10px;border:1px solid #E3E1DA;background:#fff;font-size:15px;font-weight:600">Retour</button><button onClick="{{ cq.validate }}" disabled="{{ cq.cantValidate }}" style="flex:1;height:54px;border-radius:10px;border:0;background:{{ cq.vBg }};color:{{ cq.vFg }};font-size:16px;font-weight:700;display:flex;gap:10px;align-items:center;justify-content:center"><i class="icon-badge-check" style="font-size:19px"></i>Valider mon certificat</button></div>
+      </sc-if>
+
+      <sc-if value="{{ cq.s3 }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:16px">
+          <span style="width:56px;height:56px;border-radius:50%;background:#E6EFEC;color:#0F7B5F;display:grid;place-items:center"><i class="icon-award" style="font-size:28px"></i></span>
+          <div style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:26px;font-weight:700">Votre certificat est prêt</h1><span style="font-size:15px;color:#4A5568;line-height:1.55">Délivré le {{ cq.recDate }} à <b style="color:#0B1F3A">{{ cq.recName }}</b>. Il est enregistré dans « Mes certificats » et vérifiable par QR code.</span></div>
+          <div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:8px;background:#F7F5F0;font-size:14px"><span style="color:#4A5568">Identifiant</span><b style="font-family:ui-monospace,monospace;font-size:13px">{{ cq.recId }}</b></div>
+          <button onClick="{{ cq.download }}" style="height:56px;border-radius:10px;border:0;background:#C9A24B;color:#0B1F3A;font-size:16px;font-weight:700;display:flex;gap:10px;align-items:center;justify-content:center" style-hover="background:#D8B45F"><i class="icon-download" style="font-size:19px"></i>{{ cq.dlLabel }}</button>
+          <button onClick="{{ cq.copy }}" style="height:48px;border-radius:10px;border:1px solid #0B1F3A;background:#fff;font-size:15px;font-weight:600;display:flex;gap:8px;align-items:center;justify-content:center"><i class="icon-link" style="font-size:17px"></i>{{ cq.copyLabel }}</button>
+          <sc-if value="{{ cq.hasOther }}" hint-placeholder-val="{{ false }}"><button onClick="{{ cq.restart }}" style="height:44px;border:0;background:transparent;font-size:14px;font-weight:600;color:#1E3A66;text-decoration:underline;text-underline-offset:3px">Demander un autre certificat</button></sc-if>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;position:sticky;top:20px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px">{{ cq.pvTitle }}</span><span style="font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:{{ cq.pvBg }};color:{{ cq.pvFg }}">{{ cq.pvPill }}</span></div>
+      <div style="aspect-ratio:1123/794;border-radius:6px;overflow:hidden;background:#EFEDE7;box-shadow:0 14px 36px rgba(11,31,58,.18);position:relative;display:grid;place-items:center">
+        <sc-if value="{{ cq.hasImg }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="Aperçu du certificat" style="width:100%;height:100%;display:block;background-position:center;background-repeat:no-repeat;background-size:contain;background-image:{{ cq.imgCss }}"></div></sc-if>
+        <sc-if value="{{ cq.noImg }}" hint-placeholder-val="{{ true }}"><span style="font-size:14px;color:#4A5568">Préparation de l'aperçu…</span></sc-if>
+        <sc-if value="{{ cq.draft }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;inset:0;display:grid;place-items:center;pointer-events:none"><span style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:96px;letter-spacing:.2em;color:rgba(11,31,58,.07);transform:rotate(-18deg)">APERÇU</span></span></sc-if>
+      </div>
+      <span style="font-size:13px;color:#4A5568;display:flex;gap:6px;align-items:center"><i class="icon-info" style="font-size:14px"></i>Modèle officiel publié par Africadres · A4 paysage</span>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ================= 5 CERTIFICATS ================= -->
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">5a</span><span style="font-weight:600">Mes certificats</span></div>
+<div id="5a" data-screen-label="Mes certificats" style="width:1440px;min-height:900px;background:#F7F5F0;display:flex;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18)">
+  <aside style="width:264px;flex:none;background:#fff;border-right:1px solid #E3E1DA;display:flex;flex-direction:column;padding:28px 20px">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 8px"><div style="width:36px;height:36px;border-radius:8px;background:#0B1F3A;display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px;color:#fff">A</div><span style="font-family:'Plus Jakarta Sans';font-size:18px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span></div>
+    <nav style="display:flex;flex-direction:column;gap:4px;margin-top:40px"><sc-for list="{{ nav4 }}" as="n" hint-placeholder-count="7"><a href="{{ n.href }}" style="height:46px;padding:0 14px;border-radius:8px;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:{{ n.w }};background:{{ n.bg }};color:{{ n.fg }}"><i class="icon-{{ n.icon }}" style="font-size:19px"></i>{{ n.label }}</a></sc-for></nav>
+  </aside>
+  <main style="flex:1;min-width:0;padding:32px 40px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end"><div style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:30px;font-weight:700;letter-spacing:-.015em">Mes certificats</h1><span style="font-size:15px;color:#4A5568">3 certificats obtenus · score moyen 89 %</span></div><a href="#5c" style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #0B1F3A;background:#fff;font-weight:600;font-size:14px;display:flex;align-items:center;gap:8px"><i class="icon-shield-check" style="font-size:17px"></i>Page de vérification publique</a></div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+      <sc-for list="{{ myCerts }}" as="c" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:297/210;background:#FBF9F4;position:relative;overflow:hidden;border-bottom:1px solid #E3E1DA">
+            <div style="position:absolute;inset:8px;border:1px solid #C9A24B"></div>
+            <div style="position:absolute;left:0;top:0;bottom:0;width:56px;background:#0B1F3A;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.22) 0 1px,transparent 1px 10px),repeating-linear-gradient(-45deg,rgba(201,162,75,.22) 0 1px,transparent 1px 10px)"></div>
+            <div style="position:absolute;left:74px;right:18px;top:20px;bottom:16px;display:flex;flex-direction:column">
+              <span style="font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#A8802F;font-weight:700">Certificat de réussite</span>
+              <span style="font-family:'Plus Jakarta Sans';font-size:17px;font-weight:700;margin-top:10px">{{ me.full }}</span>
+              <span style="font-size:10px;font-weight:700;margin-top:6px;line-height:1.3">{{ c.title }}</span>
+              <span style="margin-top:auto;font-size:8px;color:#4A5568">Score <b style="color:#0B1F3A">{{ c.score }}</b> · {{ c.date }}</span>
+            </div>
+          </div>
+          <div style="padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div style="display:flex;flex-direction:column;gap:3px"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px">{{ c.title }}</span><span style="font-size:13px;color:#4A5568">Délivré le {{ c.date }}</span></div><span style="height:26px;padding:0 10px;border-radius:999px;background:#E6EFEC;color:#0B5C47;font-size:12px;font-weight:700;display:flex;align-items:center;font-variant-numeric:tabular-nums">{{ c.score }}</span></div>
+            <span style="font-size:12px;color:#4A5568;font-variant-numeric:tabular-nums">N° {{ c.id }}</span>
+            <div style="display:flex;gap:8px">
+              <a href="#5b" style="flex:1;height:44px;border-radius:8px;background:#0B1F3A;color:#fff;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px"><i class="icon-download" style="font-size:16px"></i>Télécharger (PDF)</a>
+              <button aria-label="Copier le lien" style="width:44px;height:44px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;display:grid;place-items:center"><i class="icon-link" style="font-size:17px"></i></button>
+              <button aria-label="LinkedIn" style="width:44px;height:44px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;display:grid;place-items:center"><i class="icon-linkedin" style="font-size:17px"></i></button>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:20px 22px;display:flex;gap:18px;align-items:center">
+      <span style="width:44px;height:44px;border-radius:10px;background:#EEF1F5;display:grid;place-items:center;flex:none"><i class="icon-clipboard-check" style="font-size:20px"></i></span>
+      <div style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:15px">Prochain certificat à portée de main</span><span style="font-size:14px;color:#4A5568">Gestion de projet agile · lecture terminée, évaluation disponible</span></div>
+      <a href="Suivi de cours et Evaluation.dc.html#3c" style="height:44px;padding:0 16px;border-radius:8px;background:#0B1F3A;color:#fff;font-weight:600;font-size:14px;display:flex;align-items:center;gap:8px">Passer l'évaluation<i class="icon-arrow-right" style="font-size:16px"></i></a>
+    </div>
+  </main>
+</div>
+</div>
+
+<div style="display:flex;gap:64px;align-items:flex-start">
+<!-- 5b A4 certificate -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">5b</span><span style="font-weight:600">Certificat · A4 paysage (1123 × 794)</span></div>
+<div id="5b" data-screen-label="Certificat A4" style="width:1123px;height:794px;background:#FBF9F4;position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.25);color:#0B1F3A">
+  <div style="position:absolute;left:0;top:0;bottom:0;width:250px;background:#0B1F3A;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.22) 0 1px,transparent 1px 22px),repeating-linear-gradient(-45deg,rgba(201,162,75,.22) 0 1px,transparent 1px 22px)"></div>
+    <div style="position:absolute;left:40px;top:48px;display:flex;flex-direction:column;gap:4px;color:#fff"><span style="font-family:'Plus Jakarta Sans';font-size:22px;letter-spacing:.05em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span><span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#C9A24B">Learn to improve</span></div>
+    <div style="position:absolute;left:40px;bottom:48px;right:32px;display:flex;flex-direction:column;gap:6px;color:rgba(255,255,255,.8);font-size:11px;line-height:1.5"><span style="color:#C9A24B;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:10px">Institut de formation continue</span><span>Certificat délivré automatiquement après validation de l'évaluation finale (seuil 80 %).</span></div>
+  </div>
+  <div style="position:absolute;left:183px;top:50%;transform:translateY(-50%);width:134px;height:134px;border-radius:50%;background:#C9A24B;box-shadow:0 0 0 8px #FBF9F4,0 0 0 9px #C9A24B;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#0B1F3A">
+    <i class="icon-award" style="font-size:40px"></i><span style="font-size:10px;font-weight:800;letter-spacing:.16em">CERTIFIÉ</span>
+  </div>
+  <div style="position:absolute;left:270px;right:26px;top:26px;bottom:26px;border:1px solid #C9A24B"></div>
+  <div style="position:absolute;left:276px;right:32px;top:32px;bottom:32px;border:1px solid rgba(201,162,75,.4)"></div>
+  <div style="position:absolute;left:380px;right:80px;top:84px;bottom:72px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#A8802F">Certificat de réussite</span><span style="font-size:11px;color:#4A5568;letter-spacing:.06em;font-variant-numeric:tabular-nums">N° AFR-C-2026-0927-5120</span></div>
+    <span style="margin-top:48px;font-size:15px;color:#4A5568">Le présent certificat est décerné à</span>
+    <span style="margin-top:8px;font-family:'Plus Jakarta Sans';font-size:54px;font-weight:700;letter-spacing:-.02em;line-height:1.05">{{ me.full }}</span>
+    <span style="margin-top:22px;font-size:15px;color:#4A5568;line-height:1.6">pour avoir validé avec succès l'évaluation finale de la formation</span>
+    <span style="margin-top:6px;font-family:'Plus Jakarta Sans';font-size:26px;font-weight:700;line-height:1.25">Finance pour non-financiers</span>
+    <span style="margin-top:6px;font-size:13px;color:#4A5568">Niveau Fondamental · 5 heures · support v2.1 · expert : Jean-Marc Kouassi, CFA</span>
+    <div style="margin-top:auto;display:flex;align-items:flex-end;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;color:#4A5568;letter-spacing:.08em;text-transform:uppercase">Score obtenu</span><span style="font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;color:#0F7B5F;font-variant-numeric:tabular-nums">88 %</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;color:#4A5568;letter-spacing:.08em;text-transform:uppercase">Délivré le</span><span style="font-family:'Plus Jakarta Sans';font-size:20px;font-weight:700">27 septembre 2026</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px;border-top:1px solid #0B1F3A;padding-top:8px;min-width:170px"><span style="font-size:13px;font-weight:600">Direction pédagogique</span><span style="font-size:11px;color:#4A5568">Africadres</span></div>
+      <div style="margin-left:auto;display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="width:96px;height:96px;background:#fff;border:1px solid #E3E1DA;padding:8px;display:grid;grid-template-columns:repeat(9,1fr);gap:1px"><sc-for list="{{ qr }}" as="b" hint-placeholder-count="81"><span style="background:{{ b }}"></span></sc-for></div>
+        <span style="font-size:10px;color:#4A5568">verifier.africadres.com</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 5c verification -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">5c</span><span style="font-weight:600">Vérification publique · Mobile</span></div>
+<div id="5c" data-screen-label="Vérification certificat" style="width:390px;height:844px;background:#F7F5F0;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.22);border:8px solid #0B1F3A;display:flex;flex-direction:column">
+  <div style="height:44px;flex:none;background:#0B1F3A;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <div style="background:#0B1F3A;color:#fff;padding:14px 20px 28px;display:flex;flex-direction:column;gap:18px">
+    <span style="font-family:'Plus Jakarta Sans';font-size:17px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span> <span style="font-size:13px;color:rgba(255,255,255,.72);letter-spacing:0;font-weight:400">· Vérification</span></span>
+    <div style="display:flex;gap:14px;align-items:center"><span style="width:52px;height:52px;border-radius:50%;background:#0F7B5F;display:grid;place-items:center;flex:none"><i class="icon-shield-check" style="font-size:26px"></i></span><div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'Plus Jakarta Sans';font-size:20px;font-weight:700">Certificat authentique</span><span style="font-size:14px;color:rgba(255,255,255,.8)">Vérifié le 27/09/2026 à 22h41</span></div></div>
+  </div>
+  <div style="flex:1;overflow:auto;padding:20px;display:flex;flex-direction:column;gap:16px">
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden">
+      <sc-for list="{{ verifyRows }}" as="r" hint-placeholder-count="6"><div style="display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-bottom:1px solid #E3E1DA"><span style="font-size:12px;color:#4A5568">{{ r.k }}</span><span style="font-size:16px;font-weight:600;color:{{ r.c }};font-variant-numeric:tabular-nums">{{ r.v }}</span></div></sc-for>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:1.6;color:#4A5568">Ce certificat a été délivré automatiquement par Africadres après une évaluation dont le seuil de réussite est fixé à 80 %.</p>
+    <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Vérifier un autre certificat</span><div style="display:flex;gap:8px"><div style="flex:1;height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;background:#fff;display:flex;align-items:center;font-size:15px;color:#4A5568">AFR-C-…</div><button style="height:48px;padding:0 16px;border-radius:8px;border:0;background:#0B1F3A;color:#fff;font-weight:600;font-size:15px">Vérifier</button></div></div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const __ME = () => window.AFD_ME ? window.AFD_ME.get() : { first: 'Sènami', last: 'Hounkpatin', full: 'Sènami Hounkpatin', email: 's.hounkpatin@groupe-atlantique.bj', phone: '01 97 45 21 38', ini: 'SH', cert: 'Sènami Hounkpatin', certName: '', certCustom: false };
+class Component extends DCLogic {
+  static CQ = [['fin1', 'Finance pour non-financiers', 'Jean-Marc Kouassi, CFA', '88 %', '28/09/2026', '2 / 3', 'FIN'],
+    ['neg1', 'Négociation stratégique', 'Mariam Traoré', '92 %', '27/09/2026', '1 / 3', 'NEG'],
+    ['dig1', 'Transformation digitale des organisations', 'Olivier Mensah', '90 %', '24/09/2026', '1 / 3', 'DIG'],
+    ['law1', 'Droit OHADA des affaires', 'Me Fatou Bensouda-Kane', '81 %', '21/09/2026', '3 / 3', 'OHA'],
+    ['lead3', 'Prise de parole en public', 'Mariam Traoré', '95 %', '18/09/2026', '1 / 3', 'PPP'],
+    ['fin2', 'Contrôle de gestion opérationnel', 'Jean-Marc Kouassi, CFA', '86 %', '16/09/2026', '2 / 3', 'CDG'],
+    ['law2', 'Conformité, éthique et lutte anti-blanchiment', 'Me Fatou Bensouda-Kane', '83 %', '10/09/2026', '1 / 3', 'LBC'], ['proj1', 'Gestion de projet agile', 'Serge Ahouansou', '84 %', '25/09/2026', '1 / 3', 'AGI'], ['lead1', 'Leadership et management d\u2019équipe', 'Dr Aïssatou Ndiaye', '88 %', '14/09/2026', '2 / 2', 'LEA']];
+  static get EMAIL() { return window.AFD_ME ? window.AFD_ME.get().email : 's.hounkpatin@groupe-atlantique.bj'; }
+  componentDidMount() { this.cqRegen(); }
+  componentWillUnmount() { this._cqUn && this._cqUn(); clearTimeout(this._cqw); }
+  cqData() { const C = window.AFD_CERT, st = this.state, c = Component.CQ.find(x => x[0] === st.cqCourse) || Component.CQ[0]; const rec = st.cqRec; const me = window.AFD_ME ? window.AFD_ME.get() : null; const nm = me ? (me.first + ' ' + me.last).trim() : ''; return { name: rec ? rec.name : (nm.trim() || 'Prénom Nom'), course: c[1], score: c[3], date: rec ? rec.date : C.frDate(new Date()), id: rec ? rec.id : 'AFD-2026-' + c[6] + '-•••••', year: '2026' }; }
+  cqRegen() { const C = window.AFD_CERT; if (!C) { this._cqw = setTimeout(() => this.cqRegen(), 60); return; } if (!this._cqUn) { this._cqUn = C.subscribe(() => this.cqRegen()); if (window.AFD_ME) window.AFD_ME.subscribe(() => this.cqRegen()); } const t = this._cqT = (this._cqT || 0) + 1; C.render(C.get().tpl, this.cqData()).then(url => { if (t === this._cqT) this.setState({ cqImg: url }); }); }
+  cqSet(p) { this.setState(p, () => this.cqRegen()); }
+  state = { cqCourse: 'fin1', cqStep: 1, cqName: null, cqRemember: true, cqOk: false, cqRec: null, cqImg: '', cqCopied: false, cqDl: false, query: '', f: { theme: ['Leadership', 'Finance'], level: [], expert: [], duration: [] }, lang: 'FR', auto: true, cancel: false, cancelled: false, ptab: 0 };
+  renderVals() {
+    const ME = __ME();
+    if (!this._meSub && window.AFD_ME) { this._meSub = window.AFD_ME.subscribe(() => this.forceUpdate()); }
+    const N = '#0B1F3A';
+    const C0 = window.AFD_CERT, stq = this.state;
+    const issuedOf = id => C0 ? C0.findIssued(id, Component.EMAIL) || (id === 'lead1' ? { id: 'AFD-2026-LEA-04688' } : null) : (id === 'lead1' ? {} : null);
+    const cqC0 = Component.CQ.find(x => x[0] === stq.cqCourse) || Component.CQ[0]; const cqC = (stq.cqStep === 1 && issuedOf(cqC0[0]) && Component.CQ.find(x => !issuedOf(x[0]))) || cqC0;
+    const others = Component.CQ.filter(x => !issuedOf(x[0]));
+    const cqNm = (ME.first + ' ' + ME.last).trim(); const canV = stq.cqOk && cqNm.trim().length >= 3;
+    const cq = {
+      eligibleCount: others.length, doneCount: Component.CQ.length - others.length,
+      resetTests: () => { if (C0 && C0.resetIssued) C0.resetIssued(Component.EMAIL); this.cqSet({ cqStep: 1, cqCourse: Component.CQ[0][0], cqRec: null, cqOk: false, cqDl: false, cqCopied: false }); },
+      s1: stq.cqStep === 1, s2: stq.cqStep === 2, s3: stq.cqStep === 3,
+      steps: [[1, 'Formation'], [2, 'Vérification'], [3, 'Téléchargement']].map(([n, label], i) => { const done = stq.cqStep > n, on = stq.cqStep === n; return { n: done ? '\u2713' : n, label, bg: done ? '#0F7B5F' : on ? N : '#E3E1DA', fg: done || on ? '#fff' : '#4A5568', tc: done || on ? N : '#4A5568', sep: i < 2 ? 'block' : 'none' }; }),
+      courses: Component.CQ.map(c => { const iss = issuedOf(c[0]), on = c[0] === cqC[0] && !iss; return { title: c[1], date: c[4], score: c[3], bd: on ? N : '#E3E1DA', bg: iss ? '#FBFAF7' : on ? '#F3F5F9' : '#fff', sh: on ? 'inset 0 0 0 1px ' + N : 'none', radio: on ? '6px solid ' + N : '1.5px solid #8A93A3', op: iss ? .6 : 1, cur: iss ? 'default' : 'pointer', pill: iss ? 'Déjà délivré' : 'Éligible', pbg: iss ? '#F3F2EE' : '#E6EFEC', pfg: iss ? '#4A5568' : '#0B5C47', select: () => { if (!iss) this.cqSet({ cqCourse: c[0] }); } }; }),
+      details: [['Formation', cqC[1]], ['Expert', cqC[2]], ['Examen final', 'Réussi le ' + cqC[4]], ['Score obtenu', cqC[3] + ' (seuil 80 %)', '#0B5C47'], ['Tentative', cqC[5]]].map(([l, v, c]) => ({ l, v, c: c || N })),
+      next: () => { if (issuedOf(cqC[0])) { this.cqSet({ cqStep: 1 }); return; } this.cqSet({ cqCourse: cqC[0], cqStep: 2 }); },
+      certName: cqNm, confirmedOn: ME.idConfirmedAt ? ' (' + new Date(ME.idConfirmedAt).toLocaleDateString('fr-FR') + ')' : ' (12/03/2026)', onName: e => this.cqSet({ cqName: e.target.value, cqOk: false }), differs: cqNm.trim() !== ME.full, useProfile: () => this.cqSet({ cqName: ME.full, cqOk: false }), toggleRemember: () => this.setState({ cqRemember: !stq.cqRemember }), remBox: stq.cqRemember ? '#0F7B5F' : '#fff', remBd: stq.cqRemember ? '#0F7B5F' : '#8A93A3',
+      toggleOk: () => this.setState({ cqOk: !stq.cqOk }), okBox: stq.cqOk ? '#0F7B5F' : '#fff', okBd: stq.cqOk ? '#0F7B5F' : '#8A93A3',
+      back: () => this.setState({ cqStep: 1 }), cantValidate: !canV, vBg: canV ? '#0F7B5F' : '#C8CDD5', vFg: canV ? '#fff' : '#4A5568',
+      validate: () => { if (!canV || !C0) return; const nmF = cqNm.trim().replace(/\s+/g, ' ');  const rec = C0.issue({ name: nmF, course: cqC[1], courseId: cqC[0], score: cqC[3], code: cqC[6], email: Component.EMAIL }); this.cqSet({ cqRec: rec, cqStep: 3 }); },
+      recDate: stq.cqRec ? stq.cqRec.date : '', recName: stq.cqRec ? stq.cqRec.name : '', recId: stq.cqRec ? stq.cqRec.id : '',
+      dlLabel: stq.cqDl ? 'Téléchargé · télécharger à nouveau' : 'Télécharger mon certificat (PNG HD)',
+      download: () => { if (!C0) return; C0.render(C0.get().tpl, this.cqData(), 3).then(url => { const a = document.createElement('a'); a.href = url; a.download = 'Certificat-' + (stq.cqRec ? stq.cqRec.id : 'Africadres') + '.png'; document.body.appendChild(a); a.click(); a.remove(); this.setState({ cqDl: true }); }); },
+      copyLabel: stq.cqCopied ? 'Lien copié' : 'Copier le lien de vérification',
+      copy: () => { const u = 'https://africadres.com/verifier/' + (stq.cqRec ? stq.cqRec.id : ''); try { navigator.clipboard.writeText(u); } catch (e) {} this.setState({ cqCopied: true }); },
+      hasOther: others.length > 0, restart: () => { const f = others[0]; this.cqSet({ cqStep: 1, cqCourse: f ? f[0] : stq.cqCourse, cqRec: null, cqOk: false, cqDl: false, cqCopied: false }); },
+      img: stq.cqImg, imgCss: C0 ? C0.css(stq.cqImg) : 'none', hasImg: !!stq.cqImg, noImg: !stq.cqImg, draft: stq.cqStep < 3,
+      pvTitle: stq.cqStep < 3 ? 'Aperçu de votre certificat' : 'Votre certificat', pvPill: stq.cqStep < 3 ? 'Brouillon' : 'Délivré', pvBg: stq.cqStep < 3 ? '#FBF1DD' : '#E6EFEC', pvFg: stq.cqStep < 3 ? '#7A5000' : '#0B5C47',
+    };
+    const { query, f, lang, auto, cancel, cancelled, ptab } = this.state;
+    const hrefs = ['Espace Apprenant.dc.html#2a','Espace Apprenant.dc.html#2c','Catalogue.dc.html','Evaluations.dc.html','Certificats.dc.html','Paiements et Recus.dc.html','Profil.dc.html'];
+    const nav = a => [['layout-dashboard', 'Tableau de bord'], ['book-open', 'Mes formations'], ['library', 'Catalogue'], ['clipboard-check', 'Évaluations'], ['award', 'Certificats'], ['calendar-clock', 'Abonnement & reçus'], ['user-round', 'Profil']]
+      .map(([icon, label], i) => ({ icon, label, href: hrefs[i], bg: i === a ? N : 'transparent', fg: i === a ? '#fff' : '#4A5568', w: i === a ? 600 : 500 }));
+    const all = [
+      { id: 'lead', theme: 'Leadership', title: 'Leadership et management d\u2019équipe', expert: 'Dr Aïssatou Ndiaye', level: 'Intermédiaire', duration: '6 h', dur: '4–8 h', pages: 64, tint: '#1E3A66', ph: 'Manager en réunion d\u2019équipe' },
+      { id: 'fin', theme: 'Finance', title: 'Finance pour non-financiers', expert: 'Jean-Marc Kouassi', level: 'Fondamental', duration: '5 h', dur: '4–8 h', pages: 48, tint: '#132C52', ph: 'Cadre analysant des chiffres' },
+      { id: 'chg', theme: 'Leadership', title: 'Conduire le changement', expert: 'Dr Aïssatou Ndiaye', level: 'Expert', duration: '4 h', dur: '< 4 h', pages: 40, tint: '#1E3A66', ph: 'Atelier de transformation', isNew: true },
+      { id: 'cdg', theme: 'Finance', title: 'Contrôle de gestion opérationnel', expert: 'Jean-Marc Kouassi', level: 'Intermédiaire', duration: '4 h 30', dur: '4–8 h', pages: 44, tint: '#132C52', ph: 'Tableau de bord financier' },
+      { id: 'agile', theme: 'Gestion de projet', title: 'Gestion de projet agile', expert: 'Serge Ahouansou', level: 'Intermédiaire', duration: '5 h 30', dur: '4–8 h', pages: 56, tint: '#0F4D40', ph: 'Équipe devant un kanban' },
+      { id: 'neg', theme: 'Négociation', title: 'Négociation stratégique', expert: 'Mariam Traoré', level: 'Expert', duration: '4 h 30', dur: '4–8 h', pages: 52, tint: '#3A2E14', ph: 'Négociation autour d\u2019une table' },
+      { id: 'dig', theme: 'Digital', title: 'Transformation digitale des organisations', expert: 'Olivier Mensah', level: 'Intermédiaire', duration: '6 h', dur: '4–8 h', pages: 60, tint: '#132C52', ph: 'Dirigeant devant des données' },
+      { id: 'pp', theme: 'Leadership', title: 'Prise de parole en public', expert: 'Mariam Traoré', level: 'Fondamental', duration: '3 h', dur: '< 4 h', pages: 32, tint: '#1E3A66', ph: 'Intervenante sur scène', isNew: true },
+      { id: 'ohada', theme: 'Droit', title: 'Droit OHADA des affaires', expert: 'Me Fatou Bensouda-Kane', level: 'Fondamental', duration: '5 h', dur: '4–8 h', pages: 58, tint: '#3A2E14', ph: 'Juriste en entretien' },
+    ];
+    const key = { theme: 'theme', level: 'level', expert: 'expert', duration: 'dur' };
+    const match = c => Object.keys(f).every(k => !f[k].length || f[k].includes(c[key[k]])) && (!query || (c.title + c.expert + c.theme).toLowerCase().includes(query.toLowerCase()));
+    const results = all.filter(match);
+    const toggle = (k, v) => () => this.setState(s => { const cur = s.f[k]; return { f: Object.assign({}, s.f, { [k]: cur.includes(v) ? cur.filter(x => x !== v) : [...cur, v] }) }; });
+    const grp = (title, k, vals) => ({ title, items: vals.map(v => { const on = f[k].includes(v); return { label: v, count: all.filter(c => c[key[k]] === v).length, bd: on ? '0' : '1.5px solid #8A93A3', bg: on ? N : '#fff', op: on ? 1 : 0, toggle: toggle(k, v) }; }) });
+    const chips = []; Object.keys(f).forEach(k => f[k].forEach(v => chips.push({ label: v, remove: toggle(k, v) })));
+    const qrBits = Array.from({ length: 81 }, (_, i) => { const r = Math.floor(i / 9), c = i % 9; const fin = (r < 3 && c < 3) || (r < 3 && c > 5) || (r > 5 && c < 3); return fin ? ((r % 2 === 1 && (c % 3 === 1)) ? '#fff' : N) : ((i * 7 + r * 3) % 5 < 2 ? N : '#fff'); });
+    const pay = (date, ref, plan, method, icon, amount, st) => {
+      const m = { ok: ['Réussi', '#E6EFEC', '#0B5C47'], ko: ['Échoué', '#F8E4E1', '#962D22'] }[st];
+      return { date, ref, plan, method, icon, amount, status: m[0], sbg: m[1], sfg: m[2], ok: st === 'ok', ko: st === 'ko' };
+    };
+    return {
+      me: ME,
+      cq,
+      nav2: nav(2), nav4: nav(4), nav5: nav(5), nav6: nav(6),
+      mNav2: [['home', 'Accueil', 0], ['book-open', 'Formations', 0], ['library', 'Catalogue', 1], ['award', 'Certificats', 0], ['user-round', 'Profil', 0]].map(([icon, label, a]) => ({ icon, label, fg: a ? N : '#4A5568', w: a ? 700 : 500 })),
+      query, onQuery: e => this.setState({ query: e.target.value }), queryOrPh: query || 'Leadership, finance…',
+      filterGroups: [grp('Thématique', 'theme', ['Leadership', 'Finance', 'Gestion de projet', 'Négociation', 'Digital', 'Droit']), grp('Niveau', 'level', ['Fondamental', 'Intermédiaire', 'Expert']), grp('Durée', 'duration', ['< 4 h', '4–8 h']), grp('Expert', 'expert', ['Dr Aïssatou Ndiaye', 'Jean-Marc Kouassi', 'Mariam Traoré', 'Olivier Mensah'])],
+      resetFilters: () => this.setState({ f: { theme: [], level: [], expert: [], duration: [] }, query: '' }),
+      activeChips: chips, activeCount: chips.length,
+      resultCount: results.length, results, resultsMobile: results.slice(0, 5), hasResults: results.length > 0, noResults: results.length === 0,
+      themeChips: ['Leadership', 'Finance', 'Gestion de projet', 'Digital'].map(v => { const on = f.theme.includes(v); return { label: v, bg: on ? N : '#fff', fg: on ? '#fff' : N, bd: on ? N : '#E3E1DA', toggle: toggle('theme', v) }; }),
+      myCerts: [
+        { title: 'Finance pour non-financiers', date: '27 sept. 2026', score: '88 %', id: 'AFR-C-2026-0927-5120' },
+        { title: 'Négociation stratégique', date: '18 sept. 2026', score: '92 %', id: 'AFR-C-2026-0918-4471' },
+        { title: 'Leadership et management d\u2019équipe', date: '02 août 2026', score: '88 %', id: 'AFR-C-2026-0802-2210' },
+      ],
+      qr: qrBits,
+      verifyRows: [
+        { k: 'Titulaire', v: ME.full, c: N }, { k: 'Formation', v: 'Finance pour non-financiers', c: N }, { k: 'Score', v: '88 % (seuil 80 %)', c: '#0F7B5F' },
+        { k: 'Date de délivrance', v: '27 septembre 2026', c: N }, { k: 'Identifiant', v: 'AFR-C-2026-0927-5120', c: N }, { k: 'Statut', v: 'Valide', c: '#0F7B5F' },
+      ],
+      payments: [
+        pay('27/09/2026', 'RC-2026-09-01842', 'Annuel', 'Orange Money', 'smartphone', '129 000 FCFA', 'ok'),
+        pay('27/09/2026', '—', 'Annuel', 'Carte Visa •••• 4417', 'credit-card', '129 000 FCFA', 'ko'),
+        pay('27/08/2026', 'RC-2026-08-01377', 'Mensuel', 'Wave', 'smartphone', '15 000 FCFA', 'ok'),
+        pay('27/07/2026', 'RC-2026-07-00921', 'Mensuel', 'Wave', 'smartphone', '15 000 FCFA', 'ok'),
+        pay('27/06/2026', 'RC-2026-06-00402', 'Mensuel', 'MTN MoMo', 'smartphone', '15 000 FCFA', 'ok'),
+      ],
+      profileTabs: ['Informations & abonnement', 'Sécurité', 'Notifications', 'Données personnelles'].map((label, i) => ({ label, bd: i === ptab ? N : 'transparent', fg: i === ptab ? N : '#4A5568', w: i === ptab ? 700 : 500, select: () => this.setState({ ptab: i }) })),
+      langSeg: [['FR', 'Français'], ['EN', 'English']].map(([id, label]) => ({ label, bg: lang === id ? '#fff' : 'transparent', fg: lang === id ? N : '#4A5568', sh: lang === id ? '0 1px 2px rgba(11,31,58,.1)' : 'none', select: () => this.setState({ lang: id }) })),
+      autoBg: auto && !cancelled ? '#0F7B5F' : '#C9CDD4', autoKnob: auto && !cancelled ? '21px' : '3px', toggleAuto: () => this.setState({ auto: !auto }),
+      subBadge: cancelled ? 'Résilié · actif jusqu\u2019au terme' : 'Actif', subBadgeBg: cancelled ? '#FBF1DD' : '#E6EFEC', subBadgeFg: cancelled ? '#7A5000' : '#0B5C47',
+      subLine: cancelled ? 'Accès maintenu jusqu\u2019au 27 septembre 2027, sans renouvellement.' : 'Renouvelé le 27 septembre 2027 · MTN MoMo •••• 38',
+      cancelOpen: cancel, openCancel: () => this.setState({ cancel: true }), closeCancel: () => this.setState({ cancel: false }),
+      confirmCancel: () => this.setState({ cancel: false, cancelled: true, auto: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

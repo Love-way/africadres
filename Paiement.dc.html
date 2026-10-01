@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Paiement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<script src="./profile-data.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<script src="./pricing-data.js"></script>
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button,input{font-family:Inter,system-ui,sans-serif}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+input:focus{border-color:#0B1F3A !important;box-shadow:0 0 0 3px rgba(30,58,102,.18);outline:none}
+@keyframes afSpin{to{transform:rotate(360deg)}}
+@keyframes afPulse{0%,100%{opacity:1}50%{opacity:.4}}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:20px;padding:80px">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;flex-wrap:wrap">
+  <span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">11a</span><span style="font-weight:600">Paiement (checkout) · Desktop</span><span style="color:#4A5568">— état :</span>
+  <div style="display:inline-flex;padding:3px;background:#fff;border:1px solid #E3E1DA;border-radius:8px"><sc-for list="{{ stateSwitch }}" as="s" hint-placeholder-count="4"><button onClick="{{ s.select }}" style="height:32px;padding:0 12px;border-radius:6px;border:0;background:{{ s.bg }};color:{{ s.fg }};font-size:13px;font-weight:600">{{ s.label }}</button></sc-for></div>
+</div>
+<div style="display:flex;gap:80px;align-items:flex-start">
+
+<div id="11a" data-screen-label="Paiement" style="width:1440px;min-height:980px;background:#F7F5F0;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);display:flex;flex-direction:column;flex:none">
+  <header style="height:76px;flex:none;background:#fff;border-bottom:1px solid #E3E1DA;display:flex;align-items:center;justify-content:space-between;padding:0 48px">
+    <div style="display:flex;align-items:center;gap:10px"><div style="width:36px;height:36px;border-radius:8px;background:#0B1F3A;display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px;color:#fff">A</div><span style="font-family:'Plus Jakarta Sans';font-size:18px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span></div>
+    <div style="display:flex;align-items:center;gap:14px;font-size:14px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3"><span style="display:flex;align-items:center;gap:8px;color:{{ s.fg }};font-weight:{{ s.w }}"><span style="width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:{{ s.bg }};color:{{ s.nfg }};border:1.5px solid {{ s.bd }};font-size:12px;font-weight:700"><i class="icon-{{ s.icon }}" style="font-size:13px"></i></span>{{ s.label }}<i class="icon-chevron-right" style="font-size:14px;color:#8A93A3;opacity:{{ s.sepOp }}"></i></span></sc-for>
+    </div>
+    <span style="display:flex;gap:8px;align-items:center;font-size:13px;color:#0B5C47;font-weight:600"><i class="icon-lock" style="font-size:15px"></i>Paiement sécurisé</span>
+  </header>
+
+  <!-- FORM -->
+  <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+  <div style="flex:1;max-width:1200px;width:100%;margin:0 auto;padding:48px 48px 64px;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:40px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:30px;font-weight:700;letter-spacing:-.015em">Moyen de paiement</h1><span style="font-size:15px;color:#4A5568">Choisissez comment régler votre abonnement.</span></div>
+      <sc-if value="{{ isFailed }}" hint-placeholder-val="{{ false }}">
+        <div role="alert" style="padding:16px 18px;border-radius:10px;background:#F8E4E1;border:1px solid #EFC9C3;color:#7A231A;display:flex;gap:14px;align-items:flex-start">
+          <i class="icon-x-circle" style="font-size:22px;color:#C0392B;flex:none;margin-top:1px"></i>
+          <div style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:15px">Paiement refusé · aucun montant n'a été débité</span><span style="font-size:14px;line-height:1.55">{{ failMsg }}</span></div>
+          <button onClick="{{ retry }}" style="height:40px;padding:0 14px;border-radius:8px;border:0;background:#C0392B;color:#fff;font-weight:600;font-size:14px;flex:none">Réessayer</button>
+        </div>
+      </sc-if>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px" role="radiogroup">
+        <sc-for list="{{ methods }}" as="m" hint-placeholder-count="3">
+          <button onClick="{{ m.select }}" role="radio" aria-checked="{{ m.on }}" style="min-height:88px;padding:16px;border-radius:12px;border:{{ m.bd }};background:#fff;display:flex;flex-direction:column;gap:8px;align-items:flex-start;text-align:left;color:#0B1F3A;box-shadow:{{ m.sh }}">
+            <div style="display:flex;justify-content:space-between;width:100%"><i class="icon-{{ m.icon }}" style="font-size:22px"></i><span style="width:20px;height:20px;border-radius:50%;border:{{ m.radio }}"></span></div>
+            <span style="font-weight:600;font-size:15px">{{ m.label }}</span><span style="font-size:13px;color:#4A5568">{{ m.sub }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:20px">
+        <sc-if value="{{ isMomo }}" hint-placeholder-val="{{ true }}">
+          <span style="font-size:14px;font-weight:600">Opérateur</span>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:-10px">
+            <sc-for list="{{ operators }}" as="o" hint-placeholder-count="5">
+              <button onClick="{{ o.select }}" style="height:64px;border-radius:10px;border:{{ o.bd }};background:{{ o.bg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#0B1F3A"><span style="height:22px;padding:0 8px;border-radius:5px;background:{{ o.chip }};color:{{ o.chipFg }};font-size:11px;font-weight:800;display:flex;align-items:center;letter-spacing:.02em">{{ o.short }}</span><span style="font-size:12px;font-weight:{{ o.w }}">{{ o.name }}</span></button>
+            </sc-for>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Numéro {{ opName }}</span>
+            <div style="display:flex;gap:8px"><div style="height:48px;padding:0 12px;border:1px solid #E3E1DA;border-radius:8px;display:flex;align-items:center;gap:8px;font-size:15px;background:#F7F5F0"><span style="font-size:11px;font-weight:700;padding:2px 5px;border-radius:3px;background:#fff;border:1px solid #E3E1DA">BJ</span>+229</div><input value="01 97 45 21 38" style="flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A;font-variant-numeric:tabular-nums"></div>
+            <span style="font-size:13px;color:#4A5568">Vous recevrez une demande de confirmation sur ce téléphone. Gardez-le à portée de main.</span>
+          </label>
+        </sc-if>
+        <sc-if value="{{ isCard }}" hint-placeholder-val="{{ false }}">
+          <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Numéro de carte</span><div style="height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;display:flex;align-items:center;gap:10px"><i class="icon-credit-card" style="font-size:18px;color:#4A5568"></i><input value="4417 1234 5678 9113" style="flex:1;border:0;font-size:16px;color:#0B1F3A;font-variant-numeric:tabular-nums;outline:none;box-shadow:none;min-width:0"><span style="font-size:11px;font-weight:800;color:#1E3A66;letter-spacing:.06em">VISA</span></div></label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Expiration</span><input value="08 / 29" style="height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A;font-variant-numeric:tabular-nums"></label>
+            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Cryptogramme</span><input value="•••" style="height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A"></label>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Titulaire de la carte</span><input value="SENAMI HOUNKPATIN" style="height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A"></label>
+          <span style="font-size:13px;color:#4A5568;display:flex;gap:8px;align-items:center"><i class="icon-shield-check" style="font-size:15px;color:#0F7B5F"></i>Authentification 3-D Secure par votre banque. Nous ne conservons pas vos données de carte.</span>
+        </sc-if>
+        <sc-if value="{{ isOther }}" hint-placeholder-val="{{ false }}">
+          <sc-for list="{{ others }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.select }}" style="min-height:60px;padding:12px 16px;border-radius:10px;border:{{ o.bd }};background:#fff;display:flex;gap:14px;align-items:center;text-align:left;color:#0B1F3A"><i class="icon-{{ o.icon }}" style="font-size:20px"></i><div style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:15px">{{ o.t }}</span><span style="font-size:13px;color:#4A5568">{{ o.d }}</span></div><span style="width:20px;height:20px;border-radius:50%;border:{{ o.radio }}"></span></button></sc-for>
+        </sc-if>
+      </div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:#4A5568">
+        <span style="display:flex;gap:6px;align-items:center"><i class="icon-lock" style="font-size:15px;color:#0F7B5F"></i>Connexion chiffrée TLS</span>
+        <span style="display:flex;gap:6px;align-items:center"><i class="icon-shield-check" style="font-size:15px;color:#0F7B5F"></i>Conforme PCI DSS</span>
+        <span style="display:flex;gap:6px;align-items:center"><i class="icon-badge-check" style="font-size:15px;color:#0F7B5F"></i>Prestataire agréé BCEAO</span>
+      </div>
+    </div>
+
+    <!-- Recap -->
+    <aside style="background:#fff;border:1px solid #E3E1DA;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="background:#0B1F3A;color:#fff;padding:22px 24px;display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#C9A24B">Récapitulatif</span><a href="Tarifs.dc.html" style="font-size:13px;color:#fff;text-decoration:underline;text-underline-offset:3px">Comment ça marche</a></div>
+        <span style="font-family:'Plus Jakarta Sans';font-size:21px;font-weight:700;line-height:1.3">Abonnement {{ plan.tier }} · {{ plan.name }}</span><span style="font-size:14px;color:rgba(255,255,255,.8)">Accès à toutes les formations, évaluations et certificats</span>
+        <div role="radiogroup" aria-label="Type" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><sc-for list="{{ tierSeg }}" as="o" hint-placeholder-count="2"><button onClick="{{ o.select }}" role="radio" aria-checked="{{ o.on }}" style="min-height:44px;border-radius:8px;border:1px solid {{ o.bd }};background:{{ o.bg }};color:#fff;font-size:14px;font-weight:700;display:flex;gap:6px;align-items:center;justify-content:center"><i class="icon-{{ o.icon }}" style="font-size:15px;color:#C9A24B"></i>{{ o.label }}</button></sc-for></div>
+        <div role="radiogroup" aria-label="Formule" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px"><sc-for list="{{ planSeg }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.select }}" role="radio" aria-checked="{{ o.on }}" style="min-height:44px;border-radius:8px;border:1px solid {{ o.bd }};background:{{ o.bg }};color:#fff;font-size:14px;font-weight:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:4px"><span>{{ o.label }}</span><span style="font-size:11px;font-weight:600;color:#E8C877">{{ o.off }}</span></button></sc-for></div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px"><sc-for list="{{ modeSeg }}" as="d" hint-placeholder-count="2"><button onClick="{{ d.select }}" style="min-height:48px;padding:8px 12px;border-radius:8px;border:1px solid {{ d.bd }};background:{{ d.bg }};color:#fff;display:flex;gap:10px;align-items:center;text-align:left"><span style="width:18px;height:18px;border-radius:50%;border:{{ d.radio }};flex:none"></span><div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14px;font-weight:600">{{ d.label }}</span><span style="font-size:12px;color:rgba(255,255,255,.72)">{{ d.sub }}</span></div></button></sc-for></div>
+        <span style="font-size:14px;color:rgba(255,255,255,.8)">{{ plan.period }}</span>
+      </div>
+      <div style="padding:22px 24px;display:flex;flex-direction:column;gap:12px;font-size:15px">
+        <div style="display:flex;justify-content:space-between"><span style="color:#4A5568">Abonnement {{ plan.tier }} · {{ plan.name }}</span><span style="font-variant-numeric:tabular-nums">{{ plan.gross }}</span></div>
+        <sc-if value="{{ plan.hasSaving }}" hint-placeholder-val="{{ false }}"><div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#0B5C47;display:flex;gap:6px;align-items:center"><i class="icon-badge-percent" style="font-size:15px"></i>{{ plan.promoName }}</span><span style="color:#0F7B5F;font-weight:600;font-variant-numeric:tabular-nums">{{ plan.saving }}</span></div></sc-if>
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#4A5568;line-height:1.5"><i class="icon-info" style="font-size:14px;flex:none;margin-top:2px"></i>Plus la formule est longue, plus le prix mensuel baisse. Une nouvelle formule s'ajoute à la fin de l'accès en cours.</div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#4A5568">Frais de transaction</span><span style="font-variant-numeric:tabular-nums">Offerts</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;border-top:1px solid #E3E1DA"><span style="font-weight:700">Total à payer</span><span style="font-family:'Plus Jakarta Sans';font-size:26px;font-weight:700;font-variant-numeric:tabular-nums">{{ plan.total }}</span></div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:14px;padding:14px;border-radius:10px;background:#F7F5F0;margin-top:4px">
+          <sc-for list="{{ recapIncl }}" as="i" hint-placeholder-count="3"><span style="display:flex;gap:8px;align-items:center"><i class="icon-check" style="font-size:16px;color:#0F7B5F"></i>{{ i }}</span></sc-for>
+        </div>
+        <button onClick="{{ pay }}" style="height:56px;border-radius:10px;border:0;background:#C9A24B;color:#0B1F3A;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:6px" style-hover="background:#D8B45F"><i class="icon-lock" style="font-size:18px"></i>Payer {{ plan.total }}</button>
+        <span style="font-size:12px;color:#4A5568;line-height:1.55;text-align:center">En payant, vous acceptez les <a href="#" style="text-decoration:underline;text-underline-offset:3px">conditions générales</a>. Un reçu de paiement vous sera envoyé.</span>
+      </div>
+    </aside>
+  </div>
+  </sc-if>
+
+  <!-- PROCESSING -->
+  <sc-if value="{{ isProcessing }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;display:grid;place-items:center;padding:64px">
+      <div style="width:520px;background:#fff;border:1px solid #E3E1DA;border-radius:16px;padding:40px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px">
+        <div style="width:88px;height:88px;border-radius:50%;background:#F7F5F0;display:grid;place-items:center;position:relative">{{ bigSpinner }}<i class="icon-smartphone" style="font-size:30px;position:absolute"></i></div>
+        <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700">Confirmez le paiement sur votre téléphone</h2>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#4A5568">Une demande de <b style="color:#0B1F3A">{{ plan.total }}</b> a été envoyée au <b style="color:#0B1F3A">+229 01 97 45 21 38</b> ({{ opName }}). Saisissez votre code secret pour valider.</p>
+        <div style="width:100%;padding:14px 16px;border-radius:10px;background:#F7F5F0;display:flex;flex-direction:column;gap:10px;text-align:left">
+          <span style="display:flex;gap:10px;align-items:center;font-size:14px"><i class="icon-check-circle-2" style="font-size:17px;color:#0F7B5F"></i>Demande envoyée à l'opérateur</span>
+          <span style="display:flex;gap:10px;align-items:center;font-size:14px;font-weight:600">{{ smallSpinner }}En attente de votre confirmation</span>
+          <span style="display:flex;gap:10px;align-items:center;font-size:14px;color:#8A93A3"><i class="icon-circle" style="font-size:17px"></i>Activation de l'abonnement</span>
+        </div>
+        <span style="font-size:13px;color:#4A5568;font-variant-numeric:tabular-nums">Expire dans 04:37 · Ne fermez pas cette page</span>
+        <div style="display:flex;gap:10px"><button onClick="{{ simSuccess }}" style="height:44px;padding:0 16px;border-radius:8px;border:0;background:#0B1F3A;color:#fff;font-weight:600;font-size:14px">J'ai confirmé</button><button onClick="{{ retry }}" style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:14px">Annuler</button></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- SUCCESS -->
+  <sc-if value="{{ isSuccess }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;display:grid;place-items:center;padding:64px">
+      <div style="width:620px;background:#fff;border:1px solid #E3E1DA;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="background:#0B1F3A;color:#fff;padding:36px 40px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.10) 0 1px,transparent 1px 22px),repeating-linear-gradient(-45deg,rgba(201,162,75,.10) 0 1px,transparent 1px 22px)"></div>
+          <span style="position:relative;width:64px;height:64px;border-radius:50%;background:#0F7B5F;display:grid;place-items:center"><i class="icon-check" style="font-size:32px"></i></span>
+          <h2 style="position:relative;margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700">Accès activé, {{ me.first }}.</h2>
+          <span style="position:relative;font-size:15px;color:rgba(255,255,255,.8)">Abonnement {{ plan.name }} · accès à tout le catalogue jusqu'au {{ plan.until }} (00h00)</span>
+        </div>
+        <div style="padding:28px 40px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:14px">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;color:#4A5568">Montant</span><b style="font-variant-numeric:tabular-nums">{{ plan.total }}</b></div>
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;color:#4A5568">Moyen</span><b>{{ methodLabel }}</b></div>
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;color:#4A5568">N° de reçu</span><b style="font-variant-numeric:tabular-nums">RC-2026-09-01842</b></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:8px">
+            <a href="Espace Apprenant.dc.html" style="flex:1;height:52px;border-radius:10px;background:#0B1F3A;color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px">Accéder à mon espace<i class="icon-arrow-right" style="font-size:17px"></i></a>
+            <a href="Paiements et Recus.dc.html#6b" style="height:52px;padding:0 18px;border-radius:10px;border:1px solid #0B1F3A;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px"><i class="icon-receipt" style="font-size:17px"></i>Voir le reçu</a>
+          </div>
+          <span style="font-size:13px;color:#4A5568;text-align:center">Le reçu de paiement a été envoyé à {{ me.email }}</span>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+<!-- MOBILE -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">11c</span><span style="font-weight:600">Paiement Mobile Money · Mobile 390</span></div>
+<div id="11c" data-screen-label="Paiement mobile" style="width:390px;height:844px;background:#F7F5F0;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.22);border:8px solid #0B1F3A;display:flex;flex-direction:column">
+  <div style="height:44px;flex:none;background:#0B1F3A;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <div style="background:#0B1F3A;color:#fff;padding:4px 20px 18px;display:flex;flex-direction:column;gap:10px;flex:none">
+    <a href="Tarifs.dc.html#10b" aria-label="Retour" style="width:44px;height:44px;display:grid;place-items:center;margin-left:-12px;color:#fff"><i class="icon-arrow-left" style="font-size:21px"></i></a>
+    <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700">Paiement</h1>
+    <span style="font-size:14px;color:rgba(255,255,255,.8)">Abonnement {{ plan.name }} · {{ plan.total }}</span>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px"><span style="height:4px;border-radius:2px;background:#C9A24B"></span><span style="height:4px;border-radius:2px;background:#C9A24B"></span><span style="height:4px;border-radius:2px;background:#C9A24B"></span></div>
+  </div>
+  <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+    <div style="flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:14px">
+      <sc-if value="{{ isFailed }}" hint-placeholder-val="{{ false }}"><div role="alert" style="padding:12px 14px;border-radius:10px;background:#F8E4E1;color:#7A231A;font-size:14px;line-height:1.5;display:flex;gap:10px"><i class="icon-x-circle" style="font-size:18px;color:#C0392B;flex:none"></i><span><b>Paiement refusé.</b> {{ failMsg }}</span></div></sc-if>
+      <div style="display:flex;padding:4px;background:#fff;border:1px solid #E3E1DA;border-radius:10px"><sc-for list="{{ methods }}" as="m" hint-placeholder-count="3"><button onClick="{{ m.select }}" style="flex:1;height:44px;border-radius:7px;border:0;background:{{ m.mBg }};color:{{ m.mFg }};font-weight:600;font-size:14px">{{ m.short }}</button></sc-for></div>
+      <sc-if value="{{ isMomo }}" hint-placeholder-val="{{ true }}">
+        <span style="font-size:14px;font-weight:600">Opérateur</span>
+        <sc-for list="{{ operators }}" as="o" hint-placeholder-count="5"><button onClick="{{ o.select }}" style="min-height:56px;padding:0 14px;border-radius:10px;border:{{ o.bd }};background:#fff;display:flex;align-items:center;gap:12px;color:#0B1F3A"><span style="height:26px;min-width:52px;padding:0 8px;border-radius:5px;background:{{ o.chip }};color:{{ o.chipFg }};font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">{{ o.short }}</span><span style="flex:1;text-align:left;font-size:15px;font-weight:{{ o.w }}">{{ o.name }}</span><span style="width:22px;height:22px;border-radius:50%;border:{{ o.radio }}"></span></button></sc-for>
+        <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Numéro {{ opName }}</span><div style="display:flex;gap:8px"><div style="height:52px;padding:0 10px;border:1px solid #E3E1DA;border-radius:8px;display:flex;align-items:center;font-size:15px;background:#fff">+229</div><input value="01 97 45 21 38" style="flex:1;min-width:0;height:52px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A;font-variant-numeric:tabular-nums"></div></label>
+      </sc-if>
+      <sc-if value="{{ isCard }}" hint-placeholder-val="{{ false }}">
+        <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Numéro de carte</span><input value="4417 1234 5678 9113" style="height:52px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A;font-variant-numeric:tabular-nums"></label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><input value="08 / 29" style="height:52px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A"><input value="•••" style="height:52px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A"></div>
+      </sc-if>
+      <sc-if value="{{ isOther }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ others }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.select }}" style="min-height:56px;padding:10px 14px;border-radius:10px;border:{{ o.bd }};background:#fff;display:flex;gap:12px;align-items:center;text-align:left;color:#0B1F3A"><i class="icon-{{ o.icon }}" style="font-size:19px"></i><span style="flex:1;font-weight:600;font-size:15px">{{ o.t }}</span></button></sc-for></sc-if>
+      <span style="font-size:13px;color:#4A5568;display:flex;gap:8px;align-items:center"><i class="icon-lock" style="font-size:14px;color:#0F7B5F"></i>Paiement chiffré · reçu envoyé par e-mail</span>
+    </div>
+    <div style="flex:none;padding:12px 18px 24px;background:#fff;border-top:1px solid #E3E1DA"><button onClick="{{ pay }}" style="width:100%;height:54px;border-radius:10px;border:0;background:#C9A24B;color:#0B1F3A;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;gap:8px"><i class="icon-lock" style="font-size:17px"></i>Payer {{ plan.total }}</button></div>
+  </sc-if>
+  <sc-if value="{{ isProcessing }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;padding:32px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px">
+      <div style="width:80px;height:80px;border-radius:50%;background:#fff;display:grid;place-items:center;position:relative;margin-top:24px">{{ bigSpinner2 }}<i class="icon-smartphone" style="font-size:28px;position:absolute"></i></div>
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:21px;font-weight:700">Validez sur votre téléphone</h2>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#4A5568">Composez votre code secret {{ opName }} dans la fenêtre qui s'affiche pour autoriser <b style="color:#0B1F3A">{{ plan.total }}</b>.</p>
+      <span style="font-size:13px;color:#4A5568;font-variant-numeric:tabular-nums">Expire dans 04:37</span>
+      <button onClick="{{ simSuccess }}" style="width:100%;height:52px;border-radius:10px;border:0;background:#0B1F3A;color:#fff;font-weight:600;font-size:15px;margin-top:auto">J'ai confirmé</button>
+      <button onClick="{{ simFail }}" style="height:44px;border:0;background:transparent;color:#0B1F3A;font-weight:600;font-size:14px">Je n'ai rien reçu</button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ isSuccess }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;padding:32px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+      <span style="width:72px;height:72px;border-radius:50%;background:#0F7B5F;color:#fff;display:grid;place-items:center;margin-top:24px"><i class="icon-check" style="font-size:34px"></i></span>
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:22px;font-weight:700">Abonnement activé</h2>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#4A5568">{{ plan.name }} · accès jusqu'au {{ plan.until }}. Votre reçu RC-2026-09-01842 est disponible.</p>
+      <a href="Espace Apprenant.dc.html#2c" style="width:100%;height:52px;border-radius:10px;background:#0B1F3A;color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;margin-top:auto">Commencer à me former</a>
+      <a href="Paiements et Recus.dc.html#6c" style="height:44px;display:flex;align-items:center;font-weight:600;font-size:14px">Voir le reçu</a>
+    </div>
+  </sc-if>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const __ME = () => window.AFD_ME ? window.AFD_ME.get() : { first: 'Sènami', last: 'Hounkpatin', full: 'Sènami Hounkpatin', email: 's.hounkpatin@groupe-atlantique.bj', phone: '01 97 45 21 38', ini: 'SH', cert: 'Sènami Hounkpatin', certName: '', certCustom: false };
+class Component extends DCLogic {
+  componentDidMount() { const h = () => { if (window.AFD_PRICE) { this._unP = window.AFD_PRICE.subscribe(() => this.forceUpdate()); this.forceUpdate(); } else this._wP = setTimeout(h, 50); }; h(); }
+  componentWillUnmount() { this._unP && this._unP(); clearTimeout(this._wP); }
+  state = (() => {
+    let plan = 2, cur = 'FCFA';
+    try { const q = new URLSearchParams(window.location.search); plan = 0; var cidQ = q.get('c'); var durQ = parseInt(q.get('d')) || 1; var tQ = q.get('t'); var pQ = parseInt(q.get('p')) || 0; cur = ['FCFA', 'EUR', 'USD'].includes(q.get('cur')) ? q.get('cur') : 'FCFA'; } catch (e) {}
+    return { step: 'form', method: 'momo', op: 0, other: 0, plan, cur, failed: false, cid: (typeof cidQ !== 'undefined' && cidQ) || 'fin', ct: (typeof tQ !== 'undefined') ? tQ : null, cp: (typeof pQ !== 'undefined') ? pQ : 0, dur: (typeof durQ !== 'undefined' && [1,3,6].includes(durQ)) ? durQ : 1 };
+  })();
+  sp(size, color, track) { return React.createElement('span', { style: { width: size, height: size, borderRadius: '50%', border: `3px solid ${track}`, borderTopColor: color, animation: 'afSpin 1s linear infinite', display: 'inline-block', flex: 'none' } }); }
+  renderVals() {
+    const ME = __ME();
+    if (!this._meSub && window.AFD_ME) { this._meSub = window.AFD_ME.subscribe(() => this.forceUpdate()); }
+    const N = '#0B1F3A';
+    const { step, method, op, other, plan, cur, failed } = this.state;
+    const COURSES = { fin: ['Finance pour non-financiers', 10000], dig: ['Transformation digitale des organisations', 12000], agile: ['Gestion de projet agile', 10000], neg: ['Négociation stratégique', 15000], ohada: ['Droit OHADA des affaires', 8000], lead: ['Leadership et management d\u2019équipe', 12000] };
+    const cid = this.state.cid || 'fin';
+    const dur = this.state.dur || 1;
+    const [ctitle, cprice] = (this.state.ct && this.state.cp) ? [this.state.ct, this.state.cp] : (COURSES[cid] || COURSES.fin);
+    const factor = { 1: 1, 3: 2.7, 6: 4.8 };
+    const conv = v => cur === 'FCFA' ? v : cur === 'EUR' ? Math.round(v / 655.957) : Math.round(v / 600);
+    const full = v => { v = conv(v); return cur === 'FCFA' ? v.toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, ' ') + ' FCFA' : cur === 'EUR' ? v + ' €' : '$' + v; };
+    const addM = (d, n) => { const y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate(); const last = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(day, last)); };
+    const today = new Date(2026, 8, 27);
+    const curEnd = new Date(2026, 9, 27); const renew = !!this.state.renew; const startD = renew ? curEnd : today; const selM = this.state.selM || (() => { try { return +localStorage.getItem('afd-plan') || 1; } catch (e) { return 1; } })();
+    const TIER = this.state.tier || (() => { try { return localStorage.getItem('afd-tier') || 'basic'; } catch (e) { return 'basic'; } })(); const TN = TIER === 'premium' ? 'Premium' : 'Basic';
+    const PLS = window.AFD_PRICE && window.AFD_PRICE.plans ? window.AFD_PRICE.plans(undefined, TIER) : [{ m: 1, name: '1 mois', total: 15000, gross: 15000, save: 0, label: '15 000 FCFA', disc: 0 }];
+    const SP = PLS.find(x => x.m === selM) || PLS[0];
+    const endD = addM(startD, SP.m);
+    const fd = d => d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+    const PRC = window.AFD_PRICE ? window.AFD_PRICE.current() : { price: 15000, base: 15000, promo: null, off: 0 }; const gross = (TIER === 'premium' ? SP.total / (1 - SP.disc / 100) : PRC.base * SP.m), total = SP.total;
+    const names = { 1: '1 mois' };
+    const until = fd(endD);
+    const ops = [['MTN MoMo', 'MTN', '#FFCB05', N], ['Moov Money', 'MOOV', '#0066B3', '#fff'], ['Celtiis Cash', 'CELTIIS', '#E4032E', '#fff'], ['Orange Money', 'ORANGE', '#FF7900', N], ['Wave', 'WAVE', '#1DC3FF', N]];
+    const M = [['momo', 'smartphone', 'Mobile Money', 'MoMo, Moov, Celtiis…', 'Mobile Money'], ['card', 'credit-card', 'Carte bancaire', 'Visa, Mastercard', 'Carte'], ['other', 'wallet', 'Autres moyens', 'PayPal, virement', 'Autres']];
+    const O = [['landmark', 'Virement bancaire', 'Activation sous 24 à 48 h après réception'], ['wallet', 'PayPal', 'Redirection sécurisée vers PayPal'], ['building-2', 'Prise en charge employeur', 'Envoyez une demande à votre service RH']];
+    const setStep = s => this.setState({ step: s });
+    const failMsg = method === 'momo' ? 'Solde ' + ops[op][0] + ' insuffisant ou demande expirée. Rechargez votre compte ou choisissez un autre moyen.' : 'Votre banque a refusé la transaction (3-D Secure non validé). Vérifiez la carte ou essayez le Mobile Money.';
+    const show = step === 'form' || step === 'failed';
+    return {
+      me: ME,
+      stateSwitch: [['form', 'Formulaire'], ['processing', 'Chargement'], ['success', 'Succès'], ['failed', 'Échec']].map(([id, label]) => ({ label, bg: step === id ? N : 'transparent', fg: step === id ? '#fff' : '#4A5568', select: () => setStep(id) })),
+      steps: [['Compte', 1], ['Formule', 1], ['Paiement', step === 'success' ? 1 : 0]].map(([label, done], i) => ({ label, icon: done ? 'check' : 'circle-dot', bg: done ? '#0F7B5F' : '#fff', nfg: done ? '#fff' : N, bd: done ? '#0F7B5F' : N, fg: N, w: i === 2 ? 700 : 500, sepOp: i === 2 ? 0 : 1 })),
+      showForm: show, isFailed: step === 'failed', isProcessing: step === 'processing', isSuccess: step === 'success',
+      failMsg,
+      methods: M.map(([id, icon, label, sub, short]) => { const on = method === id; return { icon, label, sub, short, on, bd: on ? '2px solid #0B1F3A' : '1px solid #E3E1DA', sh: on ? '0 8px 20px rgba(11,31,58,.08)' : 'none', radio: on ? '6px solid #0B1F3A' : '1.5px solid #8A93A3', mBg: on ? N : 'transparent', mFg: on ? '#fff' : '#4A5568', select: () => this.setState({ method: id }) }; }),
+      isMomo: method === 'momo', isCard: method === 'card', isOther: method === 'other',
+      operators: ops.map(([name, short, chip, chipFg], i) => ({ name, short, chip, chipFg, bd: i === op ? '2px solid #0B1F3A' : '1px solid #E3E1DA', bg: i === op ? '#fff' : '#fff', w: i === op ? 700 : 500, radio: i === op ? '6px solid #0B1F3A' : '1.5px solid #8A93A3', select: () => this.setState({ op: i }) })),
+      opName: ops[op][0],
+      others: O.map(([icon, t, d], i) => ({ icon, t, d, bd: i === other ? '2px solid #0B1F3A' : '1px solid #E3E1DA', radio: i === other ? '6px solid #0B1F3A' : '1.5px solid #8A93A3', select: () => this.setState({ other: i }) })),
+      tierSeg: ['basic', 'premium'].map(id => ({ label: id === 'premium' ? 'Premium' : 'Basic', icon: id === 'premium' ? 'gem' : 'book-open', on: TIER === id, bd: TIER === id ? '#C9A24B' : 'rgba(255,255,255,.18)', bg: TIER === id ? 'rgba(201,162,75,.16)' : 'transparent', select: () => { try { localStorage.setItem('afd-tier', id); } catch (e) {} this.setState({ tier: id }); } })),
+      plan: { tier: TN, course: 'Abonnement ' + TN + ' ' + SP.name + ' · tout le catalogue', name: SP.name, unitPrice: full(SP.total), period: 'Accès du ' + fd(startD) + ' au ' + until, gross: full(gross), total: full(total), hasSaving: gross > total, saving: '− ' + full(gross - total), promoName: [PRC.promo ? PRC.promo.name + ' (−' + PRC.off + ' %)' : '', SP.disc ? 'Remise ' + SP.name + ' (−' + SP.disc + ' %)' : ''].filter(Boolean).join(' + '),
+      planSeg: PLS.map(x => ({ label: x.name, off: x.disc ? '−' + x.disc + ' %' : ' ', on: x.m === SP.m, bd: x.m === SP.m ? '#C9A24B' : 'rgba(255,255,255,.18)', bg: x.m === SP.m ? 'rgba(201,162,75,.16)' : 'transparent', select: () => { try { localStorage.setItem('afd-plan', String(x.m)); } catch (e) {} this.setState({ selM: x.m }); } })), until },
+      modeSeg: [[false, 'Démarrer aujourd\u2019hui', 'Du ' + fd(today) + ' au ' + fd(addM(today, SP.m))], [true, 'Prolonger mon abonnement en cours', 'Actif jusqu\u2019au ' + fd(curEnd) + ' → prolongé au ' + fd(addM(curEnd, SP.m))]].map(([k, label, sub]) => ({ label, sub, bd: renew === k ? '#C9A24B' : 'rgba(255,255,255,.18)', bg: renew === k ? 'rgba(201,162,75,.12)' : 'transparent', radio: renew === k ? '6px solid #C9A24B' : '1.5px solid rgba(255,255,255,.5)', select: () => this.setState({ renew: k }) })),
+      recapIncl: ['Tous les cours du catalogue pendant ' + SP.name, 'Évaluations et certificats inclus', 'Accès verrouillé le ' + until + ' à 00h00 si aucun mois n\u2019est ajouté'],
+      methodLabel: method === 'momo' ? ops[op][0] : method === 'card' ? 'Visa •••• 9113' : O[other][1],
+      pay: () => { setStep('processing'); },
+      simSuccess: () => setStep('success'), simFail: () => setStep('failed'), retry: () => setStep('form'),
+      bigSpinner: this.sp(88, '#0F7B5F', '#E3E1DA'), bigSpinner2: this.sp(80, '#0F7B5F', '#E3E1DA'),
+      smallSpinner: this.sp(17, '#0B1F3A', '#E3E1DA'),
+    };
+  }
+}
+</script>
+</body>
+</html>

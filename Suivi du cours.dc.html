@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Suivi du cours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button{font-family:Inter,system-ui,sans-serif;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:20px;padding:80px">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;flex-wrap:wrap">
+  <span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">8a</span><span style="font-weight:600">Suivi d'un cours</span><span style="color:#4A5568">— ouvert depuis « Mes formations ». Changer de cours :</span>
+  <div style="display:inline-flex;padding:3px;background:#fff;border:1px solid #E3E1DA;border-radius:8px;flex-wrap:wrap">
+    <sc-for list="{{ switcher }}" as="s" hint-placeholder-count="5"><button onClick="{{ s.select }}" style="height:32px;padding:0 12px;border-radius:6px;border:0;background:{{ s.bg }};color:{{ s.fg }};font-size:13px;font-weight:600">{{ s.label }}</button></sc-for>
+  </div>
+</div>
+
+<div style="display:flex;gap:80px;align-items:flex-start">
+<!-- ============ DESKTOP ============ -->
+<div id="8a" data-screen-label="Suivi du cours" style="width:1440px;min-height:1000px;background:#F7F5F0;display:flex;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);flex:none">
+  <aside style="width:264px;flex:none;background:#fff;border-right:1px solid #E3E1DA;display:flex;flex-direction:column;padding:28px 20px">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 8px"><div style="width:36px;height:36px;border-radius:8px;background:#0B1F3A;display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px;color:#fff">A</div><span style="font-family:'Plus Jakarta Sans';font-size:18px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span></div>
+    <nav style="display:flex;flex-direction:column;gap:4px;margin-top:40px"><sc-for list="{{ nav }}" as="n" hint-placeholder-count="7"><a href="{{ n.href }}" style="height:46px;padding:0 14px;border-radius:8px;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:{{ n.w }};background:{{ n.bg }};color:{{ n.fg }}"><i class="icon-{{ n.icon }}" style="font-size:19px"></i>{{ n.label }}</a></sc-for></nav>
+  </aside>
+
+  <main style="flex:1;min-width:0;padding:28px 40px 40px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#4A5568"><a href="Espace Apprenant.dc.html#2a" style="display:flex;align-items:center;gap:6px"><i class="icon-arrow-left" style="font-size:16px"></i>Mes formations</a><i class="icon-chevron-right" style="font-size:14px"></i><span style="color:#0B1F3A;font-weight:600">{{ c.title }}</span></div>
+
+    <!-- Hero -->
+    <section style="background:#0B1F3A;color:#fff;border-radius:14px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 340px;position:relative">
+      <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.09) 0 1px,transparent 1px 26px),repeating-linear-gradient(-45deg,rgba(201,162,75,.09) 0 1px,transparent 1px 26px);-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 90%);mask-image:linear-gradient(90deg,transparent 30%,#000 90%)"></div>
+      <div style="position:relative;padding:32px 36px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="height:28px;padding:0 12px;border-radius:999px;background:{{ c.stBg }};color:{{ c.stFg }};font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px"><i class="icon-{{ c.stIcon }}" style="font-size:14px"></i>{{ c.status }}</span>
+          <span style="height:28px;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.25);font-size:12px;font-weight:600;display:flex;align-items:center">{{ c.theme }} · {{ c.level }}</span>
+          <span style="height:28px;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.25);font-size:12px;font-weight:600;display:flex;align-items:center">Support v{{ c.version }}</span>
+          <span style="height:28px;padding:0 12px;border-radius:999px;background:{{ c.accBg }};color:{{ c.accFg }};font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px"><i class="icon-{{ c.accIcon }}" style="font-size:14px"></i>{{ c.access }}</span>
+        </div>
+        <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:34px;font-weight:700;line-height:1.15;letter-spacing:-.02em;max-width:620px">{{ c.title }}</h1>
+        <div style="display:flex;align-items:center;gap:10px"><image-slot id="suivi-exp-{{ c.id }}" shape="circle" placeholder="" style="width:32px;height:32px;background:#1E3A66;flex:none"></image-slot><span style="font-size:15px;color:rgba(255,255,255,.85)">{{ c.expert }} · {{ c.expRole }}</span></div>
+        <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap">
+          <a href="{{ c.ctaHref }}" style="height:52px;padding:0 22px;border-radius:10px;background:{{ c.ctaBg }};color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;gap:10px"><i class="icon-{{ c.ctaIcon }}" style="font-size:18px"></i>{{ c.cta }}</a>
+          <a href="{{ c.cta2Href }}" style="height:52px;padding:0 20px;border-radius:10px;border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;gap:10px"><i class="icon-{{ c.cta2Icon }}" style="font-size:18px"></i>{{ c.cta2 }}</a>
+        </div>
+      </div>
+      <div style="position:relative;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border-left:1px solid rgba(255,255,255,.1)">
+        <div style="width:160px;height:160px;border-radius:50%;background:conic-gradient(#2BB488 0 {{ c.progress }}%,rgba(255,255,255,.12) {{ c.progress }}% 100%);display:grid;place-items:center">
+          <div style="width:136px;height:136px;border-radius:50%;background:#0B1F3A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px"><span style="font-family:'Plus Jakarta Sans';font-size:40px;font-weight:700;font-variant-numeric:tabular-nums">{{ c.progress }} %</span><span style="font-size:13px;color:rgba(255,255,255,.72)">lecture</span></div>
+        </div>
+        <span style="font-size:14px;color:rgba(255,255,255,.8);font-variant-numeric:tabular-nums">{{ c.read }} / {{ c.pages }} pages lues</span>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+      <sc-for list="{{ c.stats }}" as="s" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;color:#4A5568">{{ s.l }}</span><i class="icon-{{ s.i }}" style="font-size:18px;color:#0B1F3A"></i></div>
+          <span style="font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700;font-variant-numeric:tabular-nums">{{ s.v }}</span>
+          <span style="font-size:13px;color:#4A5568">{{ s.n }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start">
+      <!-- Chapters -->
+      <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden">
+        <div style="padding:18px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #E3E1DA"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:17px">Progression par chapitre</span><span style="font-size:13px;color:#4A5568;font-variant-numeric:tabular-nums">{{ c.chDone }} / {{ c.chTotal }} terminés</span></div>
+        <sc-for list="{{ c.chapters }}" as="ch" hint-placeholder-count="8">
+          <a href="Suivi de cours et Evaluation.dc.html#3a" style="display:grid;grid-template-columns:28px minmax(0,1fr) 140px 64px 20px;gap:14px;align-items:center;padding:14px 22px;border-bottom:1px solid #E3E1DA;background:{{ ch.rowBg }}" style-hover="background:#FBFAF7">
+            <span style="width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:{{ ch.dotBg }};color:{{ ch.dotFg }};border:1.5px solid {{ ch.dotBd }}"><i class="icon-{{ ch.icon }}" style="font-size:14px"></i></span>
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ch.n }}. {{ ch.t }}</span><span style="font-size:12px;color:#4A5568">{{ ch.meta }}</span></div>
+            <div style="height:6px;border-radius:999px;background:#E6EFEC"><div style="height:100%;width:{{ ch.p }}%;border-radius:999px;background:#0F7B5F"></div></div>
+            <span style="font-size:13px;font-weight:700;text-align:right;color:{{ ch.pc }};font-variant-numeric:tabular-nums">{{ ch.p }} %</span>
+            <i class="icon-chevron-right" style="font-size:16px;color:#4A5568"></i>
+          </a>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <!-- Parcours -->
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:4px">
+          <span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:17px;margin-bottom:12px">Mon parcours de certification</span>
+          <sc-for list="{{ c.journey }}" as="j" hint-placeholder-count="4">
+            <div style="display:flex;gap:14px">
+              <div style="display:flex;flex-direction:column;align-items:center"><span style="width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;background:{{ j.bg }};color:{{ j.fg }};border:1.5px solid {{ j.bd }}"><i class="icon-{{ j.icon }}" style="font-size:15px"></i></span><span style="width:2px;flex:1;min-height:18px;background:{{ j.line }}"></span></div>
+              <div style="display:flex;flex-direction:column;gap:2px;padding-bottom:16px"><span style="font-size:14px;font-weight:600;color:{{ j.tc }}">{{ j.t }}</span><span style="font-size:13px;color:#4A5568">{{ j.d }}</span></div>
+            </div>
+          </sc-for>
+        </div>
+        <!-- Evaluation -->
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:17px">Évaluation</span><span style="font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:{{ c.evBg }};color:{{ c.evFg }}">{{ c.evStatus }}</span></div>
+          <div style="display:flex;gap:18px;font-size:13px;color:#4A5568"><span><b style="color:#0B1F3A;font-variant-numeric:tabular-nums">{{ c.questions }}</b> questions</span><span>seuil <b style="color:#0B1F3A">80 %</b></span><span><b style="color:#0B1F3A;font-variant-numeric:tabular-nums">{{ c.attemptsLeft }}</b> tentative(s) restante(s)</span></div>
+          <sc-if value="{{ c.hasAttempts }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;border-top:1px solid #E3E1DA">
+              <sc-for list="{{ c.attempts }}" as="a" hint-placeholder-count="2">
+                <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #E3E1DA">
+                  <span style="font-size:13px;color:#4A5568;width:84px">Tentative {{ a.n }}</span>
+                  <div style="flex:1;height:6px;border-radius:999px;background:#EEF1F5;position:relative"><div style="height:100%;width:{{ a.s }}%;border-radius:999px;background:{{ a.color }}"></div><span style="position:absolute;left:80%;top:-3px;bottom:-3px;width:2px;background:#C9A24B"></span></div>
+                  <span style="font-size:13px;font-weight:700;color:{{ a.color }};width:40px;text-align:right;font-variant-numeric:tabular-nums">{{ a.s }} %</span>
+                  <span style="font-size:12px;color:#4A5568;width:64px;text-align:right">{{ a.d }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <span style="font-size:14px;color:#4A5568;line-height:1.55">{{ c.evNote }}</span>
+        </div>
+        <!-- Certificate -->
+        <sc-if value="{{ c.certified }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#0B1F3A;color:#fff;border-radius:12px;padding:22px;display:flex;gap:16px;align-items:center">
+            <span style="width:48px;height:48px;border-radius:50%;background:#C9A24B;color:#0B1F3A;display:grid;place-items:center;flex:none"><i class="icon-award" style="font-size:24px"></i></span>
+            <div style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:15px">Certificat délivré</span><span style="font-size:13px;color:rgba(255,255,255,.72);font-variant-numeric:tabular-nums">N° {{ c.certId }}</span></div>
+            <a href="Certificats.dc.html#5d" style="height:44px;padding:0 14px;border-radius:8px;background:#C9A24B;color:#0B1F3A;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px"><i class="icon-download" style="font-size:16px"></i>PDF</a>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ============ MOBILE ============ -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">8b</span><span style="font-weight:600">Suivi du cours · Mobile 390</span></div>
+<div id="8b" data-screen-label="Suivi du cours mobile" style="width:390px;height:844px;background:#F7F5F0;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.22);border:8px solid #0B1F3A;display:flex;flex-direction:column">
+  <div style="height:44px;flex:none;background:#0B1F3A;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <div style="flex:1;overflow:auto;display:flex;flex-direction:column">
+    <div style="background:#0B1F3A;color:#fff;padding:6px 18px 22px;display:flex;flex-direction:column;gap:14px">
+      <a href="Espace Apprenant.dc.html#2c" aria-label="Retour" style="width:44px;height:44px;display:grid;place-items:center;margin-left:-12px;color:#fff"><i class="icon-arrow-left" style="font-size:21px"></i></a>
+      <span style="align-self:flex-start;height:26px;padding:0 10px;border-radius:999px;background:{{ c.stBg }};color:{{ c.stFg }};font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px"><i class="icon-{{ c.stIcon }}" style="font-size:13px"></i>{{ c.status }}</span>
+      <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700;line-height:1.2">{{ c.title }}</h1>
+      <span style="font-size:14px;color:rgba(255,255,255,.8)">{{ c.expert }}</span>
+      <div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,.72)">{{ c.read }} / {{ c.pages }} pages</span><b style="color:#7FD6B8;font-variant-numeric:tabular-nums">{{ c.progress }} %</b></div><div style="height:6px;border-radius:999px;background:rgba(255,255,255,.14)"><div style="height:100%;width:{{ c.progress }}%;border-radius:999px;background:#2BB488"></div></div></div>
+      <a href="{{ c.ctaHref }}" style="height:50px;border-radius:10px;background:{{ c.ctaBg }};color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px"><i class="icon-{{ c.ctaIcon }}" style="font-size:18px"></i>{{ c.cta }}</a>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 18px 0">
+      <sc-for list="{{ c.stats }}" as="s" hint-placeholder-count="4"><div style="background:#fff;border:1px solid #E3E1DA;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;color:#4A5568">{{ s.l }}</span><span style="font-family:'Plus Jakarta Sans';font-size:18px;font-weight:700;font-variant-numeric:tabular-nums">{{ s.v }}</span></div></sc-for>
+    </div>
+    <div style="padding:20px 18px 24px;display:flex;flex-direction:column;gap:10px">
+      <span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:17px">Chapitres</span>
+      <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden">
+        <sc-for list="{{ c.chapters }}" as="ch" hint-placeholder-count="8">
+          <a href="#" style="min-height:56px;display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #E3E1DA">
+            <span style="width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center;background:{{ ch.dotBg }};color:{{ ch.dotFg }};border:1.5px solid {{ ch.dotBd }}"><i class="icon-{{ ch.icon }}" style="font-size:13px"></i></span>
+            <span style="flex:1;font-size:14px;font-weight:600;line-height:1.35">{{ ch.n }}. {{ ch.t }}</span>
+            <span style="font-size:12px;font-weight:700;color:{{ ch.pc }};font-variant-numeric:tabular-nums">{{ ch.p }} %</span>
+          </a>
+        </sc-for>
+      </div>
+      <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;margin-top:6px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700;font-size:15px">Évaluation</span><span style="font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:{{ c.evBg }};color:{{ c.evFg }}">{{ c.evStatus }}</span></div>
+        <span style="font-size:14px;color:#4A5568;line-height:1.5">{{ c.evNote }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { id: (() => { try { return new URLSearchParams(window.location.search).get('c') || 'fin'; } catch (e) { return 'fin'; } })() };
+  renderVals() {
+    const N = '#0B1F3A';
+    const C = {
+      fin: { title: 'Finance pour non-financiers', short: 'Finance', theme: 'Finance', level: 'Fondamental', version: '2.1', expert: 'Jean-Marc Kouassi, CFA', expRole: 'Directeur financier', pages: 48, read: 31, questions: 20, state: 'active', time: '3 h 12', last: 'Hier, 21h40', started: '04 sept. 2026', attempts: [],
+        ch: [['Pourquoi la finance concerne tous les cadres', 4], ['Le bilan', 6], ['Le compte de résultat', 6], ['Trésorerie et BFR', 6], ['Soldes intermédiaires de gestion', 5], ['Les ratios de pilotage', 3], ['Construire et défendre un budget', 7], ['Évaluer un investissement', 7], ['Synthèse et auto-diagnostic', 4]] },
+      lead: { title: 'Leadership et management d\u2019équipe', short: 'Leadership', theme: 'Leadership', level: 'Intermédiaire', version: '3.0', expert: 'Dr Aïssatou Ndiaye', expRole: 'Ancienne DRH groupe bancaire', pages: 64, read: 64, questions: 25, state: 'done', time: '6 h 40', last: '02 août 2026', started: '12 juil. 2026', certId: 'AFR-C-2026-0802-2210', attempts: [[72, '26/07'], [88, '02/08']],
+        ch: [['Le rôle du manager', 8], ['Fixer un cap', 8], ['Déléguer avec justesse', 8], ['Motiver sans manipuler', 8], ['Conduire les entretiens', 8], ['Gérer les tensions', 8], ['Manager à distance', 8], ['Plan de développement', 8]] },
+      agile: { title: 'Gestion de projet agile', short: 'Agile', theme: 'Gestion de projet', level: 'Intermédiaire', version: '1.4', expert: 'Serge Ahouansou', expRole: 'Directeur PMO, Cotonou', pages: 56, read: 56, questions: 20, state: 'eval', time: '5 h 05', last: 'Il y a 3 jours', started: '28 août 2026', attempts: [],
+        ch: [['Pourquoi l\u2019agilité', 6], ['Scrum en pratique', 8], ['Kanban et flux', 7], ['Rôles et rituels', 7], ['Estimer et prioriser', 7], ['Gouvernance hybride', 7], ['Mesurer la valeur', 7], ['Passer à l\u2019échelle', 7]] },
+      neg: { title: 'Négociation stratégique', short: 'Négociation', theme: 'Négociation', level: 'Expert', version: '2.0', expert: 'Mariam Traoré', expRole: 'Négociatrice internationale', pages: 52, read: 52, questions: 20, state: 'done', time: '4 h 50', last: '18 sept. 2026', started: '01 sept. 2026', certId: 'AFR-C-2026-0918-4471', attempts: [[92, '18/09']],
+        ch: [['Préparer', 7], ['Cartographier les acteurs', 6], ['Ouvrir la négociation', 7], ['Concessions et contreparties', 8], ['Négocier en contexte multiculturel', 8], ['Sortir d\u2019une impasse', 8], ['Conclure et formaliser', 8]] },
+      dig: { title: 'Transformation digitale des organisations', short: 'Digital', theme: 'Digital', level: 'Intermédiaire', version: '1.2', expert: 'Olivier Mensah', expRole: 'Ex-CTO fintech', pages: 60, read: 13, questions: 25, state: 'active', time: '1 h 05', last: 'Il y a 6 jours', started: '19 sept. 2026', attempts: [],
+        ch: [['Comprendre la rupture digitale', 7], ['Diagnostiquer sa maturité', 8], ['Construire la feuille de route', 8], ['Données et décision', 8], ['Embarquer les équipes', 8], ['Choisir ses partenaires', 7], ['Piloter la transformation', 7], ['Études de cas africaines', 7]] },
+    };
+    const id = C[this.state.id] ? this.state.id : 'fin';
+    const d = C[id];
+    let acc = 0; let doneCount = 0;
+    const chapters = d.ch.map(([t, np], i) => {
+      const start = acc; acc += np;
+      const readIn = Math.max(0, Math.min(np, d.read - start));
+      const p = Math.round(readIn / np * 100);
+      const done = p === 100, cur = p > 0 && p < 100, next = !done && !cur && d.read === start;
+      if (done) doneCount++;
+      return { n: i + 1, t, p, meta: 'p. ' + (start + 1) + '–' + acc + (done ? ' · terminé' : cur ? ' · en cours' : ''),
+        icon: done ? 'check' : (cur || next) ? 'circle-dot' : 'circle', dotBg: done ? '#0F7B5F' : '#fff', dotFg: done ? '#fff' : (cur || next) ? N : '#8A93A3', dotBd: done ? '#0F7B5F' : (cur || next) ? N : '#E3E1DA',
+        pc: done ? '#0F7B5F' : cur ? N : '#8A93A3', rowBg: (cur || next) ? '#FBFAF7' : '#fff' };
+    });
+    const progress = Math.round(d.read / d.pages * 100);
+    const st = {
+      active: { status: 'En cours', stIcon: 'book-open', stBg: '#fff', stFg: N, cta: 'Reprendre p. ' + (d.read + 1), ctaIcon: 'book-open', ctaBg: '#fff', ctaHref: 'Suivi de cours et Evaluation.dc.html#3a', cta2: 'Fiche du cours', cta2Icon: 'info', cta2Href: 'Espace Apprenant.dc.html#2b',
+        evStatus: 'Verrouillée', evBg: '#EEF1F5', evFg: '#4A5568', evNote: 'L\u2019évaluation se débloque quand vous avez lu les ' + d.pages + ' pages. Encore ' + (d.pages - d.read) + ' pages.' },
+      eval: { status: 'Évaluation à passer', stIcon: 'clipboard-check', stBg: '#C9A24B', stFg: N, cta: 'Passer l\u2019évaluation', ctaIcon: 'clipboard-check', ctaBg: '#C9A24B', ctaHref: 'Suivi de cours et Evaluation.dc.html#3c', cta2: 'Relire le cours', cta2Icon: 'book-open', cta2Href: 'Suivi de cours et Evaluation.dc.html#3a',
+        evStatus: 'Disponible', evBg: '#FBF1DD', evFg: '#7A5000', evNote: 'Lecture terminée. Vous pouvez passer l\u2019évaluation dès maintenant ; le certificat est délivré après cet examen final.' },
+      done: { status: 'Certifié', stIcon: 'award', stBg: '#C9A24B', stFg: N, cta: 'Demander mon certificat', ctaIcon: 'download', ctaBg: '#C9A24B', ctaHref: 'Certificats.dc.html#5d', cta2: 'Réactiver l\u2019accès', cta2Icon: 'lock-open', cta2Href: 'Paiements et Recus.dc.html#6a',
+        evStatus: 'Réussie', evBg: '#E6EFEC', evFg: '#0B5C47', evNote: 'Évaluation validée. Le support reste consultable pendant toute la durée de votre abonnement.' },
+    }[d.state];
+    const best = d.attempts.length ? Math.max(...d.attempts.map(a => a[0])) : null;
+    const stats = [
+      { l: 'Temps de lecture', v: d.time, n: 'depuis le ' + d.started, i: 'clock' },
+      { l: 'Dernière lecture', v: d.last, n: 'p. ' + d.read + ' atteinte', i: 'history' },
+      { l: 'Chapitres terminés', v: doneCount + ' / ' + d.ch.length, n: progress + ' % du support', i: 'layers' },
+      { l: 'Meilleur score', v: best ? best + ' %' : '—', n: best ? 'seuil 80 % atteint' : 'aucune tentative', i: 'target' },
+    ];
+    const g = (on) => on ? { bg: '#0F7B5F', fg: '#fff', bd: '#0F7B5F', tc: N } : null;
+    const cur = { bg: '#fff', fg: N, bd: N, tc: N }, off = { bg: '#fff', fg: '#8A93A3', bd: '#E3E1DA', tc: '#4A5568' };
+    const stepsState = d.state === 'active' ? [g(1), cur, off, off] : d.state === 'eval' ? [g(1), g(1), cur, off] : [g(1), g(1), g(1), { bg: '#C9A24B', fg: N, bd: '#C9A24B', tc: N }];
+    const jDef = [
+      ['user-check', 'Inscription au cours', 'Le ' + d.started],
+      ['book-open', 'Lecture du support', d.read + ' / ' + d.pages + ' pages'],
+      ['clipboard-check', 'Évaluation (≥ 80 %)', d.state === 'done' ? 'Réussie · ' + best + ' %' : d.state === 'eval' ? 'Disponible maintenant' : 'Après la lecture complète'],
+      ['award', 'Certificat', d.state === 'done' ? 'Délivré le ' + d.last : 'Généré automatiquement'],
+    ];
+    const journey = jDef.map(([icon, t, dd], i) => Object.assign({ icon: stepsState[i].bg === '#0F7B5F' ? 'check' : icon, t, d: dd, line: i === 3 ? 'transparent' : (stepsState[i].bg === '#0F7B5F' ? '#0F7B5F' : '#E3E1DA') }, stepsState[i]));
+    const ACC = { fin: ['Accès jusqu\u2019au 1 oct. 2026 · J-4', '#FBF1DD', '#7A5000', 'timer'], dig: ['Accès jusqu\u2019au 5 oct. 2026 · J-8', '#E6EFEC', '#0B5C47', 'calendar-check'], agile: ['Accès jusqu\u2019au 10 nov. 2026 · J-44', '#E6EFEC', '#0B5C47', 'calendar-check'], neg: ['Accès expiré le 18 sept. 2026', '#F3F2EE', '#4A5568', 'lock'], lead: ['Accès expiré le 2 sept. 2026', '#F3F2EE', '#4A5568', 'lock'] }[id];
+    const c = Object.assign({ id }, d, st, { access: ACC[0], accBg: ACC[1], accFg: ACC[2], accIcon: ACC[3],
+      progress, chapters, stats, journey, chDone: doneCount, chTotal: d.ch.length,
+      certified: d.state === 'done',
+      attempts: d.attempts.map(([s, dd], i) => ({ n: i + 1, s, d: dd, color: s >= 80 ? '#0F7B5F' : '#C0392B' })),
+      hasAttempts: d.attempts.length > 0,
+      attemptsLeft: 3 - d.attempts.length,
+    });
+    const hrefs = ['Espace Apprenant.dc.html#2a', 'Espace Apprenant.dc.html#2a', 'Catalogue.dc.html', 'Evaluations.dc.html', 'Certificats.dc.html', 'Paiements et Recus.dc.html', 'Profil.dc.html'];
+    return {
+      c,
+      nav: [['layout-dashboard', 'Tableau de bord'], ['book-open', 'Mes formations'], ['library', 'Catalogue'], ['clipboard-check', 'Évaluations'], ['award', 'Certificats'], ['calendar-clock', 'Abonnement & reçus'], ['user-round', 'Profil']].map(([icon, label], i) => ({ icon, label, href: hrefs[i], bg: i === 1 ? N : 'transparent', fg: i === 1 ? '#fff' : '#4A5568', w: i === 1 ? 600 : 500 })),
+      switcher: Object.keys(C).map(k => ({ label: C[k].short, bg: k === id ? N : 'transparent', fg: k === id ? '#fff' : '#4A5568', select: () => this.setState({ id: k }) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

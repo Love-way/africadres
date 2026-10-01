@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Suivi de cours & évaluation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<script src="./profile-data.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button{font-family:Inter,system-ui,sans-serif;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:96px;padding:80px">
+
+<!-- ================= LECTEUR ================= -->
+<div style="display:flex;gap:80px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;flex-wrap:wrap"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">3a</span><span style="font-weight:600">Suivi du cours · Lecteur PDF sécurisé · Desktop</span><span style="color:#4A5568">— naviguez avec les flèches, allez p. 48 pour voir le CTA d'évaluation</span></div>
+<div id="3a" data-screen-label="Lecteur PDF" style="width:1440px;height:960px;background:#132C52;display:flex;flex-direction:column;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.25);user-select:none">
+  <!-- Top bar -->
+  <div style="height:64px;flex:none;background:#0B1F3A;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;padding:0 20px;color:#fff;gap:20px">
+    <div style="display:flex;align-items:center;gap:14px;min-width:0">
+      <a href="Espace Apprenant.dc.html" aria-label="Quitter le lecteur" style="width:44px;height:44px;border-radius:8px;display:grid;place-items:center;color:#fff" style-hover="background:#1E3A66;color:#fff"><i class="icon-arrow-left" style="font-size:20px"></i></a>
+      <button onClick="{{ toggleToc }}" aria-label="Sommaire" style="width:44px;height:44px;border-radius:8px;border:0;background:{{ tocBtnBg }};color:#fff;display:grid;place-items:center"><i class="icon-panel-left" style="font-size:20px"></i></button>
+      <div style="display:flex;flex-direction:column;min-width:0"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:15px">Finance pour non-financiers</span><span style="font-size:13px;color:rgba(255,255,255,.72)">{{ curChapterLabel }}</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <button onClick="{{ prev }}" aria-label="Page précédente" style="width:44px;height:44px;border-radius:8px;border:0;background:transparent;color:#fff;display:grid;place-items:center" style-hover="background:#1E3A66"><i class="icon-chevron-left" style="font-size:20px"></i></button>
+      <div style="height:40px;padding:0 14px;border-radius:8px;background:#132C52;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;gap:6px;font-size:14px;font-variant-numeric:tabular-nums"><b>{{ page }}</b><span style="color:rgba(255,255,255,.6)">/ 48</span></div>
+      <button onClick="{{ next }}" aria-label="Page suivante" style="width:44px;height:44px;border-radius:8px;border:0;background:transparent;color:#fff;display:grid;place-items:center" style-hover="background:#1E3A66"><i class="icon-chevron-right" style="font-size:20px"></i></button>
+      <span style="width:1px;height:24px;background:rgba(255,255,255,.14);margin:0 8px"></span>
+      <button aria-label="Zoom arrière" style="width:44px;height:44px;border-radius:8px;border:0;background:transparent;color:#fff;display:grid;place-items:center"><i class="icon-zoom-out" style="font-size:19px"></i></button>
+      <span style="font-size:13px;color:rgba(255,255,255,.72);font-variant-numeric:tabular-nums;width:44px;text-align:center">100 %</span>
+      <button aria-label="Zoom avant" style="width:44px;height:44px;border-radius:8px;border:0;background:transparent;color:#fff;display:grid;place-items:center"><i class="icon-zoom-in" style="font-size:19px"></i></button>
+      <button aria-label="Plein écran" style="width:44px;height:44px;border-radius:8px;border:0;background:transparent;color:#fff;display:grid;place-items:center"><i class="icon-maximize" style="font-size:19px"></i></button>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.72)">
+      <span style="display:flex;gap:6px;align-items:center;height:32px;padding:0 12px;border-radius:999px;border:1px solid rgba(201,162,75,.4);color:#C9A24B"><i class="icon-shield-check" style="font-size:15px"></i>Lecture protégée</span>
+      <span style="display:flex;gap:6px;align-items:center"><i class="icon-cloud-check" style="font-size:15px;color:#7FD6B8"></i>Progression enregistrée</span>
+    </div>
+  </div>
+
+  <div style="flex:1;display:flex;min-height:0">
+    <!-- TOC -->
+    <sc-if value="{{ tocOpen }}" hint-placeholder-val="{{ true }}">
+      <aside style="width:300px;flex:none;background:#0B1F3A;border-right:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;color:#fff">
+        <div style="padding:20px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)">
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,.72)">Progression du cours</span><b style="color:#7FD6B8;font-variant-numeric:tabular-nums">{{ pct }} %</b></div>
+          <div style="height:6px;border-radius:999px;background:rgba(255,255,255,.12)"><div style="height:100%;width:{{ pct }}%;border-radius:999px;background:#2BB488"></div></div>
+        </div>
+        <div style="padding:10px 10px;display:flex;flex-direction:column;gap:2px;overflow:auto">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);padding:10px 10px 6px">Sommaire</span>
+          <sc-for list="{{ toc }}" as="t" hint-placeholder-count="9">
+            <button onClick="{{ t.go }}" style="min-height:44px;padding:8px 10px;border-radius:8px;border:0;background:{{ t.bg }};color:#fff;display:flex;align-items:center;gap:10px;text-align:left" style-hover="background:#1E3A66">
+              <i class="icon-{{ t.icon }}" style="font-size:16px;color:{{ t.ic }};flex:none"></i>
+              <span style="flex:1;font-size:14px;line-height:1.35;font-weight:{{ t.weight }};color:{{ t.fg }}">{{ t.n }}. {{ t.title }}</span>
+              <span style="font-size:12px;color:rgba(255,255,255,.6);font-variant-numeric:tabular-nums">{{ t.start }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="margin-top:auto;padding:16px 20px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:10px;align-items:center;font-size:13px;color:rgba(255,255,255,.72)"><i class="icon-clipboard-check" style="font-size:17px;color:#C9A24B"></i>Évaluation débloquée à la dernière page</div>
+      </aside>
+    </sc-if>
+
+    <!-- Page -->
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;padding:28px 0 0;gap:0;position:relative">
+      <div style="width:620px;flex:1;background:#fff;border-radius:3px 3px 0 0;box-shadow:0 20px 60px rgba(0,0,0,.35);position:relative;overflow:hidden;padding:56px 64px;display:flex;flex-direction:column;gap:18px;color:#0B1F3A">
+        <div style="position:absolute;inset:-40px;display:grid;grid-template-columns:repeat(2,1fr);gap:120px 40px;transform:rotate(-24deg);pointer-events:none;align-content:center">
+          <sc-for list="{{ wm }}" as="w" hint-placeholder-count="10"><span style="font-size:13px;color:rgba(11,31,58,.07);white-space:nowrap;font-weight:600;letter-spacing:.02em">{{ me.full }} · {{ me.email }} · 27/09/2026</span></sc-for>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:#4A5568;letter-spacing:.04em"><span>AFRICADRES · Finance pour non-financiers · v2.1</span><span style="font-variant-numeric:tabular-nums">{{ page }}</span></div>
+        <span style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#A8802F;margin-top:12px">{{ pageKicker }}</span>
+        <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;line-height:1.2;letter-spacing:-.01em">{{ pageTitle }}</h2>
+        <p style="margin:0;font-size:15px;line-height:1.75;color:#2D3748;text-wrap:pretty">Un budget n'est pas une prévision : c'est un engagement. Il traduit en chiffres les choix d'une équipe pour l'exercice à venir et devient l'outil de dialogue entre le terrain et la direction. Le cadre qui le défend doit pouvoir expliquer chaque ligne en une phrase.</p>
+        <p style="margin:0;font-size:15px;line-height:1.75;color:#2D3748;text-wrap:pretty">La méthode « base zéro » impose de justifier toutes les dépenses, sans reconduire automatiquement celles de l'an passé. Plus exigeante, elle révèle les coûts devenus inutiles.</p>
+        <div style="border:1px solid #E3E1DA;border-radius:6px;overflow:hidden;font-size:13px">
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr;background:#F7F5F0;font-weight:600;padding:10px 14px"><span>Poste (en M FCFA)</span><span style="text-align:right">N-1</span><span style="text-align:right">Budget N</span></div>
+          <sc-for list="{{ budgetRows }}" as="r" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:10px 14px;border-top:1px solid #E3E1DA;font-variant-numeric:tabular-nums"><span>{{ r.a }}</span><span style="text-align:right">{{ r.b }}</span><span style="text-align:right;font-weight:600">{{ r.c }}</span></div></sc-for>
+        </div>
+        <div style="padding:14px 16px;border-radius:6px;background:#F6F1E4;font-size:14px;line-height:1.6;display:flex;gap:10px"><i class="icon-lightbulb" style="font-size:18px;color:#A8802F;flex:none;margin-top:2px"></i><span><b>À retenir.</b> Présentez toujours un budget avec son hypothèse principale : « +12 % de chiffre d'affaires si le nouveau distributeur est signé en mars ».</span></div>
+      </div>
+      <!-- bottom bar -->
+      <div style="width:100%;flex:none;background:#0B1F3A;border-top:1px solid rgba(255,255,255,.08);padding:14px 24px;display:flex;align-items:center;gap:20px;color:#fff">
+        <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.72)"><span>Page {{ page }} sur 48</span><span style="font-variant-numeric:tabular-nums">{{ pagesLeft }}</span></div>
+          <div style="height:6px;border-radius:999px;background:rgba(255,255,255,.12)"><div style="height:100%;width:{{ pct }}%;border-radius:999px;background:#2BB488"></div></div>
+        </div>
+        <sc-if value="{{ isLast }}" hint-placeholder-val="{{ false }}">
+          <a href="#3c" style="height:48px;padding:0 20px;border-radius:8px;background:#C9A24B;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px" style-hover="background:#D8B45F;color:#0B1F3A"><i class="icon-clipboard-check" style="font-size:18px"></i>Passer l'évaluation</a>
+        </sc-if>
+        <sc-if value="{{ notLast }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ next }}" style="height:48px;padding:0 20px;border-radius:8px;border:0;background:#fff;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px">Page suivante<i class="icon-arrow-right" style="font-size:17px"></i></button>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- LECTEUR MOBILE -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">3b</span><span style="font-weight:600">Lecteur · Mobile 390</span></div>
+<div id="3b" data-screen-label="Lecteur mobile" style="width:390px;height:844px;background:#132C52;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.25);border:8px solid #0B1F3A;display:flex;flex-direction:column;user-select:none">
+  <div style="height:44px;flex:none;background:#0B1F3A;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <div style="height:56px;flex:none;background:#0B1F3A;color:#fff;display:flex;align-items:center;gap:4px;padding:0 6px">
+    <a href="#" aria-label="Retour" style="width:44px;height:44px;display:grid;place-items:center;color:#fff"><i class="icon-arrow-left" style="font-size:21px"></i></a>
+    <div style="flex:1;display:flex;flex-direction:column;min-width:0"><span style="font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Finance pour non-financiers</span><span style="font-size:12px;color:rgba(255,255,255,.72)">{{ curChapterShort }}</span></div>
+    <button aria-label="Sommaire" style="width:44px;height:44px;border:0;background:transparent;color:#fff;display:grid;place-items:center"><i class="icon-list" style="font-size:21px"></i></button>
+  </div>
+  <div style="height:4px;flex:none;background:rgba(255,255,255,.12)"><div style="height:100%;width:{{ pct }}%;background:#2BB488"></div></div>
+  <div style="flex:1;padding:14px 12px 0;display:flex;flex-direction:column;min-height:0">
+    <div style="flex:1;background:#fff;border-radius:3px 3px 0 0;position:relative;overflow:hidden;padding:28px 24px;display:flex;flex-direction:column;gap:12px">
+      <div style="position:absolute;inset:-40px;display:grid;grid-template-columns:1fr;gap:90px;transform:rotate(-24deg);pointer-events:none;align-content:center;justify-items:center">
+        <sc-for list="{{ wmMobile }}" as="w" hint-placeholder-count="6"><span style="font-size:11px;color:rgba(11,31,58,.07);white-space:nowrap;font-weight:600">{{ me.full }} · {{ me.email }}</span></sc-for>
+      </div>
+      <span style="font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#A8802F">{{ pageKicker }}</span>
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:21px;font-weight:700;line-height:1.25">{{ pageTitle }}</h2>
+      <p style="margin:0;font-size:16px;line-height:1.7;color:#2D3748">Un budget n'est pas une prévision : c'est un engagement. Il traduit en chiffres les choix d'une équipe pour l'exercice à venir et devient l'outil de dialogue entre le terrain et la direction.</p>
+      <p style="margin:0;font-size:16px;line-height:1.7;color:#2D3748">La méthode « base zéro » impose de justifier toutes les dépenses, sans reconduire celles de l'an passé.</p>
+      <div style="padding:12px 14px;border-radius:6px;background:#F6F1E4;font-size:15px;line-height:1.55"><b>À retenir.</b> Présentez toujours un budget avec son hypothèse principale.</div>
+    </div>
+  </div>
+  <div style="flex:none;background:#0B1F3A;padding:10px 12px 22px;display:flex;align-items:center;gap:10px;color:#fff">
+    <button onClick="{{ prev }}" aria-label="Précédente" style="width:48px;height:48px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#fff;display:grid;place-items:center"><i class="icon-chevron-left" style="font-size:21px"></i></button>
+    <sc-if value="{{ notLast }}" hint-placeholder-val="{{ true }}"><div style="flex:1;text-align:center;font-size:14px;font-variant-numeric:tabular-nums"><b>{{ page }}</b> <span style="color:rgba(255,255,255,.6)">/ 48</span></div></sc-if>
+    <sc-if value="{{ isLast }}" hint-placeholder-val="{{ false }}"><a href="#3c" style="flex:1;height:48px;border-radius:10px;background:#C9A24B;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px">Passer l'évaluation</a></sc-if>
+    <button onClick="{{ next }}" aria-label="Suivante" style="width:48px;height:48px;border-radius:10px;border:0;background:#fff;color:#0B1F3A;display:grid;place-items:center"><i class="icon-chevron-right" style="font-size:21px"></i></button>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ================= EVALUATION INTRO ================= -->
+<div style="display:flex;gap:80px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">3c</span><span style="font-weight:600">Évaluation · Introduction</span></div>
+<div id="3c" data-screen-label="Évaluation intro" style="width:1440px;height:900px;background:#F7F5F0;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);display:flex;flex-direction:column">
+  <div style="height:72px;flex:none;background:#fff;border-bottom:1px solid #E3E1DA;display:flex;align-items:center;justify-content:space-between;padding:0 40px">
+    <div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:8px;background:#0B1F3A;display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:19px;color:#fff">A</div><span style="font-family:'Plus Jakarta Sans';font-size:17px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b>CADRES</span></div>
+    <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600"><i class="icon-x" style="font-size:18px"></i>Revenir au cours</a>
+  </div>
+  <div style="flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:80px;max-width:1200px;width:100%;margin:0 auto;padding:72px 40px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:999px;background:#E6EFEC;color:#0B5C47;font-size:13px;font-weight:600"><i class="icon-check-circle-2" style="font-size:15px"></i>Lecture terminée · 48 / 48 pages</span>
+      <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:44px;font-weight:700;line-height:1.1;letter-spacing:-.02em">Évaluation finale<br>Finance pour non-financiers</h1>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#4A5568;max-width:560px">Validez vos acquis pour obtenir votre certificat. Prenez le temps de lire chaque question : vous pouvez revenir en arrière avant de soumettre.</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px">
+        <sc-for list="{{ evalFacts }}" as="f" hint-placeholder-count="4">
+          <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px">
+            <i class="icon-{{ f.icon }}" style="font-size:20px;color:{{ f.ic }}"></i>
+            <span style="font-family:'Plus Jakarta Sans';font-size:26px;font-weight:700;font-variant-numeric:tabular-nums">{{ f.v }}</span>
+            <span style="font-size:13px;color:#4A5568;line-height:1.4">{{ f.l }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:22px">
+      <span style="font-family:'Plus Jakarta Sans';font-size:19px;font-weight:700">Avant de commencer</span>
+      <sc-for list="{{ rules }}" as="r" hint-placeholder-count="4">
+        <div style="display:flex;gap:14px;align-items:flex-start"><span style="width:36px;height:36px;border-radius:8px;background:#F7F5F0;display:grid;place-items:center;flex:none"><i class="icon-{{ r.icon }}" style="font-size:18px"></i></span><div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:15px">{{ r.t }}</span><span style="font-size:14px;color:#4A5568;line-height:1.55">{{ r.d }}</span></div></div>
+      </sc-for>
+      <label style="display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:10px;background:#F7F5F0;cursor:pointer">
+        <button onClick="{{ toggleTimer }}" aria-label="Activer le minuteur" style="width:44px;height:26px;border-radius:999px;border:0;background:{{ timerBg }};position:relative;flex:none;padding:0"><span style="position:absolute;top:3px;left:{{ timerKnob }};width:20px;height:20px;border-radius:50%;background:#fff;transition:left .16s"></span></button>
+        <span style="font-size:14px;line-height:1.45"><b>Minuteur de 30 min</b> · facultatif, pour vous entraîner en conditions réelles</span>
+      </label>
+      <a href="#3d" style="height:52px;border-radius:10px;background:#0B1F3A;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:16px" style-hover="background:#1E3A66;color:#fff">Commencer l'évaluation<i class="icon-arrow-right" style="font-size:18px"></i></a>
+      <span style="font-size:13px;color:#4A5568;text-align:center">Tentative 1 sur 3 · la tentative est décomptée à la soumission</span>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ================= QUESTION ================= -->
+<div style="display:flex;gap:80px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;flex-wrap:wrap"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">3d</span><span style="font-weight:600">Évaluation · Question par question</span><span style="color:#4A5568">— 3 types (choix unique, multiple, Vrai/Faux). Terminez pour voir la confirmation.</span></div>
+<div id="3d" data-screen-label="Évaluation question" style="width:1440px;height:900px;background:#F7F5F0;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);display:flex;flex-direction:column;position:relative">
+  <div style="height:72px;flex:none;background:#fff;border-bottom:1px solid #E3E1DA;display:flex;align-items:center;justify-content:space-between;padding:0 40px;gap:24px">
+    <div style="display:flex;flex-direction:column"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px">Évaluation · Finance pour non-financiers</span><span style="font-size:13px;color:#4A5568">Tentative 1 sur 3</span></div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <sc-if value="{{ timerOn }}" hint-placeholder-val="{{ true }}"><span style="height:40px;padding:0 14px;border-radius:8px;background:#FBF1DD;color:#7A5000;font-weight:600;font-size:14px;display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums"><i class="icon-timer" style="font-size:17px"></i>21:48 restantes</span></sc-if>
+      <button onClick="{{ openConfirm }}" style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #0B1F3A;background:#fff;color:#0B1F3A;font-weight:600;font-size:14px">Terminer et soumettre</button>
+    </div>
+  </div>
+  <div style="height:6px;flex:none;background:#E3E1DA;display:grid;grid-template-columns:repeat(20,1fr);gap:2px">
+    <sc-for list="{{ qBar }}" as="b" hint-placeholder-count="20"><span style="background:{{ b }}"></span></sc-for>
+  </div>
+  <div style="flex:1;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:56px;max-width:1200px;width:100%;margin:0 auto;padding:56px 40px">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="font-size:14px;font-weight:600;color:#4A5568;font-variant-numeric:tabular-nums">Question {{ qNum }} sur 20</span><span style="height:26px;padding:0 10px;border-radius:999px;background:#EEF1F5;color:#132C52;font-size:12px;font-weight:600;display:flex;align-items:center">{{ q.typeLabel }}</span></div>
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;line-height:1.3;letter-spacing:-.01em;text-wrap:pretty;max-width:760px">{{ q.text }}</h2>
+      <span style="font-size:14px;color:#4A5568;margin-top:-10px">{{ q.hint }}</span>
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:760px">
+        <sc-for list="{{ q.opts }}" as="o" hint-placeholder-count="4">
+          <button onClick="{{ o.pick }}" role="{{ o.role }}" aria-checked="{{ o.sel }}" style="min-height:64px;padding:14px 18px;border-radius:10px;border:1px solid {{ o.bd }};background:{{ o.bg }};display:flex;align-items:center;gap:16px;text-align:left;color:#0B1F3A;box-shadow:{{ o.sh }}" style-hover="border-color:#1E3A66">
+            <span style="width:24px;height:24px;flex:none;border-radius:{{ o.radius }};border:{{ o.markBd }};background:{{ o.markBg }};color:#fff;display:grid;place-items:center"><i class="icon-check" style="font-size:15px;opacity:{{ o.checkOp }}"></i></span>
+            <span style="font-size:13px;font-weight:700;color:#4A5568;width:18px">{{ o.letter }}</span>
+            <span style="font-size:16px;line-height:1.5;font-weight:{{ o.weight }}">{{ o.label }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:space-between;max-width:760px;margin-top:auto">
+        <button onClick="{{ qPrev }}" style="height:48px;padding:0 18px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px"><i class="icon-arrow-left" style="font-size:17px"></i>Précédente</button>
+        <button onClick="{{ qNext }}" style="height:48px;padding:0 22px;border-radius:8px;border:0;background:#0B1F3A;color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px">{{ nextLabel }}<i class="icon-arrow-right" style="font-size:17px"></i></button>
+      </div>
+    </div>
+    <aside style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:16px;align-self:start">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:600;font-size:15px">Vos réponses</span><span style="font-size:13px;color:#4A5568;font-variant-numeric:tabular-nums">{{ answeredCount }} / 20</span></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+        <sc-for list="{{ qGrid }}" as="g" hint-placeholder-count="20"><button onClick="{{ g.go }}" aria-label="Question {{ g.n }}" style="height:44px;border-radius:8px;border:1px solid {{ g.bd }};background:{{ g.bg }};color:{{ g.fg }};font-size:14px;font-weight:600;font-variant-numeric:tabular-nums">{{ g.n }}</button></sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:#4A5568;padding-top:10px;border-top:1px solid #E3E1DA">
+        <span style="display:flex;gap:8px;align-items:center"><span style="width:14px;height:14px;border-radius:4px;background:#0F7B5F"></span>Répondue</span>
+        <span style="display:flex;gap:8px;align-items:center"><span style="width:14px;height:14px;border-radius:4px;border:2px solid #0B1F3A"></span>Question en cours</span>
+        <span style="display:flex;gap:8px;align-items:center"><span style="width:14px;height:14px;border-radius:4px;border:1px solid #E3E1DA;background:#fff"></span>Sans réponse</span>
+      </div>
+      <span style="font-size:13px;color:#4A5568;display:flex;gap:8px;align-items:center"><i class="icon-cloud-check" style="font-size:16px;color:#0F7B5F"></i>Réponses enregistrées automatiquement</span>
+    </aside>
+  </div>
+  <!-- Confirm modal -->
+  <sc-if value="{{ confirmOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;background:rgba(11,31,58,.55);display:grid;place-items:center">
+      <div role="dialog" style="background:#fff;border-radius:12px;width:460px;box-shadow:0 20px 50px rgba(11,31,58,.3);display:flex;flex-direction:column">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between"><span style="width:44px;height:44px;border-radius:10px;background:#F6F1E4;color:#A8802F;display:grid;place-items:center"><i class="icon-send" style="font-size:20px"></i></span><button onClick="{{ closeConfirm }}" aria-label="Fermer" style="width:40px;height:40px;border:0;background:transparent;color:#4A5568;border-radius:8px"><i class="icon-x" style="font-size:20px"></i></button></div>
+        <div style="padding:16px 24px 20px;display:flex;flex-direction:column;gap:8px">
+          <h3 style="margin:0;font-family:'Plus Jakarta Sans';font-size:20px;font-weight:700">Soumettre votre évaluation ?</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#4A5568">Vous avez répondu à <b style="color:#0B1F3A">{{ answeredCount }} questions sur 20</b>. Une fois soumise, cette tentative sera comptabilisée (2 restantes ensuite).</p>
+          <sc-if value="{{ hasUnanswered }}" hint-placeholder-val="{{ true }}"><div style="margin-top:6px;padding:12px 14px;border-radius:8px;background:#FBF1DD;color:#7A5000;font-size:14px;display:flex;gap:10px;align-items:center"><i class="icon-alert-triangle" style="font-size:17px"></i>{{ unansweredMsg }}</div></sc-if>
+        </div>
+        <div style="padding:16px 24px;border-top:1px solid #E3E1DA;display:flex;justify-content:flex-end;gap:10px">
+          <button onClick="{{ closeConfirm }}" style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:14px">Revoir mes réponses</button>
+          <a href="#3f" onClick="{{ closeConfirm }}" style="height:44px;padding:0 16px;border-radius:8px;background:#0B1F3A;color:#fff;font-weight:600;font-size:14px;display:flex;align-items:center">Soumettre</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</div>
+
+<!-- QUESTION MOBILE -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">3e</span><span style="font-weight:600">Question · Mobile 390</span></div>
+<div id="3e" data-screen-label="Évaluation mobile" style="width:390px;height:844px;background:#F7F5F0;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.22);border:8px solid #0B1F3A;display:flex;flex-direction:column">
+  <div style="height:44px;flex:none;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <div style="flex:none;background:#fff;border-bottom:1px solid #E3E1DA;padding:4px 8px 12px;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:6px">
+      <button aria-label="Quitter" style="width:44px;height:44px;border:0;background:transparent;color:#0B1F3A;display:grid;place-items:center"><i class="icon-x" style="font-size:21px"></i></button>
+      <span style="flex:1;font-weight:600;font-size:15px;font-variant-numeric:tabular-nums">Question {{ qNum }} / 20</span>
+      <sc-if value="{{ timerOn }}" hint-placeholder-val="{{ true }}"><span style="height:36px;padding:0 10px;border-radius:8px;background:#FBF1DD;color:#7A5000;font-weight:600;font-size:13px;display:flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums;margin-right:6px"><i class="icon-timer" style="font-size:15px"></i>21:48</span></sc-if>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(20,1fr);gap:2px;padding:0 10px"><sc-for list="{{ qBar }}" as="b" hint-placeholder-count="20"><span style="height:5px;border-radius:2px;background:{{ b }}"></span></sc-for></div>
+  </div>
+  <div style="flex:1;overflow:auto;padding:22px 18px;display:flex;flex-direction:column;gap:16px">
+    <span style="align-self:flex-start;height:26px;padding:0 10px;border-radius:999px;background:#EEF1F5;color:#132C52;font-size:12px;font-weight:600;display:flex;align-items:center">{{ q.typeLabel }}</span>
+    <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:21px;font-weight:700;line-height:1.35">{{ q.text }}</h2>
+    <span style="font-size:14px;color:#4A5568">{{ q.hint }}</span>
+    <sc-for list="{{ q.opts }}" as="o" hint-placeholder-count="4">
+      <button onClick="{{ o.pick }}" style="min-height:56px;padding:12px 14px;border-radius:10px;border:1px solid {{ o.bd }};background:{{ o.bg }};display:flex;align-items:center;gap:12px;text-align:left;color:#0B1F3A;box-shadow:{{ o.sh }}">
+        <span style="width:24px;height:24px;flex:none;border-radius:{{ o.radius }};border:{{ o.markBd }};background:{{ o.markBg }};color:#fff;display:grid;place-items:center"><i class="icon-check" style="font-size:15px;opacity:{{ o.checkOp }}"></i></span>
+        <span style="font-size:16px;line-height:1.45;font-weight:{{ o.weight }}">{{ o.label }}</span>
+      </button>
+    </sc-for>
+  </div>
+  <div style="flex:none;background:#fff;border-top:1px solid #E3E1DA;padding:12px 16px 24px;display:flex;gap:10px">
+    <button onClick="{{ qPrev }}" aria-label="Précédente" style="width:52px;height:52px;border-radius:10px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;display:grid;place-items:center"><i class="icon-arrow-left" style="font-size:20px"></i></button>
+    <button onClick="{{ qNext }}" style="flex:1;height:52px;border-radius:10px;border:0;background:#0B1F3A;color:#fff;font-weight:600;font-size:16px">{{ nextLabel }}</button>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ================= RESULTATS ================= -->
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">3f</span><span style="font-weight:600">Résultats · Réussite (≥ 80 %)</span></div>
+<div id="3f" data-screen-label="Résultat réussite" style="width:900px;height:860px;background:#0B1F3A;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.25);position:relative;color:#fff;display:flex;flex-direction:column;align-items:center;text-align:center;padding:72px 64px 48px">
+  <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.10) 0 1px,transparent 1px 26px),repeating-linear-gradient(-45deg,rgba(201,162,75,.10) 0 1px,transparent 1px 26px);-webkit-mask-image:radial-gradient(circle at 50% 22%,#000 0,transparent 55%);mask-image:radial-gradient(circle at 50% 22%,#000 0,transparent 55%)"></div>
+  <div style="position:relative;width:176px;height:176px;border-radius:50%;background:conic-gradient(#C9A24B 0 88%,rgba(255,255,255,.12) 88% 100%);display:grid;place-items:center">
+    <div style="width:156px;height:156px;border-radius:50%;background:#0B1F3A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px"><span style="font-family:'Plus Jakarta Sans';font-size:48px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em">88 %</span><span style="font-size:13px;color:rgba(255,255,255,.72)">18 / 20 bonnes réponses</span></div>
+  </div>
+  <span style="position:relative;margin-top:32px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#C9A24B">Certification obtenue</span>
+  <h1 style="position:relative;margin:12px 0 0;font-family:'Plus Jakarta Sans';font-size:38px;font-weight:700;line-height:1.15;letter-spacing:-.02em;max-width:620px">Félicitations, {{ me.first }}. Votre excellence est certifiée.</h1>
+  <p style="position:relative;margin:14px 0 0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.8);max-width:560px">Vous avez validé « Finance pour non-financiers » avec un score supérieur au seuil de 80 %. Votre certificat est prêt et vérifiable en ligne.</p>
+  <div style="position:relative;display:flex;gap:12px;margin-top:32px">
+    <a href="Certificats.dc.html#5d" style="height:56px;padding:0 24px;border-radius:10px;background:#C9A24B;color:#0B1F3A;font-weight:600;font-size:16px;display:flex;align-items:center;gap:10px" style-hover="background:#D8B45F;color:#0B1F3A"><i class="icon-download" style="font-size:19px"></i>Demander mon certificat</a>
+    <a href="#" style="height:56px;padding:0 22px;border-radius:10px;border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:600;font-size:16px;display:flex;align-items:center;gap:10px"><i class="icon-linkedin" style="font-size:18px"></i>Ajouter à LinkedIn</a>
+  </div>
+  <div style="position:relative;margin-top:auto;width:100%;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.12);padding-top:24px">
+    <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;color:rgba(255,255,255,.6)">Identifiant</span><span style="font-weight:600;font-variant-numeric:tabular-nums">AFR-C-2026-0927-5120</span></div>
+    <div style="display:flex;flex-direction:column;gap:4px;border-left:1px solid rgba(255,255,255,.12)"><span style="font-size:13px;color:rgba(255,255,255,.6)">Délivré le</span><span style="font-weight:600">27 septembre 2026</span></div>
+    <div style="display:flex;flex-direction:column;gap:4px;border-left:1px solid rgba(255,255,255,.12)"><span style="font-size:13px;color:rgba(255,255,255,.6)">Durée de l'épreuve</span><span style="font-weight:600;font-variant-numeric:tabular-nums">22 min 14 s</span></div>
+  </div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">3g</span><span style="font-weight:600">Résultats · Échec (&lt; 80 %)</span></div>
+<div id="3g" data-screen-label="Résultat échec" style="width:900px;height:860px;background:#F7F5F0;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);display:flex;flex-direction:column;padding:56px 64px 48px;gap:28px">
+  <div style="display:flex;gap:32px;align-items:center">
+    <div style="width:148px;height:148px;border-radius:50%;background:conic-gradient(#C0392B 0 65%,#E3E1DA 65% 100%);display:grid;place-items:center;flex:none;position:relative">
+      <div style="width:128px;height:128px;border-radius:50%;background:#F7F5F0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:'Plus Jakarta Sans';font-size:38px;font-weight:700;font-variant-numeric:tabular-nums">65 %</span><span style="font-size:12px;color:#4A5568">13 / 20</span></div>
+      <span style="position:absolute;inset:0;border-radius:50%;background:conic-gradient(transparent 0 79.5%,#C9A24B 79.5% 80.5%,transparent 80.5%)"></span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#4A5568">Seuil de 80 % non atteint</span>
+      <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:32px;font-weight:700;line-height:1.2;letter-spacing:-.015em">Vous y êtes presque. Encore 3 bonnes réponses.</h1>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#4A5568">Profitez du délai pour revoir les chapitres ciblés ci-dessous. Votre progression de lecture est conservée.</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px"><i class="icon-clock" style="font-size:20px;color:#7A5000"></i><span style="font-family:'Plus Jakarta Sans';font-size:22px;font-weight:700;font-variant-numeric:tabular-nums">47 h 12 min</span><span style="font-size:13px;color:#4A5568">avant la prochaine tentative</span></div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px"><i class="icon-rotate-ccw" style="font-size:20px;color:#0B1F3A"></i><span style="font-family:'Plus Jakarta Sans';font-size:22px;font-weight:700;font-variant-numeric:tabular-nums">2 sur 3</span><span style="font-size:13px;color:#4A5568">tentatives restantes</span></div>
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px"><i class="icon-calendar" style="font-size:20px;color:#0B1F3A"></i><span style="font-family:'Plus Jakarta Sans';font-size:22px;font-weight:700">29 sept. · 14h20</span><span style="font-size:13px;color:#4A5568">nouvelle tentative possible</span></div>
+  </div>
+  <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden">
+    <div style="padding:16px 20px;border-bottom:1px solid #E3E1DA;display:flex;justify-content:space-between"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px">Résultats par chapitre</span><span style="font-size:13px;color:#4A5568">Chapitres à revoir en priorité</span></div>
+    <sc-for list="{{ chapterScores }}" as="c" hint-placeholder-count="5">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) 200px 60px 140px;gap:16px;align-items:center;padding:12px 20px;border-bottom:1px solid #E3E1DA">
+        <span style="font-size:14px;font-weight:500">{{ c.t }}</span>
+        <div style="height:6px;border-radius:999px;background:#EEF1F5"><div style="height:100%;width:{{ c.p }}%;border-radius:999px;background:{{ c.color }}"></div></div>
+        <span style="font-size:13px;font-weight:700;text-align:right;color:{{ c.color }};font-variant-numeric:tabular-nums">{{ c.s }}</span>
+        <sc-if value="{{ c.review }}" hint-placeholder-val="{{ false }}"><a href="#3a" style="font-size:13px;font-weight:600;display:flex;gap:6px;align-items:center;justify-content:flex-end">Revoir p. {{ c.page }}<i class="icon-arrow-up-right" style="font-size:14px"></i></a></sc-if>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;gap:12px;margin-top:auto">
+    <a href="#3a" style="height:52px;padding:0 22px;border-radius:10px;background:#0B1F3A;color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;gap:10px"><i class="icon-book-open" style="font-size:18px"></i>Revoir le cours</a>
+    <button disabled="" style="height:52px;padding:0 22px;border-radius:10px;border:1px solid #E3E1DA;background:#fff;color:#8A93A3;font-weight:600;font-size:15px;display:flex;align-items:center;gap:10px;cursor:not-allowed"><i class="icon-lock" style="font-size:17px"></i>Nouvelle tentative dans 47 h</button>
+    <button style="height:52px;padding:0 18px;border-radius:10px;border:0;background:transparent;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;margin-left:auto"><i class="icon-bell" style="font-size:17px"></i>Me prévenir</button>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const __ME = () => window.AFD_ME ? window.AFD_ME.get() : { first: 'Sènami', last: 'Hounkpatin', full: 'Sènami Hounkpatin', email: 's.hounkpatin@groupe-atlantique.bj', phone: '01 97 45 21 38', ini: 'SH', cert: 'Sènami Hounkpatin', certName: '', certCustom: false };
+class Component extends DCLogic {
+  state = { page: 31, toc: true, timer: true, qi: 6, answers: { 0: [1], 1: [0, 2], 2: [0], 3: [2], 4: [1], 5: [3] }, confirm: false };
+  renderVals() {
+    const ME = __ME();
+    if (!this._meSub && window.AFD_ME) { this._meSub = window.AFD_ME.subscribe(() => this.forceUpdate()); }
+    const { page, toc, timer, qi, answers, confirm } = this.state;
+    const N = '#0B1F3A';
+    const ch = [['Pourquoi la finance concerne tous les cadres', 1], ['Le bilan', 5], ['Le compte de résultat', 11], ['Trésorerie et BFR', 17], ['Soldes intermédiaires de gestion', 23], ['Les ratios de pilotage', 28], ['Construire et défendre un budget', 31], ['Évaluer un investissement', 38], ['Synthèse et auto-diagnostic', 45]];
+    let ci = 0; ch.forEach((c, i) => { if (page >= c[1]) ci = i; });
+    const setPage = p => this.setState({ page: Math.max(1, Math.min(48, p)) });
+    const pct = Math.round(page / 48 * 100);
+    const Q = [
+      { type: 'single', text: 'Quel document présente ce que possède et ce que doit l\u2019entreprise à une date donnée ?', opts: ['Le compte de résultat', 'Le bilan', 'Le tableau de flux de trésorerie', 'Le budget prévisionnel'] },
+      { type: 'multi', text: 'Parmi ces éléments, lesquels figurent à l\u2019actif du bilan ?', opts: ['Les stocks', 'Les dettes fournisseurs', 'Les créances clients', 'Le capital social'] },
+      { type: 'tf', text: 'Une entreprise rentable ne peut pas connaître de difficultés de trésorerie.', opts: ['Vrai', 'Faux'] },
+      { type: 'single', text: 'Le BFR augmente lorsque…', opts: ['les clients paient plus vite', 'les fournisseurs sont payés plus tard', 'les délais de paiement clients s\u2019allongent', 'les stocks diminuent'] },
+      { type: 'single', text: 'L\u2019EBE mesure principalement…', opts: ['la rentabilité financière', 'la performance opérationnelle', 'le niveau d\u2019endettement', 'la valeur de l\u2019entreprise'] },
+      { type: 'tf', text: 'La marge brute se calcule avant les charges de personnel.', opts: ['Vrai', 'Faux'] },
+      { type: 'multi', text: 'Dans une démarche budgétaire « base zéro », quelles pratiques sont attendues du manager ?', opts: ['Justifier chaque dépense prévue', 'Reconduire le budget N-1 majoré de l\u2019inflation', 'Formuler les hypothèses d\u2019activité retenues', 'Supprimer toute dépense d\u2019investissement'] },
+    ];
+    const qd = Q[qi % Q.length];
+    const typeLabel = { single: 'QCM · réponse unique', multi: 'QCM · réponses multiples', tf: 'Vrai / Faux' }[qd.type];
+    const hint = { single: 'Sélectionnez une seule réponse.', multi: 'Sélectionnez toutes les réponses correctes.', tf: 'Indiquez si l\u2019affirmation est vraie ou fausse.' }[qd.type];
+    const sel = answers[qi] || [];
+    const q = {
+      text: qd.text, typeLabel, hint,
+      opts: qd.opts.map((label, i) => {
+        const on = sel.includes(i), multi = qd.type === 'multi';
+        return {
+          label, letter: 'ABCD'[i], sel: on, role: multi ? 'checkbox' : 'radio',
+          bd: on ? N : '#E3E1DA', bg: on ? '#fff' : '#fff', sh: on ? '0 0 0 1px #0B1F3A' : 'none', weight: on ? 600 : 400,
+          radius: multi ? '6px' : '50%', markBd: on ? '0' : '1.5px solid #8A93A3', markBg: on ? N : '#fff', checkOp: on ? (multi ? 1 : 0) : 0,
+          pick: () => this.setState(s => {
+            const cur = s.answers[qi] || [];
+            const nx = multi ? (cur.includes(i) ? cur.filter(x => x !== i) : [...cur, i]) : [i];
+            return { answers: Object.assign({}, s.answers, { [qi]: nx }) };
+          }),
+        };
+      }),
+    };
+    q.opts.forEach(o => { if (o.sel && o.radius === '50%') { o.markBd = '7px solid #0B1F3A'; o.markBg = '#fff'; } });
+    const answered = Object.keys(answers).filter(k => (answers[k] || []).length).length;
+    return {
+      me: ME,
+      page, pct, tocOpen: toc, tocBtnBg: toc ? '#1E3A66' : 'transparent', toggleToc: () => this.setState({ toc: !toc }),
+      prev: () => setPage(page - 1), next: () => setPage(page + 1),
+      isLast: page === 48, notLast: page !== 48,
+      pagesLeft: page === 48 ? 'Lecture terminée' : (48 - page) + ' pages restantes · env. ' + Math.ceil((48 - page) * 6) + ' min',
+      curChapterLabel: 'Chapitre ' + (ci + 1) + ' · ' + ch[ci][0],
+      curChapterShort: 'Chap. ' + (ci + 1) + ' · p. ' + page + ' / 48',
+      pageKicker: 'Chapitre ' + (ci + 1),
+      pageTitle: ch[ci][0],
+      toc: ch.map(([title, start], i) => ({
+        n: i + 1, title, start: 'p. ' + start,
+        icon: i < ci ? 'check-circle-2' : i === ci ? 'circle-dot' : 'circle', ic: i < ci ? '#2BB488' : i === ci ? '#C9A24B' : 'rgba(255,255,255,.4)',
+        bg: i === ci ? '#1E3A66' : 'transparent', fg: i === ci ? '#fff' : 'rgba(255,255,255,.85)', weight: i === ci ? 600 : 400,
+        go: () => setPage(start),
+      })),
+      wm: Array.from({ length: 12 }), wmMobile: Array.from({ length: 7 }),
+      budgetRows: [{ a: 'Personnel', b: '412,0', c: '438,5' }, { a: 'Marketing & communication', b: '96,4', c: '84,0' }, { a: 'Déplacements', b: '38,2', c: '29,5' }, { a: 'Investissements IT', b: '55,0', c: '72,0' }],
+      evalFacts: [
+        { icon: 'list-checks', ic: N, v: '20', l: 'questions' },
+        { icon: 'target', ic: '#0F7B5F', v: '80 %', l: 'seuil pour le certificat' },
+        { icon: 'rotate-ccw', ic: N, v: '3', l: 'tentatives restantes' },
+        { icon: 'timer', ic: '#7A5000', v: '30 min', l: 'minuteur (facultatif)' },
+      ],
+      rules: [
+        { icon: 'layers', t: 'Trois types de questions', d: 'Choix unique, choix multiples et Vrai/Faux. Le type est indiqué sur chaque question.' },
+        { icon: 'save', t: 'Sauvegarde automatique', d: 'Si la connexion coupe, vos réponses sont conservées et vous reprenez là où vous étiez.' },
+        { icon: 'clock', t: 'En cas d\u2019échec', d: 'Une nouvelle tentative est possible après un délai de 48 heures.' },
+        { icon: 'award', t: 'Certificat immédiat', d: 'Dès 80 %, votre certificat est généré et envoyé par e-mail.' },
+      ],
+      timerOn: timer, timerBg: timer ? '#0F7B5F' : '#C9CDD4', timerKnob: timer ? '21px' : '3px', toggleTimer: () => this.setState({ timer: !timer }),
+      qNum: qi + 1, q,
+      qBar: Array.from({ length: 20 }, (_, i) => i === qi ? N : (answers[i] || []).length ? '#0F7B5F' : '#E3E1DA'),
+      qGrid: Array.from({ length: 20 }, (_, i) => {
+        const a = (answers[i] || []).length, cur = i === qi;
+        return { n: i + 1, bg: a && !cur ? '#0F7B5F' : '#fff', fg: a && !cur ? '#fff' : N, bd: cur ? N : a ? '#0F7B5F' : '#E3E1DA', go: () => this.setState({ qi: i }) };
+      }),
+      answeredCount: answered,
+      hasUnanswered: answered < 20, unansweredMsg: (20 - answered) + ' question(s) sans réponse seront comptées comme fausses.',
+      qPrev: () => this.setState({ qi: Math.max(0, qi - 1) }),
+      qNext: () => qi === 19 ? this.setState({ confirm: true }) : this.setState({ qi: qi + 1 }),
+      nextLabel: qi === 19 ? 'Terminer' : 'Question suivante',
+      confirmOpen: confirm, openConfirm: () => this.setState({ confirm: true }), closeConfirm: () => this.setState({ confirm: false }),
+      chapterScores: [
+        { t: 'Le bilan', p: 100, s: '4/4', color: '#0F7B5F', review: false },
+        { t: 'Le compte de résultat', p: 75, s: '3/4', color: '#0F7B5F', review: false },
+        { t: 'Trésorerie et BFR', p: 33, s: '1/3', color: '#C0392B', review: true, page: 17 },
+        { t: 'Ratios de pilotage', p: 67, s: '2/3', color: '#D98E04', review: true, page: 28 },
+        { t: 'Budget et investissement', p: 50, s: '3/6', color: '#C0392B', review: true, page: 31 },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

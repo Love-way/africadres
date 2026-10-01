@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Inscription / connexion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#0B1F3A;text-decoration:underline;text-underline-offset:3px}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button{font-family:Inter,system-ui,sans-serif;cursor:pointer}
+input{font-family:Inter,system-ui,sans-serif}
+button:focus-visible,a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+@keyframes afSpin{to{transform:rotate(360deg)}}
+input:focus{border-color:#0B1F3A !important;box-shadow:0 0 0 3px rgba(30,58,102,.18);outline:none}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:20px;padding:80px">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;flex-wrap:wrap"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">9a</span><span style="font-weight:600">Inscription / connexion · Desktop</span><span style="color:#4A5568">— cliquez « Créer mon compte » avec un champ vide pour voir les erreurs</span></div>
+<div style="display:flex;gap:80px;align-items:flex-start">
+
+<div id="9a" data-screen-label="Inscription" style="width:1440px;min-height:960px;background:#F7F5F0;display:grid;grid-template-columns:600px minmax(0,1fr);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);flex:none">
+  <!-- Left brand panel -->
+  <div style="background:#0B1F3A;color:#fff;position:relative;overflow:hidden;display:flex;flex-direction:column;padding:48px 56px">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.10) 0 1px,transparent 1px 26px),repeating-linear-gradient(-45deg,rgba(201,162,75,.10) 0 1px,transparent 1px 26px);-webkit-mask-image:linear-gradient(180deg,#000 10%,transparent 70%);mask-image:linear-gradient(180deg,#000 10%,transparent 70%)"></div>
+    <a href="Landing Page.dc.html" style="position:relative;display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none">
+      <div style="width:40px;height:40px;border-radius:8px;background:#132C52;border:1px solid rgba(201,162,75,.5);display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:22px;position:relative">A<span style="position:absolute;right:7px;top:8px;width:14px;height:14px;border-top:2px solid #C9A24B;border-radius:50% 50% 0 0;transform:rotate(-35deg)"></span></div>
+      <div style="display:flex;flex-direction:column;line-height:1.05"><span style="font-family:'Plus Jakarta Sans';font-size:20px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span><span style="font-size:10px;color:#C9A24B;letter-spacing:.16em;text-transform:uppercase">Learn to improve</span></div>
+    </a>
+    <div style="position:relative;margin-top:88px;display:flex;flex-direction:column;gap:20px">
+      <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:40px;font-weight:700;line-height:1.12;letter-spacing:-.02em">Progressez à votre rythme, faites certifier votre excellence.</h1>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.8)">Deux minutes pour créer votre compte. Choisissez ensuite votre formule et accédez immédiatement au catalogue.</p>
+    </div>
+    <div style="position:relative;margin-top:40px;display:flex;flex-direction:column;gap:16px">
+      <sc-for list="{{ perks }}" as="p" hint-placeholder-count="3"><div style="display:flex;gap:14px;align-items:center;font-size:16px"><span style="width:36px;height:36px;border-radius:8px;background:#132C52;border:1px solid rgba(201,162,75,.4);color:#C9A24B;display:grid;place-items:center;flex:none"><i class="icon-{{ p.icon }}" style="font-size:17px"></i></span>{{ p.text }}</div></sc-for>
+    </div>
+    <div style="position:relative;margin-top:auto;background:#132C52;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
+      <p style="margin:0;font-size:15px;line-height:1.6">« Inscription, paiement MoMo et premier chapitre lu en moins de dix minutes. Tout est clair. »</p>
+      <div style="display:flex;gap:12px;align-items:center"><image-slot id="signup-testi" shape="circle" placeholder="" style="width:40px;height:40px;background:#1E3A66"></image-slot><div style="display:flex;flex-direction:column"><span style="font-weight:600;font-size:14px">Nadège Houngbédji</span><span style="font-size:13px;color:rgba(255,255,255,.72)">Responsable RH · Cotonou</span></div></div>
+    </div>
+  </div>
+
+  <!-- Right form -->
+  <div style="display:flex;flex-direction:column;padding:32px 56px;position:relative">
+    <div style="display:flex;justify-content:flex-end;gap:16px;align-items:center;font-size:14px">
+      
+    </div>
+    <div style="max-width:480px;width:100%;margin:48px auto 0;display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;padding:4px;background:#fff;border:1px solid #E3E1DA;border-radius:10px" role="tablist">
+        <sc-for list="{{ modeTabs }}" as="t" hint-placeholder-count="2"><button role="tab" onClick="{{ t.select }}" style="flex:1;height:44px;border-radius:7px;border:0;background:{{ t.bg }};color:{{ t.fg }};font-weight:600;font-size:15px">{{ t.label }}</button></sc-for>
+      </div>
+
+      <sc-if value="{{ isSocial }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="display:flex;gap:14px;align-items:center;padding:14px 16px;border:1px solid #E3E1DA;border-radius:10px;background:#fff">
+            <span style="width:44px;height:44px;border-radius:50%;background:#EEF1F5;color:#0B1F3A;display:grid;place-items:center;font-weight:700;font-size:15px;flex:none">{{ sx.ini }}</span>
+            <div style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:13px;color:#4A5568">Connecté avec {{ sx.via }}</span><span style="font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ sx.display }} · {{ sx.email }}</span></div>
+            <button onClick="{{ sx.cancel }}" style="height:40px;padding:0 12px;border:1px solid #E3E1DA;border-radius:8px;background:#fff;font-size:13px;font-weight:600;color:#0B1F3A">Changer de compte</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#0F7B5F">Dernière étape · obligatoire</span><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:26px;font-weight:700;letter-spacing:-.01em">Confirmez le nom de vos certificats</h2><p style="margin:0;font-size:15px;line-height:1.6;color:#4A5568">Le nom de votre compte {{ sx.via }} peut être un pseudonyme ou une forme abrégée. Indiquez votre identité complète, telle qu'elle figure sur votre pièce d'identité.</p></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Prénom(s) officiel(s)</span><input value="{{ f.prenom }}" onChange="{{ on.prenom }}" style="height:48px;padding:0 14px;border:1px solid {{ err.prenomBd }};border-radius:8px;font-size:16px;color:#0B1F3A;background:#fff"></label>
+            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Nom officiel</span><input value="{{ f.nom }}" onChange="{{ on.nom }}" style="height:48px;padding:0 14px;border:1px solid {{ err.nomBd }};border-radius:8px;font-size:16px;color:#0B1F3A;background:#fff"></label>
+          </div>
+          <sc-if value="{{ sx.changed }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#0B5C47;display:flex;gap:6px;align-items:center;margin-top:-8px"><i class="icon-info" style="font-size:14px"></i>Différent de votre nom {{ sx.via }} (« {{ sx.display }} ») : c'est ce nom officiel qui sera utilisé.</span></sc-if>
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Téléphone</span><div style="display:flex;gap:8px"><span style="height:48px;padding:0 12px;border:1px solid #E3E1DA;border-radius:8px;display:flex;align-items:center;gap:8px;font-size:15px;background:#fff"><span style="font-size:11px;font-weight:700;padding:2px 5px;border-radius:3px;background:#F7F5F0;border:1px solid #E3E1DA">BJ</span>+229</span><input value="{{ f.tel }}" onChange="{{ on.tel }}" placeholder="01 97 45 21 38" style="flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid {{ err.telBd }};border-radius:8px;font-size:16px;color:#0B1F3A;font-variant-numeric:tabular-nums;background:#fff"></div><span style="font-size:13px;color:{{ telHintColor }}">{{ sx.telHint }}</span></div>
+          <div style="border:1px solid {{ idBd }};border-radius:10px;background:#FBF9F4;padding:16px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:8px;background:#fff;border:1px dashed #C9A24B"><span style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7A5A1E">Aperçu sur le certificat</span><span style="font-family:'Plus Jakarta Sans';font-size:20px;font-weight:700;color:{{ idPreviewColor }}">{{ idPreview }}</span></div>
+            <div style="display:flex;gap:12px;align-items:flex-start"><button onClick="{{ toggleId }}" role="checkbox" aria-checked="{{ f.idOk }}" aria-label="Confirmer mon identité" style="flex:none;width:24px;height:24px;border-radius:5px;border:{{ idBoxBd }};background:{{ idBoxBg }};display:grid;place-items:center;color:#fff;padding:0;margin-top:1px"><i class="icon-check" style="font-size:15px;opacity:{{ idBoxOp }}"></i></button><span style="font-size:14px;line-height:1.55;color:#4A5568">Je certifie sur l'honneur que <b style="color:#0B1F3A">{{ idPreviewInline }}</b> est mon identité réelle et que je suivrai moi-même les formations. Ce nom sera verrouillé après la délivrance de mon premier certificat.</span></div>
+            <sc-if value="{{ err.idOk }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#C0392B;display:flex;gap:6px;align-items:center"><i class="icon-alert-circle" style="font-size:14px"></i>Confirmez que ce nom est bien le vôtre pour terminer l'inscription.</span></sc-if>
+          </div>
+          <button onClick="{{ sx.submit }}" style="height:52px;border-radius:10px;border:0;background:#0B1F3A;color:#fff;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px">{{ spinner }}{{ sx.label }}</button>
+          <span style="font-size:13px;color:#4A5568;text-align:center">Vous ne pourrez accéder à votre espace qu'après cette confirmation.</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isSignup }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:6px"><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;letter-spacing:-.01em">Créer votre compte</h2><span style="font-size:15px;color:#4A5568">Ces informations figureront sur vos certificats et vos reçus.</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <button onClick="{{ signGoogle }}" style="height:52px;border-radius:10px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px" style-hover="border-color:#0B1F3A"><span style="width:24px;height:24px;border-radius:50%;border:1px solid #E3E1DA;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:700;font-size:15px;color:#4285F4">G</span>{{ suG }}</button>
+          <button onClick="{{ signLinkedin }}" style="height:52px;border-radius:10px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px" style-hover="border-color:#0B1F3A"><span style="width:24px;height:24px;border-radius:5px;background:#0A66C2;color:#fff;display:grid;place-items:center"><i class="icon-linkedin" style="font-size:14px"></i></span>{{ suL }}</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:#4A5568"><span style="flex:1;height:1px;background:#E3E1DA"></span><span style="white-space:nowrap;flex:none">{{ suOr }}</span><span style="flex:1;height:1px;background:#E3E1DA"></span></div>
+        <sc-if value="{{ socialBusy }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:10px;background:#EEF1F5;font-size:14px;color:#132C52"><i class="icon-loader-2" style="font-size:17px"></i>{{ socialMsg }}</div></sc-if>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Prénom</span><input value="{{ f.prenom }}" onChange="{{ on.prenom }}" placeholder="Sènami" style="height:48px;padding:0 14px;border:1px solid {{ err.prenomBd }};border-radius:8px;font-size:16px;color:#0B1F3A;background:#fff"><sc-if value="{{ err.prenom }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#C0392B;display:flex;gap:6px;align-items:center"><i class="icon-alert-circle" style="font-size:14px"></i>Indiquez votre prénom.</span></sc-if></label>
+          <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Nom</span><input value="{{ f.nom }}" onChange="{{ on.nom }}" placeholder="Hounkpatin" style="height:48px;padding:0 14px;border:1px solid {{ err.nomBd }};border-radius:8px;font-size:16px;color:#0B1F3A;background:#fff"><sc-if value="{{ err.nom }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#C0392B;display:flex;gap:6px;align-items:center"><i class="icon-alert-circle" style="font-size:14px"></i>Indiquez votre nom.</span></sc-if></label>
+        </div>
+        <div style="border:1px solid {{ idBd }};border-radius:10px;background:#FBF9F4;padding:16px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:10px;align-items:flex-start"><i class="icon-badge-check" style="font-size:18px;color:#A8802F;flex:none;margin-top:1px"></i><span style="font-size:14px;line-height:1.55;color:#0B1F3A"><b>Ce nom figurera sur tous vos certificats.</b> Saisissez-le tel qu'il apparaît sur votre pièce d'identité : il ne pourra plus être modifié après la délivrance d'un premier certificat.</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:8px;background:#fff;border:1px dashed #C9A24B"><span style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7A5A1E">Aperçu sur le certificat</span><span style="font-family:'Plus Jakarta Sans';font-size:20px;font-weight:700;letter-spacing:-.01em;color:{{ idPreviewColor }}">{{ idPreview }}</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <button onClick="{{ toggleId }}" role="checkbox" aria-checked="{{ f.idOk }}" aria-label="Confirmer mon identité" style="flex:none;width:24px;height:24px;border-radius:5px;border:{{ idBoxBd }};background:{{ idBoxBg }};display:grid;place-items:center;color:#fff;padding:0;margin-top:1px"><i class="icon-check" style="font-size:15px;opacity:{{ idBoxOp }}"></i></button>
+            <span style="font-size:14px;line-height:1.55;color:#4A5568">Je certifie sur l'honneur que <b style="color:#0B1F3A">{{ idPreviewInline }}</b> est mon identité réelle et que je suivrai moi-même les formations. Un certificat établi au nom d'un tiers pourra être révoqué.</span>
+          </div>
+          <sc-if value="{{ err.idOk }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#C0392B;display:flex;gap:6px;align-items:center"><i class="icon-alert-circle" style="font-size:14px"></i>Confirmez que ce nom est bien le vôtre.</span></sc-if>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Adresse e-mail professionnelle</span><input value="{{ f.email }}" onChange="{{ on.email }}" placeholder="prenom.nom@entreprise.bj" style="height:48px;padding:0 14px;border:1px solid {{ err.emailBd }};border-radius:8px;font-size:16px;color:#0B1F3A;background:#fff"><sc-if value="{{ err.email }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#C0392B;display:flex;gap:6px;align-items:center"><i class="icon-alert-circle" style="font-size:14px"></i>Saisissez une adresse valide (ex. nom@entreprise.bj).</span></sc-if></label>
+        <div style="display:flex;flex-direction:column;gap:8px;position:relative">
+          <span style="font-size:14px;font-weight:600">Téléphone</span>
+          <div style="display:flex;gap:8px">
+            <button onClick="{{ toggleCountry }}" aria-haspopup="listbox" style="height:48px;padding:0 12px;border:1px solid #E3E1DA;border-radius:8px;display:flex;align-items:center;gap:8px;font-size:15px;min-width:124px;justify-content:space-between;background:#fff;color:#0B1F3A"><span style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;font-weight:700;padding:2px 5px;border-radius:3px;background:#F7F5F0;border:1px solid #E3E1DA">{{ country.iso }}</span>{{ country.dial }}</span><i class="icon-chevron-down" style="font-size:16px;color:#4A5568"></i></button>
+            <input value="{{ f.tel }}" onChange="{{ on.tel }}" placeholder="{{ country.ph }}" style="flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid {{ err.telBd }};border-radius:8px;font-size:16px;color:#0B1F3A;font-variant-numeric:tabular-nums;background:#fff">
+          </div>
+          <span style="font-size:13px;color:{{ telHintColor }}">{{ telHint }}</span>
+          <sc-if value="{{ countryOpen }}" hint-placeholder-val="{{ false }}">
+            <div role="listbox" style="position:absolute;top:84px;left:0;width:300px;background:#fff;border:1px solid #E3E1DA;border-radius:10px;box-shadow:0 16px 40px rgba(11,31,58,.16);z-index:5;padding:6px;display:flex;flex-direction:column">
+              <div style="height:40px;margin:2px 2px 6px;padding:0 10px;border:1px solid #E3E1DA;border-radius:6px;display:flex;align-items:center;gap:8px;color:#4A5568;font-size:14px"><i class="icon-search" style="font-size:15px"></i>Rechercher un pays</div>
+              <sc-for list="{{ countries }}" as="c" hint-placeholder-count="8"><button onClick="{{ c.select }}" style="min-height:40px;padding:0 10px;border:0;border-radius:6px;background:{{ c.bg }};display:flex;align-items:center;gap:10px;color:#0B1F3A;font-size:14px;text-align:left"><span style="font-size:11px;font-weight:700;padding:2px 5px;border-radius:3px;background:#F7F5F0;border:1px solid #E3E1DA;width:30px;text-align:center">{{ c.iso }}</span><span style="flex:1">{{ c.name }}</span><span style="color:#4A5568;font-variant-numeric:tabular-nums">{{ c.dial }}</span></button></sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+          <button onClick="{{ toggleConsent }}" role="checkbox" aria-checked="{{ f.consent }}" style="flex:none;width:24px;height:24px;border-radius:5px;border:{{ consentBd }};background:{{ consentBg }};display:grid;place-items:center;color:#fff;padding:0;margin-top:1px"><i class="icon-check" style="font-size:15px;opacity:{{ consentOp }}"></i></button>
+          <span style="font-size:14px;line-height:1.55;color:#4A5568">J'accepte que mes données (nom, prénom, e-mail, téléphone) soient traitées pour la gestion de mon compte et la délivrance de mes certificats, conformément à la <a href="#">politique de confidentialité</a> et aux <a href="#">conditions générales</a>.</span>
+        </label>
+        <sc-if value="{{ err.consent }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#C0392B;display:flex;gap:6px;align-items:center;margin-top:-14px"><i class="icon-alert-circle" style="font-size:14px"></i>Votre accord est nécessaire pour créer le compte.</span></sc-if>
+        <button onClick="{{ submit }}" style="height:52px;border-radius:10px;border:0;background:#0B1F3A;color:#fff;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px">{{ spinner }}{{ submitLabel }}</button>
+        <span style="font-size:13px;color:#4A5568;text-align:center;display:flex;gap:8px;align-items:center;justify-content:center"><i class="icon-lock" style="font-size:14px"></i>Vos données ne sont jamais revendues.</span>
+      </sc-if>
+
+      <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:6px"><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;letter-spacing:-.01em">Bon retour parmi nous</h2><span style="font-size:15px;color:#4A5568">Connectez-vous pour reprendre votre formation.</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <button onClick="{{ logGoogle }}" style="height:52px;border-radius:10px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px" style-hover="border-color:#0B1F3A"><span style="width:24px;height:24px;border-radius:50%;border:1px solid #E3E1DA;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:700;font-size:15px;color:#4285F4">G</span>{{ liG }}</button>
+          <button onClick="{{ logLinkedin }}" style="height:52px;border-radius:10px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px" style-hover="border-color:#0B1F3A"><span style="width:24px;height:24px;border-radius:5px;background:#0A66C2;color:#fff;display:grid;place-items:center"><i class="icon-linkedin" style="font-size:14px"></i></span>{{ liL }}</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:#4A5568"><span style="flex:1;height:1px;background:#E3E1DA"></span><span style="white-space:nowrap;flex:none">{{ liOr }}</span><span style="flex:1;height:1px;background:#E3E1DA"></span></div>
+        <sc-if value="{{ socialBusy }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:10px;background:#EEF1F5;font-size:14px;color:#132C52"><i class="icon-loader-2" style="font-size:17px"></i>{{ socialMsg }}</div></sc-if>
+        
+        <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">E-mail ou téléphone</span><input value="s.hounkpatin@groupe-atlantique.bj" style="height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A;background:#fff"></label>
+        <label style="display:flex;flex-direction:column;gap:8px"><span style="display:flex;justify-content:space-between;font-size:14px;font-weight:600">Mot de passe<a href="#" style="font-weight:500;font-size:13px">Mot de passe oublié ?</a></span><input type="password" value="motdepasse" style="height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A;background:#fff"></label>
+        <a href="Espace Apprenant.dc.html" style="height:52px;border-radius:10px;background:#0B1F3A;color:#fff;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;text-decoration:none">Se connecter</a>
+        <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:#4A5568"><span style="flex:1;height:1px;background:#E3E1DA"></span>ou<span style="flex:1;height:1px;background:#E3E1DA"></span></div>
+        <button style="height:52px;border-radius:10px;border:1px solid #0B1F3A;background:#fff;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px"><i class="icon-message-square" style="font-size:18px"></i>Recevoir un code par SMS</button>
+      </sc-if>
+
+      <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+          <span style="width:56px;height:56px;border-radius:50%;background:#E6EFEC;color:#0F7B5F;display:grid;place-items:center"><i class="icon-mail-check" style="font-size:26px"></i></span>
+          <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700;line-height:1.25;width:100%">Compte créé, {{ f.prenomOr }}.</h2>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#4A5568">{{ doneLead }} <b style="color:#0B1F3A">{{ f.emailOr }}</b>. Vous pouvez dès maintenant choisir votre formule.</p>
+          <a href="Tarifs.dc.html" style="height:52px;padding:0 22px;border-radius:10px;background:#C9A24B;color:#0B1F3A;font-weight:600;font-size:16px;display:flex;align-items:center;gap:10px;text-decoration:none;align-self:stretch;justify-content:center">Choisir mon abonnement<i class="icon-arrow-right" style="font-size:18px"></i></a>
+          <button onClick="{{ restart }}" style="height:40px;border:0;background:transparent;color:#0B1F3A;font-weight:600;font-size:14px;padding:0">Modifier mes informations</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">9b</span><span style="font-weight:600">Inscription · Mobile 390</span></div>
+<div id="9b" data-screen-label="Inscription mobile" style="width:390px;height:844px;background:#F7F5F0;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.22);border:8px solid #0B1F3A;display:flex;flex-direction:column">
+  <div style="height:44px;flex:none;background:#0B1F3A;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <div style="background:#0B1F3A;color:#fff;padding:8px 20px 24px;display:flex;flex-direction:column;gap:10px;flex:none">
+    <span style="font-family:'Plus Jakarta Sans';font-size:17px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span>
+    <h1 style="margin:6px 0 0;font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700;line-height:1.2">Créer votre compte</h1>
+    <span style="font-size:14px;color:rgba(255,255,255,.8)">Étape 1 sur 3 · Compte → Formule → Paiement</span>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px"><span style="height:4px;border-radius:2px;background:#C9A24B"></span><span style="height:4px;border-radius:2px;background:rgba(255,255,255,.2)"></span><span style="height:4px;border-radius:2px;background:rgba(255,255,255,.2)"></span></div>
+  </div>
+  <div style="flex:1;overflow:auto;padding:22px 20px;display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button onClick="{{ signGoogle }}" style="height:52px;border-radius:10px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px"><span style="width:24px;height:24px;border-radius:50%;border:1px solid #E3E1DA;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:700;font-size:15px;color:#4285F4">G</span>Continuer avec Google</button>
+      <button onClick="{{ signLinkedin }}" style="height:52px;border-radius:10px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px"><span style="width:24px;height:24px;border-radius:5px;background:#0A66C2;color:#fff;display:grid;place-items:center"><i class="icon-linkedin" style="font-size:14px"></i></span>Continuer avec LinkedIn</button>
+      <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:#4A5568"><span style="flex:1;height:1px;background:#E3E1DA"></span><span style="white-space:nowrap;flex:none">ou avec votre e-mail</span><span style="flex:1;height:1px;background:#E3E1DA"></span></div>
+    </div>
+    <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Prénom</span><input value="Sènami" style="height:52px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A;background:#fff"></label>
+    <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Nom</span><input value="Hounkpatin" style="height:52px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A;background:#fff"></label>
+    <div style="border:1px solid #E3E1DA;border-radius:10px;background:#FBF9F4;padding:14px;display:flex;flex-direction:column;gap:10px"><span style="font-size:14px;line-height:1.5;color:#0B1F3A;display:flex;gap:8px"><i class="icon-badge-check" style="font-size:17px;color:#A8802F;flex:none;margin-top:1px"></i><span><b>Nom sur vos certificats :</b> Sènami Hounkpatin</span></span><span style="display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5;color:#4A5568"><span style="flex:none;width:24px;height:24px;border-radius:5px;background:#0B1F3A;display:grid;place-items:center;color:#fff"><i class="icon-check" style="font-size:15px"></i></span>Je certifie que ce nom est mon identité réelle, tel qu'il figure sur ma pièce d'identité.</span></div>
+    <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">E-mail</span><input value="s.hounkpatin@groupe-atlantique.bj" style="height:52px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A;background:#fff"></label>
+    <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600">Téléphone</span><div style="display:flex;gap:8px"><div style="height:52px;padding:0 10px;border:1px solid #E3E1DA;border-radius:8px;display:flex;align-items:center;gap:6px;font-size:15px;background:#fff"><span style="font-size:11px;font-weight:700;padding:2px 5px;border-radius:3px;background:#F7F5F0;border:1px solid #E3E1DA">BJ</span>+229<i class="icon-chevron-down" style="font-size:15px;color:#4A5568"></i></div><input value="01 97 45 21 38" style="flex:1;min-width:0;height:52px;padding:0 14px;border:1px solid #E3E1DA;border-radius:8px;font-size:16px;color:#0B1F3A;font-variant-numeric:tabular-nums;background:#fff"></div><span style="font-size:13px;color:#4A5568">Utilisé pour le paiement Mobile Money et la sécurité.</span></div>
+    <label style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:24px;height:24px;border-radius:5px;background:#0B1F3A;display:grid;place-items:center;color:#fff;margin-top:1px"><i class="icon-check" style="font-size:15px"></i></span><span style="font-size:14px;line-height:1.55;color:#4A5568">J'accepte le traitement de mes données conformément à la <a href="#">politique de confidentialité</a>.</span></label>
+  </div>
+  <div style="flex:none;padding:12px 20px 24px;background:#fff;border-top:1px solid #E3E1DA;display:flex;flex-direction:column;gap:10px">
+    <a href="Tarifs.dc.html#10b" style="height:52px;border-radius:10px;background:#0B1F3A;color:#fff;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;text-decoration:none">Continuer</a>
+    <span style="font-size:14px;color:#4A5568;text-align:center">Déjà inscrit ? <a href="#" style="font-weight:600">Se connecter</a></span>
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { mode: 'signup', lang: 'FR', f: { prenom: '', nom: '', email: '', tel: '', consent: false, idOk: false }, tried: false, open: false, iso: 'BJ', loading: false, done: false };
+  renderVals() {
+    const N = '#0B1F3A';
+    const social = (via, data) => { this.setState({ busy: via, mode: 'signup' }); setTimeout(() => this.setState(p => ({ busy: null, via, social: data, f: Object.assign({}, p.f, { prenom: data.prenom, nom: data.nom, email: data.email, consent: true, idOk: false }), tried: false })), 900); };
+    const { mode, lang, f, tried, open, iso, loading, done } = this.state;
+    const C = [['BJ', 'Bénin', '+229', '01 97 45 21 38', 10], ['CI', 'Côte d\u2019Ivoire', '+225', '07 58 21 44 90', 10], ['SN', 'Sénégal', '+221', '77 123 45 67', 9], ['TG', 'Togo', '+228', '90 12 34 56', 8], ['BF', 'Burkina Faso', '+226', '70 12 34 56', 8], ['CM', 'Cameroun', '+237', '6 71 23 45 67', 9], ['FR', 'France', '+33', '6 12 34 56 78', 9], ['US', 'États-Unis', '+1', '202 555 0147', 10]];
+    const cur = C.find(c => c[0] === iso);
+    const set = k => e => this.setState({ f: Object.assign({}, f, { [k]: e.target.value }, (k === 'prenom' || k === 'nom') ? { idOk: false } : {}) });
+    const emailOk = /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(f.email);
+    const digits = f.tel.replace(/\D/g, '').length;
+    const telOk = digits === cur[4];
+    const e = { prenom: tried && !f.prenom.trim(), nom: tried && !f.nom.trim(), email: tried && !emailOk, tel: tried && !telOk, consent: tried && !f.consent, idOk: tried && !f.idOk };
+    const bd = b => b ? '#C0392B' : '#E3E1DA';
+    const valid = f.prenom.trim() && f.nom.trim() && emailOk && telOk && f.consent && f.idOk;
+    const fullName = [f.prenom.trim(), f.nom.trim()].filter(Boolean).join(' ');
+    return {
+      perks: [{ icon: 'library', text: '124 formations par des experts reconnus' }, { icon: 'award', text: 'Certificat vérifiable après l\u2019examen final' }, { icon: 'smartphone', text: 'Paiement par MTN MoMo, Moov, carte' }],
+      modeTabs: [['signup', 'Créer un compte'], ['login', 'Se connecter']].map(([id, label]) => ({ label, bg: mode === id ? N : 'transparent', fg: mode === id ? '#fff' : '#4A5568', select: () => this.setState({ mode: id, done: false }) })),
+      isSignup: mode === 'signup' && !done && !this.state.social, isSocial: mode === 'signup' && !done && !!this.state.social, isLogin: mode === 'login', isDone: mode === 'signup' && done,
+      f: Object.assign({}, f, { prenomOr: f.prenom || 'Sènami', emailOr: f.email || 's.hounkpatin@groupe-atlantique.bj' }),
+      on: { prenom: set('prenom'), nom: set('nom'), email: set('email'), tel: set('tel') },
+      err: Object.assign({}, e, { prenomBd: bd(e.prenom), nomBd: bd(e.nom), emailBd: bd(e.email), telBd: bd(e.tel) }),
+      country: { iso: cur[0], dial: cur[2], ph: cur[3] },
+      countryOpen: open, toggleCountry: () => this.setState({ open: !open }),
+      countries: C.map(c => ({ iso: c[0], name: c[1], dial: c[2], bg: c[0] === iso ? '#F7F5F0' : 'transparent', select: () => this.setState({ iso: c[0], open: false }) })),
+      telHint: e.tel ? 'Le numéro doit comporter ' + cur[4] + ' chiffres pour ' + cur[1] + '.' : 'Format : ' + cur[2] + ' ' + cur[3] + ' · utilisé pour Mobile Money et la sécurité.',
+      telHintColor: e.tel ? '#C0392B' : '#4A5568',
+      idPreview: fullName || 'Prénom Nom', idPreviewInline: fullName || 'le nom saisi ci-dessus', idPreviewColor: fullName ? '#0B1F3A' : '#8A93A3',
+      idBd: e.idOk ? '#C0392B' : '#E3DCC8',
+      toggleId: () => this.setState({ f: Object.assign({}, f, { idOk: !f.idOk }) }),
+      idBoxBd: f.idOk ? '0' : (e.idOk ? '1.5px solid #C0392B' : '1.5px solid #8A93A3'), idBoxBg: f.idOk ? N : '#fff', idBoxOp: f.idOk ? 1 : 0,
+      toggleConsent: () => this.setState({ f: Object.assign({}, f, { consent: !f.consent }) }),
+      consentBd: f.consent ? '0' : (e.consent ? '1.5px solid #C0392B' : '1.5px solid #8A93A3'), consentBg: f.consent ? N : '#fff', consentOp: f.consent ? 1 : 0,
+      submitLabel: loading ? 'Création du compte…' : 'Créer mon compte',
+      spinner: loading ? React.createElement('span', { style: { width: 18, height: 18, borderRadius: '50%', border: '2px solid rgba(255,255,255,.3)', borderTopColor: '#fff', animation: 'afSpin .8s linear infinite', display: 'inline-block' } }) : null,
+      submit: () => { if (!valid) return this.setState({ tried: true }); this.setState({ loading: true }); setTimeout(() => { try { window.AFD_ME && window.AFD_ME.set && window.AFD_ME.set({ __adminCorrection: true, first: f.prenom.trim(), last: f.nom.trim(), certName: '', certCustom: false, idConfirmedAt: Date.now() }); } catch (x) {} this.setState({ loading: false, done: true }); }, 1200); },
+      restart: () => this.setState({ done: false, via: null }),
+      suG: 'Google', suL: 'LinkedIn', suOr: 'ou avec votre e-mail', liG: 'Google', liL: 'LinkedIn', liOr: 'ou avec vos identifiants',
+      socialBusy: !!this.state.busy, socialMsg: this.state.busy ? 'Connexion sécurisée à ' + this.state.busy + '…' : '',
+      doneLead: this.state.via ? 'Compte créé avec ' + this.state.via + '. Nom de certificat confirmé : ' + fullName + '. Adresse associée :' : 'Nous avons envoyé un lien de confirmation à',
+      signGoogle: () => social('Google', { prenom: 'Sena', nom: 'H.', display: 'Sena H.', email: 'senami.hounkpatin@gmail.com' }),
+      signLinkedin: () => social('LinkedIn', { prenom: 'Sènami', nom: 'Hounkpatin', display: 'Sènami Hounkpatin', email: 's.hounkpatin@groupe-atlantique.bj' }),
+      sx: this.state.social ? (() => { const so = this.state.social; return { via: this.state.via, display: so.display, email: so.email, ini: so.display.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase(),
+        changed: fullName && fullName !== so.display,
+        telHint: e.tel ? 'Le numéro doit comporter ' + cur[4] + ' chiffres.' : this.state.via + ' ne transmet pas votre numéro : il sert au paiement Mobile Money et à la sécurité.',
+        label: loading ? 'Création du compte…' : 'Confirmer et créer mon compte',
+        cancel: () => this.setState({ social: null, via: null, f: { prenom: '', nom: '', email: '', tel: '', consent: false, idOk: false }, tried: false }),
+        submit: () => { if (!valid) return this.setState({ tried: true }); this.setState({ loading: true }); setTimeout(() => { try { window.AFD_ME && window.AFD_ME.set && window.AFD_ME.set({ __adminCorrection: true, first: f.prenom.trim(), last: f.nom.trim(), email: f.email, certName: '', certCustom: false, idConfirmedAt: Date.now() }); } catch (x) {} this.setState({ loading: false, done: true }); }, 1200); } }; })() : {},
+      logGoogle: () => { this.setState({ busy: 'Google' }); setTimeout(() => { window.location.href = 'Espace Apprenant.dc.html'; }, 900); },
+      logLinkedin: () => { this.setState({ busy: 'LinkedIn' }); setTimeout(() => { window.location.href = 'Espace Apprenant.dc.html'; }, 900); },
+    };
+  }
+}
+</script>
+</body>
+</html>

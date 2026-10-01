@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Tarifs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<script src="./pricing-data.js"></script>
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button{font-family:Inter,system-ui,sans-serif;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:20px;padding:80px">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">10a</span><span style="font-weight:600">Tarifs / abonnements · Desktop</span><span style="color:#4A5568">— changez la devise, sélectionnez une formule</span></div>
+<div style="display:flex;gap:80px;align-items:flex-start">
+
+<div id="10a" data-screen-label="Tarifs" style="width:1440px;background:#F7F5F0;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);flex:none">
+  <!-- header -->
+  <sc-if value="{{ promoOn }}" hint-placeholder-val="{{ false }}"><div style="background:#C9A24B;color:#0B1F3A;display:flex;justify-content:center;align-items:center;gap:10px;padding:10px 20px;font-size:14px;font-weight:600;text-align:center"><i class="icon-badge-percent" style="font-size:17px;flex:none"></i><span>{{ promoBanner }}</span></div></sc-if>
+  <div style="background:#0B1F3A;color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.09) 0 1px,transparent 1px 26px),repeating-linear-gradient(-45deg,rgba(201,162,75,.09) 0 1px,transparent 1px 26px);-webkit-mask-image:radial-gradient(ellipse at 50% 0,#000,transparent 70%);mask-image:radial-gradient(ellipse at 50% 0,#000,transparent 70%)"></div>
+    <nav style="position:relative;max-width:1280px;margin:0 auto;padding:0 40px;height:80px;display:flex;align-items:center;justify-content:space-between">
+      <a href="Landing Page.dc.html" style="display:flex;align-items:center;gap:12px;color:#fff">
+        <div style="width:40px;height:40px;border-radius:8px;background:#132C52;border:1px solid rgba(201,162,75,.5);display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:22px">A</div>
+        <span style="font-family:'Plus Jakarta Sans';font-size:20px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span>
+      </a>
+      <div style="display:flex;gap:36px;font-size:15px;font-weight:500"><a href="Formations.dc.html" style="color:#fff">Formations</a><a href="Experts.dc.html" style="color:#fff">Experts</a><a href="#" style="color:#fff">Certification</a><a href="#" style="color:#C9A24B">Tarifs</a></div>
+      <a href="Inscription.dc.html" style="height:44px;padding:0 16px;display:flex;align-items:center;font-size:15px;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:8px">Se connecter</a>
+    </nav>
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:56px 40px 150px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px">
+      <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#C9A24B">Formules d'abonnement · tout le catalogue</span>
+      <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:48px;font-weight:700;line-height:1.1;letter-spacing:-.02em;max-width:760px">Tous les cours, pour la durée qui vous convient.</h1>
+      <p style="margin:0;font-size:18px;line-height:1.6;color:rgba(255,255,255,.8);max-width:620px">Chaque formule donne accès à l'ensemble des formations, évaluations et certificats. Plus la durée est longue, plus le prix mensuel baisse.</p>
+      
+    </div>
+  </div>
+
+  <!-- tier toggle -->
+  <div style="max-width:1280px;margin:-150px auto 0;padding:0 40px 40px;position:relative;display:flex;justify-content:center">
+    <div role="radiogroup" aria-label="Type d'abonnement" style="display:flex;padding:4px;background:#fff;border:1px solid #E3E1DA;border-radius:12px;box-shadow:0 12px 30px rgba(11,31,58,.12);gap:4px">
+      <sc-for list="{{ tierSeg }}" as="t" hint-placeholder-count="2"><button onClick="{{ t.select }}" role="radio" aria-checked="{{ t.on }}" style="min-width:220px;min-height:56px;padding:8px 18px;border-radius:9px;border:0;background:{{ t.bg }};color:{{ t.fg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px"><span style="font-family:'Plus Jakarta Sans';font-size:17px;font-weight:700;display:flex;gap:8px;align-items:center"><i class="icon-{{ t.icon }}" style="font-size:16px;color:{{ t.ic }}"></i>{{ t.name }}</span><span style="font-size:12px;opacity:.8;font-variant-numeric:tabular-nums">{{ t.sub }}</span></button></sc-for>
+    </div>
+  </div>
+  <!-- plans -->
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;align-items:stretch">
+    <sc-for list="{{ plans }}" as="p" hint-placeholder-count="4">
+      <div style="background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};border-radius:14px;padding:30px 24px 24px;display:flex;flex-direction:column;gap:18px;position:relative;box-shadow:{{ p.sh }}">
+        <sc-if value="{{ p.hasBadge }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-14px;left:24px;height:28px;padding:0 12px;border-radius:999px;background:{{ p.badgeBg }};color:{{ p.badgeFg }};font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:6px"><i class="icon-{{ p.badgeIcon }}" style="font-size:13px"></i>{{ p.badge }}</span></sc-if>
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Plus Jakarta Sans';font-size:22px;font-weight:700">{{ p.name }}</span><span style="font-size:14px;color:{{ p.sub }}">{{ p.desc }}</span></div>
+        <div style="display:flex;flex-direction:column;gap:4px;min-height:96px">
+          <sc-if value="{{ p.hasStrike }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;color:{{ p.sub }};text-decoration:line-through;font-variant-numeric:tabular-nums">{{ p.gross }}</span></sc-if>
+          <span style="font-family:'Plus Jakarta Sans';font-size:34px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1">{{ p.total }}</span>
+          <span style="font-size:14px;color:{{ p.sub }};font-variant-numeric:tabular-nums">{{ p.perMonth }}</span>
+        </div>
+        <sc-if value="{{ p.hasSave }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;height:28px;padding:0 10px;border-radius:999px;background:{{ p.saveBg }};color:{{ p.saveFg }};font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums"><i class="icon-tag" style="font-size:13px"></i>{{ p.save }}</span></sc-if>
+        <div style="display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid {{ p.line }}">
+          <sc-for list="{{ p.features }}" as="f" hint-placeholder-count="4"><span style="display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45"><i class="icon-check" style="font-size:16px;color:{{ p.check }};margin-top:1px;flex:none"></i>{{ f }}</span></sc-for>
+        </div>
+        <a href="Paiement.dc.html" onClick="{{ p.choose }}" style="margin-top:auto;height:52px;border-radius:10px;background:{{ p.ctaBg }};color:{{ p.ctaFg }};border:{{ p.ctaBd }};display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:15px">Choisir {{ p.name }}<i class="icon-arrow-right" style="font-size:17px"></i></a>
+      </div>
+    </sc-for>
+  </div>
+  <div style="max-width:1280px;margin:22px auto 0;padding:0 40px;display:flex;justify-content:center;gap:24px;font-size:14px;color:#4A5568;flex-wrap:wrap">
+    <span style="display:flex;gap:6px;align-items:center"><i class="icon-layers" style="font-size:15px"></i>Toutes les formules donnent accès à tout le catalogue</span>
+    <span style="display:flex;gap:6px;align-items:center"><i class="icon-calendar-plus" style="font-size:15px"></i>Une nouvelle formule s'ajoute à la fin de l'accès en cours</span>
+    <span style="display:flex;gap:6px;align-items:center"><i class="icon-smartphone" style="font-size:15px"></i>MTN MoMo · Moov Money · Celtiis Cash · Visa · Mastercard</span>
+  </div>
+
+  <!-- Basic vs Premium -->
+  <section style="max-width:1120px;margin:56px auto 0;padding:0 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.1fr);gap:20px;align-items:stretch">
+    <sc-for list="{{ tierCards }}" as="t" hint-placeholder-count="2"><div style="background:{{ t.bg }};color:{{ t.fg }};border:1px solid {{ t.bd }};border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:'Plus Jakarta Sans';font-size:20px;font-weight:700">{{ t.name }}</span><span style="font-size:14px;font-variant-numeric:tabular-nums;color:{{ t.sub }}">{{ t.price }} / mois</span></div><sc-for list="{{ t.features }}" as="f" hint-placeholder-count="4"><span style="display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45"><i class="icon-check" style="font-size:16px;color:{{ t.check }};flex:none;margin-top:1px"></i>{{ f }}</span></sc-for></div></sc-for>
+    <div style="background:#F6F1E4;border:1px solid #E3DCC8;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'Plus Jakarta Sans';font-size:18px;font-weight:700;display:flex;gap:8px;align-items:center"><i class="icon-arrow-up-circle" style="font-size:19px;color:#A8802F"></i>Passer au Premium en cours de route</span>
+      <span style="font-size:14px;line-height:1.6;color:#4A5568">Les jours Basic non utilisés sont déduits. Votre Premium démarre le jour du passage, pour une durée complète : une seule date de renouvellement.</span>
+      <div style="display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-radius:8px;background:#fff;font-size:13px;font-variant-numeric:tabular-nums">
+        <span style="color:#4A5568">Exemple · Basic pris le 1er, passage le 11 (20 jours restants sur 30)</span>
+        <div style="display:flex;justify-content:space-between"><span>Crédit Basic</span><b style="color:#0B5C47">− {{ ex.credit }}</b></div>
+        <div style="display:flex;justify-content:space-between"><span>Premium 1 mois</span><b>{{ ex.premium }}</b></div>
+        <div style="display:flex;justify-content:space-between;padding-top:6px;border-top:1px solid #E3E1DA"><span style="font-weight:600">À payer</span><b style="font-family:'Plus Jakarta Sans';font-size:16px">{{ ex.due }}</b></div>
+        <span style="color:#4A5568">30 jours de Premium à partir du 11</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- entreprise + FAQ -->
+  <section style="max-width:1280px;margin:0 auto;padding:72px 40px 96px;display:grid;grid-template-columns:minmax(0,1fr);gap:48px;max-width:900px">
+    
+    <div style="display:flex;flex-direction:column;border-top:1px solid #E3E1DA">
+      <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="4">
+        <div style="border-bottom:1px solid #E3E1DA">
+          <button onClick="{{ q.toggle }}" aria-expanded="{{ q.open }}" style="width:100%;min-height:68px;background:transparent;border:0;display:flex;justify-content:space-between;align-items:center;gap:24px;text-align:left;color:#0B1F3A;padding:0"><span style="font-family:'Plus Jakarta Sans';font-size:18px;font-weight:600">{{ q.q }}</span><i class="{{ q.icon }}" style="font-size:22px;flex:none"></i></button>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 40px 22px 0;font-size:16px;line-height:1.65;color:#4A5568">{{ q.a }}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+</div>
+
+<!-- MOBILE -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">10b</span><span style="font-weight:600">Abonnement mensuel · Mobile 390</span></div>
+<div id="10b" data-screen-label="Tarifs mobile" style="width:390px;height:844px;background:#F7F5F0;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.22);border:8px solid #0B1F3A;display:flex;flex-direction:column">
+  <div style="height:44px;flex:none;background:#0B1F3A;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <div style="background:#0B1F3A;color:#fff;padding:4px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:none">
+    <a href="Inscription.dc.html#9b" aria-label="Retour" style="width:44px;height:44px;display:grid;place-items:center;margin-left:-12px;color:#fff"><i class="icon-arrow-left" style="font-size:21px"></i></a>
+    <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700">Votre abonnement</h1>
+    <span style="font-size:14px;color:rgba(255,255,255,.8)">Étape 2 sur 3</span>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px"><span style="height:4px;border-radius:2px;background:#C9A24B"></span><span style="height:4px;border-radius:2px;background:#C9A24B"></span><span style="height:4px;border-radius:2px;background:rgba(255,255,255,.2)"></span></div>
+  </div>
+  <div style="flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px">
+    
+    <sc-for list="{{ plans }}" as="p" hint-placeholder-count="4"><button onClick="{{ p.choose }}" role="radio" aria-checked="{{ p.on }}" style="min-height:76px;padding:12px 14px;border-radius:12px;border:{{ p.mBd }};background:{{ p.mBg }};display:flex;gap:12px;align-items:center;text-align:left;color:#0B1F3A;position:relative"><span style="width:22px;height:22px;border-radius:50%;border:{{ p.radio }};flex:none;background:#fff"></span><div style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0"><span style="display:flex;gap:8px;align-items:center;font-size:16px;font-weight:700">{{ p.name }}<sc-if value="{{ p.hasBadge }}" hint-placeholder-val="{{ false }}"><span style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:{{ p.badgeBg }};color:{{ p.badgeFg }}">{{ p.badge }}</span></sc-if></span><span style="font-size:13px;color:#4A5568;font-variant-numeric:tabular-nums">{{ p.perMonth }}</span></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex:none"><span style="font-family:'Plus Jakarta Sans';font-size:17px;font-weight:700;font-variant-numeric:tabular-nums">{{ p.total }}</span><sc-if value="{{ p.hasSave }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;font-weight:700;color:#0B5C47;font-variant-numeric:tabular-nums">{{ p.saveShort }}</span></sc-if></div></button></sc-for>
+  </div>
+  <div style="flex:none;padding:12px 18px 24px;background:#fff;border-top:1px solid #E3E1DA;display:flex;flex-direction:column;gap:6px">
+    <div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:#4A5568">À payer aujourd'hui · {{ sel.name }}</span><b style="font-variant-numeric:tabular-nums">{{ sel.total }}</b></div>
+    <a href="Paiement.dc.html#11b" style="height:52px;border-radius:10px;background:#0B1F3A;color:#fff;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center">Choisir {{ sel.name }}</a>
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { cur: 'FCFA', months: 3, faq: 0, tier: (() => { try { return localStorage.getItem('afd-tier') || 'basic'; } catch (e) { return 'basic'; } })(), sel: (() => { try { return +localStorage.getItem('afd-plan') || 12; } catch (e) { return 12; } })() };
+  componentDidMount() { const h = () => { if (window.AFD_PRICE) { this._unP = window.AFD_PRICE.subscribe(() => this.forceUpdate()); this.forceUpdate(); } else this._wP = setTimeout(h, 50); }; h(); }
+  componentWillUnmount() { this._unP && this._unP(); clearTimeout(this._wP); }
+  renderVals() {
+    const N = '#0B1F3A';
+    const { cur, months, faq } = this.state;
+    const PRC = window.AFD_PRICE ? window.AFD_PRICE.current() : { price: 15000, base: 15000, promo: null, off: 0, until: '' };
+    const cv = v => cur === 'FCFA' ? v : cur === 'EUR' ? Math.round(v / 655.957) : Math.round(v / 600);
+    const P = cv(PRC.price), PB = cv(PRC.base);
+    const tier = this.state.tier || 'basic'; const AP = window.AFD_PRICE; const TI = AP && AP.TIERS ? AP.TIERS : { basic: { name: 'Basic', features: [] }, premium: { name: 'Premium', features: [] } };
+    const PL = AP && AP.plans ? AP.plans(undefined, tier) : [1, 3, 6, 12].map((m, i) => { const disc = [0, 5, 10, 20][i], total = Math.round(15000 * m * (1 - disc / 100) / 100) * 100, f = v => v.toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, ' ') + ' FCFA'; return { m, disc, name: m === 12 ? '1 an' : m + ' mois', total, save: 15000 * m - total, label: f(total), grossLabel: f(15000 * m), perMonthLabel: f(Math.round(total / m / 100) * 100), saveLabel: f(15000 * m - total) }; });
+    const full = v => cur === 'FCFA' ? v.toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, ' ') + ' FCFA' : cur === 'EUR' ? v + ' €' : '$' + v;
+    const addM = (d, n) => { const y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate(); const last = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(day, last)); };
+    const start = new Date(2026, 8, 29); const fd = x => x.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+    const periods = Array.from({ length: months }, (_, i) => ({ n: i + 1, label: i === 0 ? 'Souscription du jour' : (i + 1) + '\u1D49 souscription · à payer avant le ' + fd(addM(start, i)), range: fd(addM(start, i)) + ' → ' + fd(addM(start, i + 1)), price: full(P), bg: i === 0 ? N : '#F3F2EE', fg: i === 0 ? '#fff' : N }));
+    const fq = [
+      ['Que comprend l\u2019abonnement ?', 'Pendant toute la durée choisie : tous les cours du catalogue, leurs évaluations et les certificats obtenus. Aucun cours n\u2019est vendu séparément.'],
+      ['Puis-je prolonger mon accès ?', 'Oui. Une nouvelle formule (1, 3, 6 mois ou 1 an) démarre à la fin de votre accès en cours : aucun jour n\u2019est perdu.'],
+      ['Que se passe-t-il à l\u2019échéance ?', 'Si aucun mois n\u2019a été ajouté, l\u2019accès aux cours et aux évaluations est verrouillé à 00h00. Votre progression est conservée et reprend dès la souscription suivante.'],
+      ['Que deviennent mes certificats si j\u2019arrête ?', 'Ils restent téléchargeables et vérifiables sans limite de durée, même sans abonnement actif.'],
+      ['Le prix promo s\u2019applique-t-il aux mois suivants ?', 'Le prix promo s\u2019applique à chaque mois payé pendant la période de l\u2019offre, y compris un mois ajouté à la suite. Après la fin de l\u2019offre, le tarif normal s\u2019applique.'],
+      ['Recevrai-je une facture ?', 'Un reçu de paiement est émis pour chaque mois payé. La facture réglementaire sera proposée ultérieurement.'],
+    ];
+    const setM = m => this.setState({ months: Math.max(1, Math.min(12, m)) });
+    return {
+      currencies: ['FCFA', 'EUR', 'USD'].map(c => ({ label: c, on: c === cur, bg: c === cur ? '#fff' : 'transparent', fg: c === cur ? N : 'rgba(255,255,255,.8)', mBg: c === cur ? N : 'transparent', mFg: c === cur ? '#fff' : '#4A5568', select: () => this.setState({ cur: c }) })),
+      price: full(P), basePrice: full(PB),
+      promoOn: !!PRC.promo, promoBanner: PRC.promo ? PRC.promo.banner : '', promoOff: PRC.off, promoUntil: PRC.until, promoName: PRC.promo ? PRC.promo.name : '',
+
+      tierSeg: ['basic', 'premium'].map(id => { const on = tier === id; const pm = AP && AP.tierPrice ? AP.tierPrice(id) : (id === 'premium' ? 50000 : 15000); return { name: TI[id].name, on, sub: 'dès ' + full(cv(pm)) + ' / mois', icon: id === 'premium' ? 'gem' : 'book-open', ic: on ? (id === 'premium' ? '#C9A24B' : '#fff') : '#4A5568', bg: on ? N : 'transparent', fg: on ? '#fff' : N, select: () => { try { localStorage.setItem('afd-tier', id); } catch (e) {} this.setState({ tier: id }); } }; }),
+      tierCards: ['basic', 'premium'].map(id => { const prem = id === 'premium'; const pm = AP && AP.tierPrice ? AP.tierPrice(id) : (prem ? 50000 : 15000); return { name: TI[id].name, price: full(cv(pm)), features: TI[id].features, bg: prem ? N : '#fff', fg: prem ? '#fff' : N, bd: prem ? '#C9A24B' : '#E3E1DA', sub: prem ? 'rgba(255,255,255,.75)' : '#4A5568', check: prem ? '#C9A24B' : '#0F7B5F' }; }),
+      ex: (() => { if (!AP || !AP.upgradeQuote) return { credit: '10 000 FCFA', premium: '50 000 FCFA', due: '40 000 FCFA' }; const q = AP.upgradeQuote({ paid: 15000, start: new Date(2026, 9, 1), end: new Date(2026, 9, 31), today: new Date(2026, 9, 11), months: 1 }); return { credit: q.creditLabel, premium: full(50000), due: full(50000 - q.credit) }; })(),
+      plans: PL.map(p => { const top = p.m === 12, pop = p.m === 6, on = this.state.sel === p.m; const promo = !!PRC.promo; return { name: p.name, on,
+        desc: p.m === 1 ? 'Sans engagement' : p.m === 12 ? 'L\u2019année complète' : p.m + ' mois d\u2019accès continu',
+        total: p.label, gross: p.grossLabel, hasStrike: p.save > 0, perMonth: p.m === 1 ? 'Accès pendant 1 mois' : 'soit ' + p.perMonthLabel + ' / mois',
+        hasSave: p.save > 0, save: 'Économie de ' + p.saveLabel + ' · ' + [promo ? '−' + PRC.off + ' % promo' : '', p.disc ? '−' + p.disc + ' % durée' : ''].filter(Boolean).join(' + '), saveShort: '−' + p.saveLabel,
+        hasBadge: top || pop || (promo && p.m === 1), badge: top ? 'Meilleure offre' : pop ? 'Populaire' : 'Promo', badgeIcon: top ? 'star' : pop ? 'trending-up' : 'tag',
+        badgeBg: top ? '#C9A24B' : pop ? '#E6EFEC' : '#C9A24B', badgeFg: top ? '#0B1F3A' : pop ? '#0B5C47' : '#0B1F3A',
+        bg: top ? N : '#fff', fg: top ? '#fff' : N, bd: top ? '#C9A24B' : '#E3E1DA', sh: top ? '0 20px 50px rgba(11,31,58,.22)' : '0 12px 30px rgba(11,31,58,.08)', sub: top ? 'rgba(255,255,255,.75)' : '#4A5568', line: top ? 'rgba(255,255,255,.14)' : '#E3E1DA', check: top ? '#C9A24B' : '#0F7B5F',
+        saveBg: top ? 'rgba(201,162,75,.18)' : '#E6EFEC', saveFg: top ? '#E8C877' : '#0B5C47',
+        ctaBg: top ? '#C9A24B' : '#fff', ctaFg: N, ctaBd: top ? '0' : '1.5px solid #0B1F3A',
+        mBd: on ? '2px solid #0B1F3A' : '1px solid #E3E1DA', mBg: on ? '#F3F5F9' : '#fff', radio: on ? '7px solid #0B1F3A' : '1.5px solid #8A93A3',
+        features: tier === 'premium' ? ['Premium pendant ' + p.name, 'Cours Premium exclusifs et sessions live', 'Fiches-outils téléchargeables', 'Un seul paiement · un reçu'] : [p.m === 1 ? 'Tout le catalogue pendant 1 mois' : 'Tout le catalogue pendant ' + p.name, 'Évaluations et certificats inclus', p.m >= 6 ? 'Le temps de suivre plusieurs parcours' : p.m === 3 ? 'Idéal pour 1 à 2 formations' : 'Idéal pour une formation courte', 'Un seul paiement · un reçu'],
+        choose: () => { try { localStorage.setItem('afd-plan', String(p.m)); } catch (e) {} this.setState({ sel: p.m }); } }; }),
+      sel: (() => { const p = PL.find(x => x.m === this.state.sel) || PL[0]; return { name: p.name, total: p.label }; })(),
+      features: ['Accès à toutes les formations du catalogue', 'Lecture en ligne sécurisée, sur mobile et ordinateur', 'Évaluations illimitées dans les règles de chaque cours', 'Certificats vérifiables, conservés à vie', 'Reçu de paiement pour chaque mois'],
+      monthsLabel: months + ' mois', dec: () => setM(months - 1), inc: () => setM(months + 1), periods,
+      totalLabel: months > 1 ? 'Total sur ' + months + ' souscriptions' : 'Total', total: full(P * months),
+      mobileNote: months > 1 ? 'Vous payez 1 mois aujourd\u2019hui, puis ' + (months - 1) + ' autre(s) souscription(s) avant chaque échéance. Accès jusqu\u2019au ' + fd(addM(start, months)) + '.' : 'Accès jusqu\u2019au ' + fd(addM(start, 1)) + ' à 00h00.',
+      faqs: fq.map((q, i) => ({ q: q[0], a: q[1], open: faq === i, icon: faq === i ? 'icon-minus' : 'icon-plus', toggle: () => this.setState({ faq: faq === i ? -1 : i }) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

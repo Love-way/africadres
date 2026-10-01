@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Paiements & reçus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<script src="./profile-data.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button{font-family:Inter,system-ui,sans-serif;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+</style>
+<script src="./pricing-data.js"></script>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:96px;padding:80px">
+
+<!-- ================= 6 ABONNEMENTS & RECUS ================= -->
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;flex-wrap:wrap"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">6a</span><span style="font-weight:600">Abonnement mensuel & reçus</span><span style="color:#4A5568">— déplacez la date simulée ou ajoutez un mois : l'accès se prolonge ou se verrouille automatiquement</span></div>
+<div id="6a" data-screen-label="Abonnements et reçus" style="width:1440px;min-height:1200px;background:#F7F5F0;display:flex;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);position:relative">
+  <aside style="width:264px;flex:none;background:#fff;border-right:1px solid #E3E1DA;display:flex;flex-direction:column;padding:28px 20px">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 8px"><div style="width:36px;height:36px;border-radius:8px;background:#0B1F3A;display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px;color:#fff">A</div><span style="font-family:'Plus Jakarta Sans';font-size:18px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span></div>
+    <nav style="display:flex;flex-direction:column;gap:4px;margin-top:40px"><sc-for list="{{ nav5 }}" as="n" hint-placeholder-count="7"><a href="{{ n.href }}" style="height:46px;padding:0 14px;border-radius:8px;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:{{ n.w }};background:{{ n.bg }};color:{{ n.fg }}"><i class="icon-{{ n.icon }}" style="font-size:19px"></i>{{ n.label }}</a></sc-for></nav>
+  </aside>
+  <main style="flex:1;min-width:0;padding:32px 40px 48px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
+      <div style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:30px;font-weight:700;letter-spacing:-.015em">Abonnement & reçus</h1><span style="font-size:15px;color:#4A5568">Un abonnement mensuel donne accès à tout le catalogue. Chaque mois souscrit s'ajoute à la suite du précédent.</span></div>
+      <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:12px 16px;display:flex;flex-direction:column;gap:8px;width:420px">
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#4A5568;display:flex;gap:6px;align-items:center"><i class="icon-flask-conical" style="font-size:14px"></i>Date simulée (démo)</span><b style="font-variant-numeric:tabular-nums">{{ todayLabel }}</b></div>
+        <input type="range" min="0" max="{{ rangeMax }}" value="{{ dayIdx }}" onChange="{{ onDay }}" aria-label="Date simulée" style="width:100%;accent-color:#0B1F3A">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:#4A5568"><span>1 août</span><span>1 sept.</span><span>1 oct.</span><span>1 nov.</span><span>31 déc.</span></div>
+      </div>
+    </div>
+
+    <div style="background:{{ hero.bg }};color:#fff;border-radius:14px;padding:26px 28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;height:28px;padding:0 12px;border-radius:999px;background:{{ hero.pillBg }};color:{{ hero.pillFg }};font-size:12px;font-weight:700"><i class="icon-{{ hero.icon }}" style="font-size:14px"></i>{{ hero.pill }}</span>
+        <span style="font-family:'Plus Jakarta Sans';font-size:26px;font-weight:700;line-height:1.2">{{ hero.title }}</span>
+        <span style="font-size:15px;color:rgba(255,255,255,.82)">{{ hero.sub }}</span>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><sc-if value="{{ canUpgrade }}" hint-placeholder-val="{{ true }}"><button onClick="{{ openUp }}" style="height:54px;padding:0 20px;border-radius:10px;border:1px solid #C9A24B;background:transparent;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px"><i class="icon-gem" style="font-size:18px;color:#C9A24B"></i>Passer au Premium</button></sc-if><button onClick="{{ openAdd }}" style="height:54px;padding:0 24px;border-radius:10px;border:0;background:#C9A24B;color:#0B1F3A;font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px"><i class="icon-calendar-plus" style="font-size:18px"></i>{{ hero.cta }}</button></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+      <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;color:#4A5568">{{ k.l }}</span><span style="width:10px;height:10px;border-radius:50%;background:{{ k.c }}"></span></div>
+          <span style="font-family:'Plus Jakarta Sans';font-size:28px;font-weight:700;font-variant-numeric:tabular-nums">{{ k.v }}</span>
+          <span style="font-size:13px;color:#4A5568">{{ k.n }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:17px">Calendrier de mon accès</span>
+        <div style="display:flex;gap:16px;font-size:12px;color:#4A5568"><span style="display:flex;gap:6px;align-items:center"><span style="width:14px;height:8px;border-radius:2px;background:#0F7B5F"></span>Mois en cours</span><span style="display:flex;gap:6px;align-items:center"><span style="width:14px;height:8px;border-radius:2px;background:#1E3A66"></span>Mois à venir (déjà payé)</span><span style="display:flex;gap:6px;align-items:center"><span style="width:14px;height:8px;border-radius:2px;background:#C9CDD4"></span>Mois écoulé</span><span style="display:flex;gap:6px;align-items:center"><span style="width:14px;height:8px;border-radius:2px;background:repeating-linear-gradient(45deg,#F8E4E1 0 3px,#fff 3px 6px);border:1px solid #EFC9C3"></span>Sans accès</span></div>
+      </div>
+      <div style="position:relative;height:22px;border-bottom:1px solid #E3E1DA"><sc-for list="{{ months }}" as="m" hint-placeholder-count="5"><span style="position:absolute;left:{{ m.x }}%;top:0;font-size:12px;color:#4A5568;padding-left:6px;border-left:1px solid #E3E1DA;height:22px">{{ m.l }}</span></sc-for></div>
+      <div style="position:relative;height:56px">
+        <sc-for list="{{ bars }}" as="b" hint-placeholder-count="3"><div title="{{ b.tip }}" style="position:absolute;top:10px;height:36px;left:{{ b.x }}%;width:{{ b.w }}%;border-radius:6px;background:{{ b.bg }};border:{{ b.bd }};color:{{ b.fg }};font-size:12px;font-weight:700;display:flex;flex-direction:column;justify-content:center;padding:0 10px;white-space:nowrap;overflow:hidden;box-sizing:border-box">{{ b.label }}<span style="font-weight:500;font-size:11px;opacity:.85">{{ b.sub }}</span></div></sc-for>
+        <div style="position:absolute;left:{{ todayX }}%;top:0;bottom:0;width:2px;background:#0B1F3A"></div>
+        <span style="position:absolute;left:{{ todayX }}%;top:-20px;transform:translateX(-50%);font-size:11px;font-weight:700;background:#0B1F3A;color:#fff;padding:2px 6px;border-radius:4px;white-space:nowrap">Aujourd'hui</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start">
+      <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden">
+        <div style="padding:16px 20px;border-bottom:1px solid #E3E1DA;display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px">Mes souscriptions mensuelles</span><span style="font-size:13px;color:#4A5568">1 souscription = 1 mois = 1 reçu</span></div>
+        <div style="display:grid;grid-template-columns:90px minmax(0,1fr) 130px 110px 120px 70px;gap:12px;padding:10px 20px;background:#F7F5F0;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4A5568"><span>Payée le</span><span>Mois couvert</span><span>Moyen</span><span style="text-align:right">Montant</span><span>Statut</span><span></span></div>
+        <sc-for list="{{ rows }}" as="p" hint-placeholder-count="5">
+          <div style="display:grid;grid-template-columns:90px minmax(0,1fr) 130px 110px 120px 70px;gap:12px;align-items:center;padding:0 20px;min-height:56px;border-top:1px solid #E3E1DA;font-size:14px;background:{{ p.bg }}">
+            <span style="font-variant-numeric:tabular-nums;color:#4A5568">{{ p.date }}</span>
+            <span style="font-weight:600;font-variant-numeric:tabular-nums">{{ p.period }}</span>
+            <span style="font-size:13px">{{ p.method }}</span>
+            <span style="font-weight:600;text-align:right;font-variant-numeric:tabular-nums">{{ p.amount }}</span>
+            <span style="justify-self:start;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ p.sbg }};color:{{ p.sfg }}">{{ p.status }}</span>
+            <div style="display:flex;justify-content:flex-end"><sc-if value="{{ p.ok }}" hint-placeholder-val="{{ true }}"><a href="#6b" aria-label="Reçu" style="height:34px;padding:0 10px;border-radius:8px;border:1px solid #E3E1DA;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600"><i class="icon-receipt" style="font-size:14px"></i>Reçu</a></sc-if></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="background:#0B1F3A;color:#fff;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:17px;display:flex;gap:10px;align-items:center"><i class="icon-calculator" style="font-size:19px;color:#C9A24B"></i>Comment est calculé mon accès</span>
+        <sc-for list="{{ rules }}" as="r" hint-placeholder-count="5"><div style="display:flex;gap:12px;font-size:14px;line-height:1.55;color:rgba(255,255,255,.88)"><i class="icon-{{ r.i }}" style="font-size:16px;color:#C9A24B;flex:none;margin-top:2px"></i><span>{{ r.t }}</span></div></sc-for>
+      </div>
+    </div>
+  </main>
+
+  <sc-if value="{{ upOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;background:rgba(11,31,58,.55);display:grid;place-items:center;z-index:5">
+      <div role="dialog" aria-labelledby="up-t" style="background:#fff;border-radius:12px;width:540px;box-shadow:0 20px 50px rgba(11,31,58,.3);display:flex;flex-direction:column">
+        <div style="padding:22px 24px 0;display:flex;justify-content:space-between;gap:16px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;color:#A8802F;font-weight:600">Basic → Premium</span><h3 id="up-t" style="margin:0;font-family:'Plus Jakarta Sans';font-size:20px;font-weight:700">Passer au Premium aujourd'hui</h3></div><button onClick="{{ closeUp }}" aria-label="Fermer" style="width:40px;height:40px;border:0;background:transparent;color:#4A5568;border-radius:8px;flex:none"><i class="icon-x" style="font-size:20px"></i></button></div>
+        <div style="padding:18px 24px;display:flex;flex-direction:column;gap:10px;font-size:14px;font-variant-numeric:tabular-nums">
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F1EFE9"><span style="color:#4A5568">Premium · 1 mois</span><b>{{ up.prem }}</b></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F1EFE9"><div style="display:flex;flex-direction:column;gap:2px"><span style="color:#4A5568">Crédit Basic non utilisé</span><span style="font-size:12px;color:#4A5568">{{ up.formula }}</span></div><b style="color:#0B5C47">− {{ up.credit }}</b></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:4px"><span style="font-weight:600">À payer aujourd'hui</span><span style="font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700">{{ up.due }}</span></div>
+          <div style="display:flex;gap:10px;padding:12px 14px;border-radius:8px;background:#F6F1E4;line-height:1.5;color:#5C4313"><i class="icon-calendar-check" style="font-size:16px;flex:none;margin-top:1px"></i><span>Premium du <b>{{ up.start }}</b> au <b>{{ up.end }}</b> (00h00). Cette date devient votre unique date de renouvellement ; votre Basic s'arrête aujourd'hui.</span></div>
+        </div>
+        <div style="padding:16px 24px;border-top:1px solid #E3E1DA;display:flex;justify-content:flex-end;gap:10px"><button onClick="{{ closeUp }}" style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:14px">Annuler</button><button onClick="{{ confirmUp }}" style="height:44px;padding:0 18px;border-radius:8px;border:0;background:#C9A24B;color:#0B1F3A;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px"><i class="icon-lock" style="font-size:15px"></i>Payer {{ up.due }}</button></div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ addOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;background:rgba(11,31,58,.55);display:grid;place-items:center">
+      <div role="dialog" style="background:#fff;border-radius:12px;width:520px;box-shadow:0 20px 50px rgba(11,31,58,.3);display:flex;flex-direction:column">
+        <div style="padding:22px 24px 0;display:flex;justify-content:space-between;gap:16px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;color:#4A5568">{{ add.kicker }}</span><h3 style="margin:0;font-family:'Plus Jakarta Sans';font-size:20px;font-weight:700">Abonnement 1 mois · tout le catalogue</h3></div><button onClick="{{ closeAdd }}" aria-label="Fermer" style="width:40px;height:40px;border:0;background:transparent;color:#4A5568;border-radius:8px;flex:none"><i class="icon-x" style="font-size:20px"></i></button></div>
+        <div style="padding:18px 24px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px;border-radius:10px;border:2px solid #0B1F3A"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:15px">1 mois</span><span style="font-size:13px;color:#4A5568">du {{ add.start }} au {{ add.end }}</span></div><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:20px;font-variant-numeric:tabular-nums">15 000 FCFA</span></div>
+          <div style="padding:12px 14px;border-radius:10px;background:{{ add.noteBg }};font-size:14px;line-height:1.55;display:flex;gap:10px;color:{{ add.noteFg }}"><i class="icon-{{ add.noteIcon }}" style="font-size:17px;flex:none;margin-top:2px"></i><span>{{ add.note }}</span></div>
+          <span style="font-size:13px;color:#4A5568">Pour plusieurs mois, répétez l'opération : chaque mois ajouté prolonge l'accès d'un mois supplémentaire.</span>
+        </div>
+        <div style="padding:16px 24px;border-top:1px solid #E3E1DA;display:flex;justify-content:flex-end;gap:10px">
+          <button onClick="{{ closeAdd }}" style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:14px">Annuler</button>
+          <button onClick="{{ confirmAdd }}" style="height:44px;padding:0 18px;border-radius:8px;border:0;background:#C9A24B;color:#0B1F3A;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px"><i class="icon-lock" style="font-size:15px"></i>Payer 15 000 FCFA</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</div>
+
+<div style="display:flex;gap:64px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">6b</span><span style="font-weight:600">Reçu de paiement · page et version téléchargeable (A4)</span></div>
+<div id="6b" data-screen-label="Reçu de paiement" style="width:794px;background:#fff;box-shadow:0 30px 80px rgba(11,31,58,.18);display:flex;flex-direction:column;color:#0B1F3A">
+  <div style="background:#0B1F3A;color:#fff;padding:36px 48px;display:flex;justify-content:space-between;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Plus Jakarta Sans';font-size:22px;letter-spacing:.05em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span><span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#C9A24B">Learn to improve</span></div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><span style="font-family:'Plus Jakarta Sans';font-size:26px;font-weight:700">Reçu de paiement</span><span style="font-size:13px;color:rgba(255,255,255,.8);font-variant-numeric:tabular-nums">N° RC-2026-09-01842</span></div>
+  </div>
+  <div style="padding:36px 48px;display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-radius:10px;background:#E6EFEC;color:#0B5C47"><span style="display:flex;gap:10px;align-items:center;font-weight:600;font-size:15px"><i class="icon-check-circle-2" style="font-size:20px"></i>Paiement reçu</span><span style="font-size:14px;font-variant-numeric:tabular-nums">01/09/2026 à 09h12 (GMT+1)</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#4A5568">Reçu de</span><span style="font-weight:600;font-size:16px">{{ me.full }}</span><span style="font-size:14px;color:#4A5568;line-height:1.6">{{ me.email }}<br>+229 01 97 45 21 38<br>Identifiant AFR-2026-04812</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#4A5568">Émis par</span><span style="font-weight:600;font-size:16px">Africadres</span><span style="font-size:14px;color:#4A5568;line-height:1.6">Plateforme de formation continue<br>contact@africadres.com</span></div>
+    </div>
+    <div style="border:1px solid #E3E1DA;border-radius:10px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) 160px;padding:12px 18px;background:#F7F5F0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4A5568"><span>Désignation</span><span style="text-align:right">Montant</span></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) 160px;padding:16px 18px;border-top:1px solid #E3E1DA;font-size:15px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600">Abonnement 1 mois — accès à tout le catalogue</span><span style="font-size:13px;color:#4A5568">Mois n° 2 · accès du 01/09/2026 au 01/10/2026 (00h00)</span></div><span style="text-align:right;font-variant-numeric:tabular-nums">15 000 FCFA</span></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) 160px;padding:16px 18px;border-top:1px solid #0B1F3A;font-size:17px;font-weight:700"><span>Total payé</span><span style="text-align:right;font-variant-numeric:tabular-nums">15 000 FCFA</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;font-size:14px">
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;color:#4A5568">Moyen de paiement</span><span style="font-weight:600">MTN MoMo •••• 38</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;color:#4A5568">Référence opérateur</span><span style="font-weight:600;font-variant-numeric:tabular-nums">MOMO-BJ-7F3K29QX</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;color:#4A5568">Devise</span><span style="font-weight:600">Franc CFA (XOF)</span></div>
+    </div>
+    <p style="margin:0;padding-top:20px;border-top:1px solid #E3E1DA;font-size:12px;line-height:1.6;color:#4A5568">Ce document est un reçu de paiement attestant du règlement de l'abonnement. Il ne constitue pas une facture. Conservez-le comme justificatif.</p>
+  </div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">6c</span><span style="font-weight:600">Reçu · écran de confirmation</span></div>
+<div id="6c" data-screen-label="Reçu écran" style="width:420px;background:#fff;border:1px solid #E3E1DA;border-radius:14px;box-shadow:0 30px 80px rgba(11,31,58,.18);padding:28px;display:flex;flex-direction:column;gap:18px">
+  <span style="width:52px;height:52px;border-radius:50%;background:#E6EFEC;color:#0F7B5F;display:grid;place-items:center"><i class="icon-receipt" style="font-size:24px"></i></span>
+  <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Plus Jakarta Sans';font-size:22px;font-weight:700">Votre reçu est prêt</span><span style="font-size:15px;line-height:1.6;color:#4A5568">Une copie a été envoyée à {{ me.email }}.</span></div>
+  <div style="border-radius:10px;background:#F7F5F0;padding:14px 16px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+    <span style="display:flex;justify-content:space-between"><span style="color:#4A5568">N° de reçu</span><b style="font-variant-numeric:tabular-nums">RC-2026-09-01842</b></span>
+    <span style="display:flex;justify-content:space-between"><span style="color:#4A5568">Montant</span><b style="font-variant-numeric:tabular-nums">15 000 FCFA</b></span>
+    <span style="display:flex;justify-content:space-between"><span style="color:#4A5568">Date</span><b>27/09/2026</b></span>
+  </div>
+  <button style="height:48px;border-radius:8px;border:0;background:#0B1F3A;color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px"><i class="icon-download" style="font-size:17px"></i>Télécharger le reçu (PDF)</button>
+  <button style="height:44px;border-radius:8px;border:0;background:transparent;color:#0B1F3A;font-weight:600;font-size:14px">Envoyer à une autre adresse</button>
+</div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const __ME = () => window.AFD_ME ? window.AFD_ME.get() : { first: 'Sènami', last: 'Hounkpatin', full: 'Sènami Hounkpatin', email: 's.hounkpatin@groupe-atlantique.bj', phone: '01 97 45 21 38', ini: 'SH', cert: 'Sènami Hounkpatin', certName: '', certCustom: false };
+class Component extends DCLogic {
+  state = { day: 57, extra: [], add: false, upg: null, upOpen: false };
+  renderVals() {
+    const ME = __ME();
+    if (!this._meSub && window.AFD_ME) { this._meSub = window.AFD_ME.subscribe(() => this.forceUpdate()); }
+    const N = '#0B1F3A';
+    const base = new Date(2026, 7, 1), DAY = 864e5;
+    const addM = (d, n) => { const y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate(); const last = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(day, last)); };
+    const fmt = d => d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+    const fmtS = d => d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    const today = new Date(base.getTime() + this.state.day * DAY);
+    const span = (new Date(2026, 11, 31) - base) / DAY;
+    const X = d => Math.max(0, Math.min(100, (d - base) / DAY / span * 100));
+    const money = v => v.toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, ' ') + ' FCFA';
+    // Souscriptions payées : [date de paiement, moyen, ok]
+    const P = [[new Date(2026, 7, 1), 'MTN MoMo', true], [new Date(2026, 7, 25), 'Visa •••• 4417', false], [new Date(2026, 7, 25), 'MTN MoMo', true], [new Date(2026, 8, 20), 'Moov Money', true]].concat(this.state.extra.map(d => [new Date(d), 'MTN MoMo', true]));
+    // Chaque mois démarre à la fin du précédent s'il est encore actif au moment du paiement, sinon le jour du paiement.
+    let end = null; const periods = [];
+    P.forEach(([paid, method, ok]) => { if (!ok) { periods.push({ paid, method, ok }); return; } const start = end && end > paid ? end : paid; const e = addM(start, 1); periods.push({ paid, method, ok, start, end: e }); end = e; });
+    // Basic → Premium (méthode A) : crédit des jours Basic restants, Premium 1 mois à partir du jour du passage.
+    const AP = window.AFD_PRICE;
+    const quote = at => { let credit = 0, curQ = null; periods.filter(p => p.ok && !p.premium).forEach(p => { if (p.end <= at) return; if (p.start <= at) { const tot = Math.max(1, Math.round((p.end - p.start) / DAY)), lf = Math.max(0, Math.round((p.end - at) / DAY)); curQ = { total: tot, left: lf, credit: Math.round(15000 * lf / tot / 5) * 5 }; credit += curQ.credit; } else credit += 15000; }); const prem = AP && AP.tierPrice ? AP.tierPrice('premium') : 50000; return { credit, prem, due: Math.max(0, prem - credit), left: curQ ? curQ.left : 0, total: curQ ? curQ.total : 0, start: at, end: addM(at, 1) }; };
+    const upg = this.state.upg;
+    if (upg) { const at = new Date(upg.at); periods.forEach(p => { if (!p.ok || p.premium) return; if (p.start >= at) { p.credited = true; } else if (p.end > at) { p.cut = true; p.end = at; } }); periods.push({ paid: at, method: 'MTN MoMo', ok: true, premium: true, start: at, end: addM(at, 1), amount: upg.due }); }
+    const okP = periods.filter(p => p.ok && !p.credited);
+    const cur = okP.find(p => today >= p.start && today < p.end);
+    const accessEnd = okP.length ? okP[okP.length - 1].end : null;
+    const active = !!cur;
+    const left = active ? Math.ceil((accessEnd - today) / DAY) : 0;
+    const future = okP.filter(p => p.start > today).length;
+    const nextStart = active ? accessEnd : today;
+    const soon = active && left <= 7;
+    const bars = [];
+    okP.forEach((p, i) => { const isCur = p === cur, past = p.end <= today; bars.push({ x: X(p.start), w: Math.max(1, X(p.end) - X(p.start)), bg: p.premium ? (past ? '#C9CDD4' : '#A8802F') : isCur ? '#0F7B5F' : past ? '#C9CDD4' : '#1E3A66', bd: '0', fg: past ? '#4A5568' : '#fff', label: p.premium ? 'Premium' : 'Basic ' + (i + 1), sub: fmtS(p.start).slice(0, 5) + ' → ' + fmtS(p.end).slice(0, 5), tip: 'Payé le ' + fmtS(p.paid) }); });
+    okP.forEach((p, i) => { const nx = okP[i + 1]; if (nx && nx.start > p.end) bars.push({ x: X(p.end), w: X(nx.start) - X(p.end), bg: 'repeating-linear-gradient(45deg,#F8E4E1 0 4px,#fff 4px 8px)', bd: '1px solid #EFC9C3', fg: '#962D22', label: 'Sans accès', sub: '', tip: 'Aucun abonnement' }); });
+    if (accessEnd && accessEnd < new Date(2026, 11, 31)) bars.push({ x: X(accessEnd), w: 100 - X(accessEnd), bg: 'repeating-linear-gradient(45deg,#F8E4E1 0 4px,#fff 4px 8px)', bd: '1px solid #EFC9C3', fg: '#962D22', label: 'Sans accès', sub: 'à partir du ' + fmtS(accessEnd).slice(0, 5), tip: 'Verrouillage' });
+    const months = [['Août', 7], ['Septembre', 8], ['Octobre', 9], ['Novembre', 10], ['Décembre', 11]].map(([l, m]) => ({ l, x: X(new Date(2026, m, 1)) }));
+    const rows = periods.slice().reverse().map(p => { const st = p.credited ? ['Crédité', '#F6F1E4', '#7A5A1E'] : !p.ok ? ['Échoué', '#F8E4E1', '#962D22'] : p === cur ? ['En cours', '#E6EFEC', '#0B5C47'] : p.start > today ? ['À venir', '#EEF1F5', '#132C52'] : ['Écoulé', '#F3F2EE', '#4A5568']; return { date: fmtS(p.paid).slice(0, 5) + '/' + String(p.paid.getFullYear()).slice(2), period: p.ok ? fmtS(p.start) + ' → ' + fmtS(p.end) : '—', method: (p.premium ? 'Premium · ' : 'Basic · ') + p.method, amount: money(p.premium ? p.amount : 15000), status: st[0], sbg: st[1], sfg: st[2], ok: p.ok, bg: p.ok ? '#fff' : '#FDF6F5' }; });
+    const hrefs = ['Espace Apprenant.dc.html#2a', 'Espace Apprenant.dc.html#2a', 'Catalogue.dc.html', 'Evaluations.dc.html', 'Certificats.dc.html', 'Paiements et Recus.dc.html', 'Profil.dc.html'];
+    return {
+      me: ME,
+      nav5: [['layout-dashboard', 'Tableau de bord'], ['book-open', 'Mes formations'], ['library', 'Catalogue'], ['clipboard-check', 'Évaluations'], ['award', 'Certificats'], ['calendar-clock', 'Abonnement & reçus'], ['user-round', 'Profil']].map(([icon, label], i) => ({ icon, label, href: hrefs[i], bg: i === 5 ? N : 'transparent', fg: i === 5 ? '#fff' : '#4A5568', w: i === 5 ? 600 : 500 })),
+      dayIdx: this.state.day, rangeMax: Math.round(span), onDay: e => this.setState({ day: +e.target.value }), todayLabel: today.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }),
+      hero: active ? { bg: N, pillBg: soon ? '#FBF1DD' : '#E6EFEC', pillFg: soon ? '#7A5000' : '#0B5C47', icon: soon ? 'alarm-clock' : 'check-circle-2', pill: soon ? 'Expire dans ' + left + ' j' : 'Abonnement actif', title: 'Accès à tout le catalogue jusqu\u2019au ' + fmt(accessEnd), sub: future ? future + ' mois déjà payé(s) à la suite du mois en cours · verrouillage le ' + fmt(accessEnd) + ' à 00h00' : 'Aucun mois ajouté après celui-ci · verrouillage le ' + fmt(accessEnd) + ' à 00h00', cta: 'Ajouter 1 mois' }
+        : { bg: '#4A5568', pillBg: '#F8E4E1', pillFg: '#962D22', icon: 'lock', pill: 'Accès verrouillé', title: 'Votre abonnement a pris fin le ' + (accessEnd ? fmt(accessEnd) : '—'), sub: 'Vos cours et évaluations sont verrouillés. Progression et certificats sont conservés.', cta: 'Réactiver · 1 mois' },
+      kpis: [
+        { l: 'Statut', v: active ? 'Actif' : 'Verrouillé', n: active ? 'tout le catalogue' : 'aucun mois en cours', c: active ? '#0F7B5F' : '#C0392B' },
+        { l: 'Accès jusqu\u2019au', v: accessEnd ? fmtS(accessEnd).slice(0, 5) : '—', n: accessEnd ? fmt(accessEnd) + ' · 00h00' : '', c: N },
+        { l: 'Jours restants', v: String(left), n: soon ? 'pensez à ajouter un mois' : active ? 'rappel SMS à J-7 et J-1' : '—', c: soon ? '#D98E04' : '#0F7B5F' },
+        { l: 'Mois payés', v: String(okP.length), n: money(okP.length * 15000) + ' au total', c: '#C9A24B' },
+      ],
+      months, bars, todayX: X(today), rows,
+      rules: [
+        { i: 'calendar-plus', t: 'Une souscription = 1 mois d\u2019accès à toutes les formations, évaluations et certificats.' },
+        { i: 'layers', t: 'Pour 3 mois, souscrivez 3 fois. Si votre accès est encore actif, le nouveau mois démarre à la fin du mois en cours : aucun jour n\u2019est perdu.' },
+        { i: 'calendar-check', t: 'Le mois se termine le même jour du mois suivant : du 1er janvier au 1er février, du 5 janvier au 5 février.' },
+        { i: 'calendar-x', t: 'Si ce jour n\u2019existe pas (31 janvier + 1 mois), l\u2019échéance est le dernier jour du mois : le 28 ou le 29 février.' },
+        { i: 'lock', t: 'À 00h00 le jour de l\u2019échéance (heure de Cotonou), tous les cours et évaluations sont verrouillés si aucun mois n\u2019a été ajouté.' },
+      ],
+      addOpen: this.state.add, openAdd: () => this.setState({ add: true }), closeAdd: () => this.setState({ add: false }),
+      add: { kicker: active ? 'Prolonger mon accès' : 'Réactiver mon accès', start: fmt(nextStart), end: fmt(addM(nextStart, 1)), noteBg: active ? '#E6EFEC' : '#F7F5F0', noteFg: active ? '#0B3F31' : '#0B1F3A', noteIcon: active ? 'layers' : 'calendar-range', note: active ? 'Votre accès court déjà jusqu\u2019au ' + fmt(accessEnd) + '. Ce mois s\u2019ajoute à la suite : nouvel accès jusqu\u2019au ' + fmt(addM(accessEnd, 1)) + '.' : 'Le mois démarre aujourd\u2019hui et se termine le ' + fmt(addM(today, 1)) + ' à 00h00.' },
+      canUpgrade: active && !upg, upOpen: this.state.upOpen, openUp: () => this.setState({ upOpen: true }), closeUp: () => this.setState({ upOpen: false }),
+      up: (() => { const q = quote(today); return { prem: money(q.prem), credit: money(q.credit), due: money(q.due), formula: q.total ? '15 000 FCFA × ' + q.left + '/' + q.total + ' jours' + (q.credit > Math.round(15000 * q.left / q.total / 5) * 5 ? ' + mois Basic prépayé(s)' : '') : '—', start: fmt(q.start), end: fmt(q.end) }; })(),
+      confirmUp: () => { const q = quote(today); try { localStorage.setItem('afd-sub-tier', 'premium'); } catch (e) {} if (window.AFD && window.AFD.setMyTier) window.AFD.setMyTier('premium'); this.setState({ upg: { at: today.getTime(), due: q.due }, upOpen: false }); },
+      confirmAdd: () => this.setState(s2 => ({ extra: s2.extra.concat(today.getTime()), add: false })),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Africadres — Nos formations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<script src="./image-slot.js"></script>
+<script src="./pricing-data.js"></script>
+<script src="./courses-data.js"></script>
+<style>
+body{margin:0;background:#DAD7CE;color:#0B1F3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#1E3A66}
+*{box-sizing:border-box}
+button,input{font-family:Inter,system-ui,sans-serif}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:20px;padding:80px">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px;flex-wrap:wrap"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">12a</span><span style="font-weight:600">Nos formations · visiteur non abonné</span><span style="color:#4A5568">— catalogue et domaines visibles, contenus verrouillés jusqu'au paiement. Cliquez un cours pour sa fiche.</span></div>
+<div style="display:flex;gap:80px;align-items:flex-start">
+
+<div id="12a" data-screen-label="Formations publiques" style="width:1440px;background:#F7F5F0;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.18);flex:none">
+  <!-- NAV -->
+  <sc-if value="{{ promoOn }}" hint-placeholder-val="{{ false }}"><div style="background:#C9A24B;color:#0B1F3A;display:flex;justify-content:center;align-items:center;gap:10px;padding:10px 20px;font-size:14px;font-weight:600;text-align:center"><i class="icon-badge-percent" style="font-size:17px;flex:none"></i><span>{{ promoBanner }}</span></div></sc-if>
+  <div style="background:#0B1F3A;color:#fff">
+    <nav style="max-width:1280px;margin:0 auto;padding:0 40px;height:80px;display:flex;align-items:center;justify-content:space-between">
+      <a href="Landing Page.dc.html" style="display:flex;align-items:center;gap:12px;color:#fff">
+        <div style="width:40px;height:40px;border-radius:8px;background:#132C52;border:1px solid rgba(201,162,75,.5);display:grid;place-items:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:22px;position:relative">A<span style="position:absolute;right:7px;top:8px;width:14px;height:14px;border-top:2px solid #C9A24B;border-radius:50% 50% 0 0;transform:rotate(-35deg)"></span></div>
+        <div style="display:flex;flex-direction:column;line-height:1.05"><span style="font-family:'Plus Jakarta Sans';font-size:20px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span><span style="font-size:10px;color:#C9A24B;letter-spacing:.16em;text-transform:uppercase">Learn to improve</span></div>
+      </a>
+      <div style="display:flex;gap:36px;font-size:15px;font-weight:500">
+        <a href="Formations.dc.html" style="color:#C9A24B">Formations</a>
+        <a href="Experts.dc.html" style="color:#fff" style-hover="color:#C9A24B">Experts</a>
+        <a href="Landing Page.dc.html#certification" style="color:#fff" style-hover="color:#C9A24B">Certification</a>
+        <a href="Tarifs.dc.html" style="color:#fff" style-hover="color:#C9A24B">Tarifs</a>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a href="Inscription.dc.html" style="height:44px;padding:0 16px;display:flex;align-items:center;font-size:15px;font-weight:600;color:#fff">Se connecter</a>
+        <a href="Inscription.dc.html" style="height:44px;padding:0 18px;border-radius:8px;background:#C9A24B;color:#0B1F3A;display:flex;align-items:center;font-size:15px;font-weight:600" style-hover="background:#D8B45F;color:#0B1F3A">S'abonner</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- LIST VIEW -->
+  <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+    <section style="background:#0B1F3A;color:#fff;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,162,75,.09) 0 1px,transparent 1px 26px),repeating-linear-gradient(-45deg,rgba(201,162,75,.09) 0 1px,transparent 1px 26px);-webkit-mask-image:linear-gradient(90deg,transparent 40%,#000);mask-image:linear-gradient(90deg,transparent 40%,#000)"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;padding:48px 40px 56px;display:grid;grid-template-columns:minmax(0,1fr) 520px;gap:48px;align-items:end">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#C9A24B">Le catalogue</span>
+          <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:44px;font-weight:700;line-height:1.1;letter-spacing:-.02em">124 formations certifiantes, par domaine et par secteur.</h1>
+          <p style="margin:0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.8);max-width:560px">Parcourez librement l'offre. Un seul abonnement mensuel à {{ priceLabel }} ouvre l'accès à toutes les formations, évaluations et certificats.</p>
+        </div>
+        <div style="height:56px;padding:0 6px 0 18px;border-radius:10px;background:#fff;display:flex;align-items:center;gap:10px">
+          <i class="icon-search" style="font-size:20px;color:#4A5568"></i>
+          <input value="{{ query }}" onChange="{{ onQuery }}" placeholder="Rechercher : budget, leadership, OHADA…" style="flex:1;border:0;outline:none;font-size:16px;color:#0B1F3A;background:transparent;min-width:0">
+          <button style="height:44px;padding:0 18px;border-radius:7px;border:0;background:#0B1F3A;color:#fff;font-weight:600;font-size:14px">Rechercher</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Domaines -->
+    <section style="max-width:1280px;margin:0 auto;padding:48px 40px 0;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;justify-content:space-between;align-items:end"><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700">Domaines de formation</h2><span style="font-size:14px;color:#4A5568">Sélectionnez un domaine pour filtrer</span></div>
+      <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px">
+        <sc-for list="{{ domains }}" as="d" hint-placeholder-count="6">
+          <button onClick="{{ d.select }}" aria-pressed="{{ d.on }}" style="min-height:132px;padding:18px;border-radius:12px;border:{{ d.bd }};background:{{ d.bg }};color:{{ d.fg }};display:flex;flex-direction:column;gap:10px;align-items:flex-start;text-align:left" style-hover="border-color:#0B1F3A">
+            <span style="width:40px;height:40px;border-radius:9px;background:{{ d.ibg }};color:{{ d.ifg }};display:grid;place-items:center"><i class="icon-{{ d.icon }}" style="font-size:19px"></i></span>
+            <span style="font-family:'Plus Jakarta Sans';font-size:15px;font-weight:700;line-height:1.3">{{ d.name }}</span>
+            <span style="font-size:13px;color:{{ d.sub }};margin-top:auto;font-variant-numeric:tabular-nums">{{ d.count }} formations</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- Secteurs -->
+    <section style="max-width:1280px;margin:0 auto;padding:32px 40px 0;display:flex;flex-direction:column;gap:14px">
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:18px;font-weight:700">Secteurs d'activité</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ sectors }}" as="s" hint-placeholder-count="9"><button onClick="{{ s.select }}" aria-pressed="{{ s.on }}" style="height:40px;padding:0 14px;border-radius:999px;border:1px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px"><i class="icon-{{ s.icon }}" style="font-size:15px"></i>{{ s.name }}</button></sc-for>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section style="max-width:1280px;margin:0 auto;padding:36px 40px 0;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+        <span style="font-size:15px;color:#4A5568"><b style="color:#0B1F3A;font-variant-numeric:tabular-nums">{{ count }}</b> formations{{ filterLabel }}</span>
+        <sc-if value="{{ hasFilter }}" hint-placeholder-val="{{ false }}"><button onClick="{{ reset }}" style="height:36px;padding:0 12px;border-radius:8px;border:1px solid #E3E1DA;background:#fff;color:#0B1F3A;font-weight:600;font-size:13px;display:flex;align-items:center;gap:6px"><i class="icon-x" style="font-size:14px"></i>Effacer les filtres</button></sc-if>
+      </div>
+      <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
+          <sc-for list="{{ results }}" as="c" hint-placeholder-count="8">
+            <button onClick="{{ c.open }}" style="background:#fff;border:1px solid #E3E1DA;border-radius:14px;padding:10px;display:flex;flex-direction:column;text-align:left;color:#0B1F3A;font:inherit" style-hover="border-color:#1E3A66;box-shadow:0 8px 24px rgba(11,31,58,.08)">
+              <div style="aspect-ratio:16/9;width:100%;border-radius:10px;overflow:hidden;position:relative;background:{{ c.tint }}">
+                <image-slot id="pub-{{ c.id }}" shape="rect" placeholder="{{ c.ph }}" style="width:100%;height:100%"></image-slot>
+                <span style="position:absolute;right:10px;top:10px;height:28px;padding:0 10px;border-radius:7px;background:rgba(11,31,58,.82);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;pointer-events:none"><i class="icon-lock" style="font-size:13px;color:#C9A24B"></i>Abonnés</span>
+              </div>
+              <div style="padding:14px 6px 6px;display:flex;flex-direction:column;gap:8px;flex:1;width:100%">
+                <span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4A5568">{{ c.domain }}</span>
+                <span style="font-family:'Plus Jakarta Sans';font-size:16px;font-weight:700;line-height:1.3">{{ c.title }}</span>
+                <span style="font-size:14px;color:#4A5568">{{ c.expert }}</span>
+                <span style="font-size:13px;font-weight:600;color:#0B5C47;display:flex;gap:6px;align-items:center"><i class="icon-calendar-range" style="font-size:14px"></i>Programme conseillé : {{ c.recLabel }}</span>
+                <div style="display:flex;gap:12px;font-size:13px;color:#4A5568;margin-top:auto;padding-top:10px;border-top:1px solid #E3E1DA">
+                  <span style="display:flex;gap:6px;align-items:center"><i class="icon-bar-chart-2" style="font-size:14px;color:#0B1F3A"></i>{{ c.level }}</span>
+                  <span style="display:flex;gap:6px;align-items:center"><i class="icon-clock" style="font-size:14px;color:#0B1F3A"></i>{{ c.duration }}</span>
+                </div>
+              </div>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:48px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center"><i class="icon-search-x" style="font-size:30px"></i><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:18px">Aucune formation ne correspond</span><button onClick="{{ reset }}" style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #0B1F3A;background:#fff;color:#0B1F3A;font-weight:600;font-size:14px">Voir tout le catalogue</button></div>
+      </sc-if>
+    </section>
+
+    <!-- Subscribe band -->
+    <section style="max-width:1280px;margin:0 auto;padding:56px 40px 80px">
+      <div style="background:#0B1F3A;color:#fff;border-radius:14px;padding:36px 44px;display:flex;justify-content:space-between;align-items:center;gap:32px">
+        <div style="display:flex;gap:18px;align-items:center"><span style="width:52px;height:52px;border-radius:12px;background:#132C52;border:1px solid rgba(201,162,75,.45);color:#C9A24B;display:grid;place-items:center;flex:none"><i class="icon-key-round" style="font-size:24px"></i></span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Plus Jakarta Sans';font-size:22px;font-weight:700">Un abonnement, toutes les formations</span><span style="font-size:15px;color:rgba(255,255,255,.8)">{{ priceLabel }} pour 1 mois · souscrivez à nouveau pour prolonger d'un mois</span></div></div>
+        <div style="display:flex;gap:10px;flex:none"><a href="Tarifs.dc.html" style="height:52px;padding:0 20px;border-radius:10px;border:1px solid rgba(255,255,255,.4);color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center">Voir les tarifs</a><a href="Inscription.dc.html" style="height:52px;padding:0 22px;border-radius:10px;background:#C9A24B;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px">Créer mon compte<i class="icon-arrow-right" style="font-size:17px"></i></a></div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- DETAIL VIEW (public, locked) -->
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:1280px;margin:0 auto;padding:28px 40px 80px;display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#4A5568"><button onClick="{{ back }}" style="border:0;background:transparent;padding:6px 0;display:flex;align-items:center;gap:6px;color:#4A5568;font-size:14px"><i class="icon-arrow-left" style="font-size:16px"></i>Formations</button><i class="icon-chevron-right" style="font-size:14px"></i><span>{{ d.domain }}</span><i class="icon-chevron-right" style="font-size:14px"></i><span style="color:#0B1F3A;font-weight:600">{{ d.title }}</span></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:32px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><span style="height:28px;padding:0 12px;border-radius:999px;background:#fff;border:1px solid #E3E1DA;font-size:12px;font-weight:600;display:flex;align-items:center">{{ d.domain }}</span><span style="height:28px;padding:0 12px;border-radius:999px;background:#fff;border:1px solid #E3E1DA;font-size:12px;font-weight:600;display:flex;align-items:center">{{ d.level }}</span><sc-for list="{{ d.sectorNames }}" as="s" hint-placeholder-count="2"><span style="height:28px;padding:0 12px;border-radius:999px;background:#EEF1F5;color:#132C52;font-size:12px;font-weight:600;display:flex;align-items:center">{{ s }}</span></sc-for></div>
+            <h1 style="margin:0;font-family:'Plus Jakarta Sans';font-size:36px;font-weight:700;line-height:1.15;letter-spacing:-.02em">{{ d.title }}</h1>
+            <div style="display:flex;gap:20px;font-size:14px;color:#4A5568;flex-wrap:wrap"><span style="display:flex;gap:6px;align-items:center"><i class="icon-file-text" style="font-size:16px;color:#0B1F3A"></i>{{ d.pages }} pages</span><span style="display:flex;gap:6px;align-items:center"><i class="icon-clock" style="font-size:16px;color:#0B1F3A"></i>{{ d.duration }}</span><span style="display:flex;gap:6px;align-items:center"><i class="icon-list-checks" style="font-size:16px;color:#0B1F3A"></i>Évaluation de 20 questions</span><span style="display:flex;gap:6px;align-items:center"><i class="icon-award" style="font-size:16px;color:#0B1F3A"></i>Certificat après l'examen final</span></div>
+          </div>
+          <div style="height:300px;border-radius:14px;overflow:hidden;position:relative;background:{{ d.tint }}">
+            <image-slot id="pubd-{{ d.id }}" shape="rect" placeholder="{{ d.ph }}" style="width:100%;height:100%"></image-slot>
+          </div>
+          <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;flex-direction:column;gap:8px"><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:19px;font-weight:700">À propos de ce cours</h2><p style="margin:0;font-size:15px;line-height:1.7;color:#4A5568">{{ d.desc }}</p></div>
+            <div style="display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-family:'Plus Jakarta Sans';font-size:19px;font-weight:700">Ce que vous saurez faire</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px"><sc-for list="{{ d.objectives }}" as="o" hint-placeholder-count="4"><span style="display:flex;gap:10px;font-size:15px;line-height:1.5"><i class="icon-check" style="font-size:17px;color:#0F7B5F;margin-top:2px"></i>{{ o }}</span></sc-for></div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding-top:18px;border-top:1px solid #E3E1DA"><image-slot id="pubx-{{ d.id }}" shape="circle" placeholder="" style="width:52px;height:52px;background:#E3E1DA;flex:none"></image-slot><div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:15px">{{ d.expert }}</span><span style="font-size:14px;color:#4A5568">{{ d.expRole }}</span></div></div>
+          </div>
+        </div>
+        <aside style="display:flex;flex-direction:column;gap:16px">
+          <div style="background:#0B1F3A;color:#fff;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+            <span style="display:flex;gap:8px;align-items:center;font-size:13px;font-weight:600;color:#C9A24B"><i class="icon-lock" style="font-size:15px"></i>Inclus dans l'abonnement mensuel</span>
+            <div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'Plus Jakarta Sans';font-size:30px;font-weight:700;font-variant-numeric:tabular-nums">{{ priceLabel }}</span><span style="font-size:14px;color:rgba(255,255,255,.72)">/ mois · tout le catalogue</span></div>
+            <sc-if value="{{ promoOn }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:-6px"><s style="font-size:15px;color:rgba(255,255,255,.6);font-variant-numeric:tabular-nums">{{ basePriceLabel }}</s><span style="height:24px;padding:0 9px;border-radius:999px;background:#0F7B5F;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center">−{{ promoOff }} % jusqu'au {{ promoUntil }}</span></div></sc-if>
+            <div style="display:flex;gap:10px;padding:12px;border-radius:8px;background:rgba(201,162,75,.12);border:1px solid rgba(201,162,75,.4);font-size:13px;line-height:1.5;color:#fff"><i class="icon-calendar-range" style="font-size:16px;color:#C9A24B;flex:none;margin-top:1px"></i><span>{{ prog.adviceDark }}</span></div>
+            <span style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.55">1 mois souscrit aujourd'hui : accès du {{ d.startLabel }} au <b style="color:#fff">{{ d.endLabel }}</b> (00h00) à ce cours et à tous les autres.</span>
+            <a href="Paiement.dc.html" style="height:52px;border-radius:10px;background:#C9A24B;color:#0B1F3A;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px">Souscrire 1 mois<i class="icon-arrow-right" style="font-size:17px"></i></a>
+            <a href="Tarifs.dc.html" style="height:44px;border-radius:10px;border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center">Comment fonctionne l'abonnement</a>
+            <span style="font-size:13px;color:rgba(255,255,255,.72);text-align:center">Déjà abonné ? <a href="Inscription.dc.html" style="color:#fff;text-decoration:underline;text-underline-offset:3px">Se connecter</a></span>
+          </div>
+          <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;gap:10px;align-items:center"><span style="width:36px;height:36px;border-radius:8px;background:#F6F1E4;color:#A8802F;display:grid;place-items:center;flex:none"><i class="icon-calendar-range" style="font-size:18px"></i></span><div style="display:flex;flex-direction:column"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px">Programme d'apprentissage</span><span style="font-size:12px;color:#4A5568">Défini par l'expert et l'équipe pédagogique</span></div></div>
+            <div style="padding:12px 14px;border-radius:8px;background:#F7F5F0;display:flex;justify-content:space-between;align-items:center;gap:10px"><span style="font-size:14px;color:#4A5568">Durée conseillée pour suivre le cours et passer l'examen final</span><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;flex:none">{{ prog.months }}</span></div>
+          </div>
+          <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;overflow:hidden">
+            <div style="padding:16px 20px;border-bottom:1px solid #E3E1DA;display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px">Plan du cours</span><span style="font-size:13px;color:#4A5568">{{ d.chCount }} chapitres</span></div>
+            <sc-for list="{{ d.chapters }}" as="ch" hint-placeholder-count="6">
+              <div style="display:flex;gap:12px;align-items:center;padding:12px 20px;border-bottom:1px solid #E3E1DA"><i class="icon-{{ ch.icon }}" style="font-size:15px;color:{{ ch.ic }}"></i><span style="flex:1;font-size:14px;color:{{ ch.fg }}">{{ ch.n }}. {{ ch.t }}</span><span style="font-size:12px;color:#4A5568">{{ ch.tag }}</span></div>
+            </sc-for>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+<!-- MOBILE -->
+<div style="display:flex;flex-direction:column;gap:16px;flex:none">
+<div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="background:#0B1F3A;color:#C9A24B;font-weight:700;padding:4px 10px;border-radius:6px">12b</span><span style="font-weight:600">Nos formations · Mobile visiteur</span></div>
+<div id="12b" data-screen-label="Formations publiques mobile" style="width:390px;height:844px;background:#F7F5F0;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(11,31,58,.22);border:8px solid #0B1F3A;display:flex;flex-direction:column">
+  <div style="height:44px;flex:none;background:#0B1F3A;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:14px;font-weight:600"><span>9:41</span><span style="display:flex;gap:6px"><i class="icon-signal" style="font-size:15px"></i><i class="icon-wifi" style="font-size:15px"></i><i class="icon-battery-full" style="font-size:15px"></i></span></div>
+  <div style="flex:none;background:#0B1F3A;color:#fff;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 20px"><span style="font-family:'Plus Jakarta Sans';font-size:17px;letter-spacing:.04em"><b style="font-weight:800">AFRI</b><span style="font-weight:500">CADRES</span></span><div style="display:flex;align-items:center;gap:4px"><a href="Inscription.dc.html#9b" style="height:40px;padding:0 14px;border-radius:8px;background:#C9A24B;color:#0B1F3A;font-weight:600;font-size:14px;display:flex;align-items:center">S'abonner</a><button aria-label="Menu" style="width:44px;height:44px;border:0;background:transparent;color:#fff;display:grid;place-items:center"><i class="icon-menu" style="font-size:22px"></i></button></div></div>
+  <div style="flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:14px">
+    <span style="font-family:'Plus Jakarta Sans';font-size:24px;font-weight:700;line-height:1.2">Nos formations</span>
+    <div style="height:48px;padding:0 14px;border:1px solid #E3E1DA;border-radius:10px;background:#fff;display:flex;align-items:center;gap:10px;color:#4A5568;font-size:16px"><i class="icon-search" style="font-size:18px"></i>Rechercher une formation</div>
+    <span style="font-size:14px;font-weight:700">Domaines</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <sc-for list="{{ domains }}" as="d" hint-placeholder-count="6"><button onClick="{{ d.select }}" style="min-height:64px;padding:10px 12px;border-radius:10px;border:{{ d.bd }};background:{{ d.bg }};color:{{ d.fg }};display:flex;align-items:center;gap:10px;text-align:left"><i class="icon-{{ d.icon }}" style="font-size:18px;flex:none"></i><div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:13px;font-weight:700;line-height:1.25">{{ d.name }}</span><span style="font-size:12px;color:{{ d.sub }}">{{ d.count }}</span></div></button></sc-for>
+    </div>
+    <span style="font-size:14px;font-weight:700;margin-top:4px">Secteurs</span>
+    <div style="display:flex;gap:8px;overflow:hidden"><sc-for list="{{ sectors }}" as="s" hint-placeholder-count="5"><button onClick="{{ s.select }}" style="height:40px;padding:0 12px;border-radius:999px;border:1px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};font-size:13px;font-weight:600;white-space:nowrap;flex:none">{{ s.name }}</button></sc-for></div>
+    <span style="font-size:14px;color:#4A5568;margin-top:4px"><b style="color:#0B1F3A">{{ count }}</b> formations</span>
+    <sc-for list="{{ resultsMobile }}" as="c" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E3E1DA;border-radius:12px;padding:10px;display:flex;gap:12px;align-items:center">
+        <div style="width:84px;height:84px;border-radius:8px;overflow:hidden;flex:none;background:{{ c.tint }};position:relative"><image-slot id="pubm-{{ c.id }}" shape="rect" placeholder="" style="width:100%;height:100%"></image-slot><span style="position:absolute;right:6px;top:6px;width:24px;height:24px;border-radius:6px;background:rgba(11,31,58,.82);color:#C9A24B;display:grid;place-items:center;pointer-events:none"><i class="icon-lock" style="font-size:12px"></i></span></div>
+        <div style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4A5568">{{ c.domain }}</span><span style="font-family:'Plus Jakarta Sans';font-size:15px;font-weight:700;line-height:1.3">{{ c.title }}</span><span style="font-size:12px;color:#4A5568">{{ c.level }} · {{ c.recLabel }} conseillé(s)</span></div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="flex:none;padding:12px 18px 24px;background:#fff;border-top:1px solid #E3E1DA;display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#4A5568;text-align:center;display:flex;gap:6px;align-items:center;justify-content:center"><i class="icon-lock" style="font-size:14px"></i>Tous les cours inclus · {{ priceLabel }} / mois</span><a href="Tarifs.dc.html#10b" style="height:50px;border-radius:10px;background:#0B1F3A;color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center">Voir l'abonnement</a></div>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = (() => { let dom = null; try { dom = new URLSearchParams(window.location.search).get('domaine'); } catch (e) {} return { dom, sec: null, query: '', open: null, v: 0 }; })();
+  componentDidMount() { const hook = () => { if (window.AFD && window.AFD_PRICE) { this._un = window.AFD.subscribe(() => this.setState(p => ({ v: p.v + 1 }))); this._unP = window.AFD_PRICE.subscribe(() => this.forceUpdate()); this.forceUpdate(); } else this._w = setTimeout(hook, 50); }; hook(); }
+  componentWillUnmount() { this._un && this._un(); this._unP && this._unP(); clearTimeout(this._w); }
+  renderVals() {
+    const N = '#0B1F3A';
+    const { dom, sec, query, open } = this.state; const fac = { 1: 1, 3: 2.7, 6: 4.8 };
+    const A = window.AFD;
+    const PRC = window.AFD_PRICE ? window.AFD_PRICE.current() : { price: 15000, base: 15000, promo: null, off: 0, until: '' };
+    const allC = A ? A.getPublished() : [];
+    const oc = allC.find(c => c.id === open);
+    const rec = oc ? [oc.recMonths, oc.recPace] : [2, 3];
+    const pace = this.state.pace || rec[1];
+    const totalH = rec[0] * 4.33 * rec[1];
+    const estWeeks = Math.max(2, Math.ceil(totalH / pace));
+    const estMonths = Math.max(1, Math.ceil(estWeeks / 4.33 - 0.1));
+    const suggested = estMonths;
+    const dur = this.state.dur || suggested;
+    const needPace = Math.ceil(totalH / (dur * 4.33));
+    const addM = (d, n) => { const y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate(); const last = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(day, last)); };
+    const today = new Date(2026, 8, 27); const fd = x => x.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+    const money = v => (Number(v) || 0).toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, ' ') + ' FCFA';
+    const D = A ? A.DOMAINS.map(([id, icon, name]) => [id, icon, name, allC.filter(c => c.domain === id).length]) : [];
+    const S = A ? A.SECTORS : [];
+    const courses = allC.map(c => { const x = A.expert(c.expert); return Object.assign({}, c, { d: c.domain, secs: c.sectors || [], expert: x.name, expRole: x.role, domain: A.domainName(c.domain), priceLabel: money(c.price), recLabel: c.recMonths + ' mois', duration: c.duration || '—', pages: c.pages || 0, ph: c.ph || c.title }); });
+    const match = c => (!dom || c.d === dom) && (!sec || c.secs.includes(sec)) && (!query || (c.title + c.expert + c.domain).toLowerCase().includes(query.toLowerCase()));
+    const results = courses.filter(match).map(c => Object.assign({}, c, { open: () => this.setState({ open: c.id }) }));
+    const cur = courses.find(c => c.id === open) || courses[0] || { id: 'x', title: '', price: 0, secs: [], objectives: [], chapters: [], desc: '' };
+    const chaptersDef = (cur.chapters || []).filter(Boolean);
+    return {
+      isList: !open, isDetail: !!open, priceLabel: PRC.label || '15 000 FCFA', basePriceLabel: PRC.baseLabel || '15 000 FCFA',
+      promoOn: !!PRC.promo, promoBanner: PRC.promo ? PRC.promo.banner : '', promoOff: PRC.off, promoUntil: PRC.until, promoName: PRC.promo ? PRC.promo.name : '',
+
+      query, onQuery: e => this.setState({ query: e.target.value }),
+      domains: D.map(([id, icon, name, count]) => { const on = dom === id; return { icon, name, count, on, bd: on ? '2px solid #0B1F3A' : '1px solid #E3E1DA', bg: on ? N : '#fff', fg: on ? '#fff' : N, sub: on ? 'rgba(255,255,255,.72)' : '#4A5568', ibg: on ? '#132C52' : '#F7F5F0', ifg: on ? '#C9A24B' : N, select: () => this.setState({ dom: on ? null : id }) }; }),
+      sectors: S.map(([id, icon, name]) => { const on = sec === id; return { icon, name, on, bd: on ? N : '#E3E1DA', bg: on ? N : '#fff', fg: on ? '#fff' : N, select: () => this.setState({ sec: on ? null : id }) }; }),
+      results, resultsMobile: results.slice(0, 5), count: results.length, hasResults: results.length > 0, noResults: results.length === 0,
+      hasFilter: !!(dom || sec || query),
+      filterLabel: (dom ? ' · ' + D.find(x => x[0] === dom)[2] : '') + (sec ? ' · ' + S.find(x => x[0] === sec)[2] : ''),
+      reset: () => this.setState({ dom: null, sec: null, query: '' }),
+      durSeg: [1, 3, 6].map(k => ({ label: k + ' mois' + (k === 3 ? ' −10 %' : k === 6 ? ' −20 %' : ''), bg: k === dur ? '#fff' : 'transparent', fg: k === dur ? N : 'rgba(255,255,255,.8)', isRec: k === suggested, select: () => this.setState({ dur: k }) })),
+      paceSeg: [[2, '1–2 h'], [3, '3 h'], [5, '5 h et +']].map(([v, label]) => ({ label, bg: pace === v ? N : '#fff', fg: pace === v ? '#fff' : N, bd: pace === v ? N : '#E3E1DA', select: () => this.setState({ pace: v, dur: null }) })),
+      prog: {
+        months: rec[0] + ' mois', weeks: Math.round(rec[0] * 4.33) + ' semaines', rhythm: rec[1] + ' h / semaine', hours: Math.round(totalH) + ' h',
+        estLabel: estMonths + ' mois', suggestedLabel: suggested + ' mois',
+        paceLabel: pace === 5 ? '5 h ou plus' : pace === 2 ? '1 à 2 h' : pace + ' h',
+        weeksLabel: estWeeks + ' semaines',
+        subsLabel: estMonths + (estMonths > 1 ? ' souscriptions de 1 mois' : ' souscription de 1 mois'),
+        advice: 'Nous vous conseillons une formule d\u2019au moins ' + rec[0] + ' mois. Votre progression est sauvegardée si vous prolongez.',
+        adviceDark: 'Durée conseillée : ' + rec[0] + ' mois. Choisissez une formule d\u2019au moins ' + rec[0] + ' mois pour suivre le cours et passer l\u2019examen final.',
+      },
+      back: () => this.setState({ open: null }),
+      d: Object.assign({}, cur, {
+        sectorNames: (cur.secs || []).map(s => (S.find(x => x[0] === s) || [, , s])[2]),
+        desc: cur.desc || '', objectives: (cur.objectives || []).filter(Boolean),
+        chCount: chaptersDef.length,
+        chapters: chaptersDef.map((t, i) => ({ n: i + 1, t, icon: 'lock', tag: 'Réservé aux abonnés' })),
+        startLabel: fd(today), endLabel: fd(addM(today, 1)),
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>
